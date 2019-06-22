@@ -4,43 +4,44 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    #region Tailored Fields
     [SerializeField] private float moveAmount;
     [SerializeField] private float jumpForce;
     [SerializeField] private float dashSpeed;
     [SerializeField] private float gravAmt;
     [SerializeField] private float dashTime;
     [SerializeField] private float startDashTime;
+    [SerializeField] private float ladderClimbSpeed;
     [SerializeField] private float glideDelayTimer;
     [SerializeField] private float glideMoveModifier;
 
     [SerializeField] private int glideGravModifier;
 
+        #endregion
 
-    //deprecated
-    /*    private GameObject movingPlatform;
-        private Vector3 mpOffset;*/
-
-
+    #region Internal Fields
     //-1 is left, 1 is right, 0 is not moving
     private int direction;
 
-    [SerializeField]private bool isGrounded, isDashing, isGliding;
+    [SerializeField]private bool isGrounded, isDashing, isGliding, isClimbing;
     private bool canGlide = false;
     private bool startGlideTimer = false;
 
-    private Vector3 moveVector;
+    private Vector3 moveVector, climbVector;
 
     private Rigidbody2D playerRB;
 
     private float currJumpForce;
     private float glideGravAmt;
     private float glideDelayTimerCount;
-  
+    #endregion
 
+    #region Start/Update
     // Start is called before the first frame update
     void Start()
     {
         moveVector = new Vector3(moveAmount, 0f);
+        climbVector = new Vector3(0f, ladderClimbSpeed);
         playerRB = this.GetComponent<Rigidbody2D>();
         playerRB.gravityScale = gravAmt;
         glideGravAmt = gravAmt / glideGravModifier;
@@ -49,6 +50,7 @@ public class Player : MonoBehaviour
         isGrounded = true;
         isDashing = false;
         isGliding = false;
+        isClimbing = false;
 
         dashTime = startDashTime;
 
@@ -85,7 +87,6 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             playerRB.AddForce(Vector2.up * currJumpForce, ForceMode2D.Impulse);
-            startGlideTimer = true;
         }
 
         //If I let go of spacebar, we should stop gliding for this frame
@@ -100,7 +101,6 @@ public class Player : MonoBehaviour
             //if we just started gliding, zero out our velocity so we stop jumping as soon as we start the glide
             if(!isGliding)
             {
-                Debug.Log("stopped jump");
                 playerRB.velocity = Vector2.zero;
             }
             //Lower gravity, mark us as gliding
@@ -129,8 +129,8 @@ public class Player : MonoBehaviour
             
         }
 
-        //if we're not dashing/gliding, turn gravity back on pls
-        if (!isDashing && !isGliding)
+        //if we're not dashing/gliding/climbing, turn gravity back on pls
+        if (!isDashing && !isGliding && !isClimbing)
         {
             playerRB.gravityScale = gravAmt;
         }
@@ -157,17 +157,16 @@ public class Player : MonoBehaviour
                 startGlideTimer = false;
             }
         }
-       
-    }
 
-    void OnCollisionStay2D(Collision2D col)
-    {
-        if (col.gameObject.tag.Contains("Platform"))
-            isGrounded = true;
-            isGliding = false;
-            canGlide = false;
+        //if we arent grounded we can look to glide
+        if(!isGrounded)
+        {
+            startGlideTimer = true;
+        }    
     }
+        #endregion
 
+    #region Collisions
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Bouncy_Platform"))
@@ -176,6 +175,16 @@ public class Player : MonoBehaviour
             currJumpForce *= 0.5f;
         if (col.gameObject.CompareTag("Fail_Platform"))
             OnFail();
+    }
+
+    void OnCollisionStay2D(Collision2D col)
+    {
+        if (col.gameObject.tag.Contains("Platform"))
+        {
+            isGrounded = true;
+            isGliding = false;
+            canGlide = false;
+        }
     }
 
     void OnCollisionExit2D(Collision2D col)
@@ -187,6 +196,30 @@ public class Player : MonoBehaviour
         if (col.gameObject.CompareTag("Sticky_Platform"))
             currJumpForce = jumpForce;
     }
+    #endregion
+
+    #region Triggers
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if(col.gameObject.CompareTag("Climbable"))
+        {
+            if (Input.GetKey(KeyCode.W))
+            {
+                playerRB.gravityScale = 0;
+                this.transform.position += climbVector;
+                isClimbing = true;
+            }
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Climbable"))
+        {
+            isClimbing = false;
+        }
+    }
+    #endregion
 
     /// <summary>
     /// Handles fail state stuff

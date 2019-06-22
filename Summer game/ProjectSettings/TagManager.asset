@@ -8,6 +8,7 @@ TagManager:
   - Bouncy_Platform
   - Sticky_Platform
   - Fail_Platform
+  - Climbable
   layers:
   - Default
   - TransparentFX
