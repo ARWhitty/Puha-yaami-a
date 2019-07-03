@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Levels/debugging.unity
+- path: Assets/ZSmartTile/Scenes/Sample-Ground.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
