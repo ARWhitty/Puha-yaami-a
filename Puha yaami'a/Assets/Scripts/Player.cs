@@ -14,20 +14,37 @@ public class Player : MonoBehaviour
     [SerializeField] private float ladderClimbSpeed;
     [SerializeField] private float glideDelayTimer;
     [SerializeField] private float glideMoveModifier;
+    [SerializeField] private float windGlideModifier;
 
     [SerializeField] private int glideGravModifier;
 
-        #endregion
+    #endregion
+
+    #region events
+    //0 is normal, 1 is bouncy, 2 is sticky, 3 is death, 4 is score loss
+    public delegate void PlatformCollisions(int type);
+    public static event PlatformCollisions OnCollide;
+
+    public delegate void TriggerPassthroughs(string type, GameObject obj);
+    public static event TriggerPassthroughs OnTrigger;
+    #endregion
 
     #region Internal Fields
     //-1 is left, 1 is right, 0 is not moving
     private int direction;
 
-    [SerializeField]private bool isGrounded, isDashing, isGliding, isClimbing;
+    [SerializeField]private bool isGrounded, isDashing, isGliding, isClimbing, inWind;
     private bool canGlide = false;
     private bool startGlideTimer = false;
+    private bool canDoubleJump = false;
+
+    private Vector2 currentWindForce = Vector2.zero;
 
     private Vector3 moveVector, climbVector;
+
+    [SerializeField] private bool dblJumpUnlocked = false;
+    [SerializeField] private bool dashUnlocked = false;
+    [SerializeField] private bool glideUnlocked = false;
 
     private Rigidbody2D playerRB;
 
@@ -84,51 +101,70 @@ public class Player : MonoBehaviour
         }
 
         //Jump
-        if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if(Input.GetKeyDown(KeyCode.Space))
         {
-            playerRB.AddForce(Vector2.up * currJumpForce, ForceMode2D.Impulse);
+            if(isGrounded)
+            {
+                playerRB.AddForce(Vector2.up * currJumpForce, ForceMode2D.Impulse);  
+                canDoubleJump = true;         
+            }
+            else
+            {
+                if(dblJumpUnlocked && canDoubleJump)
+                {
+                    canDoubleJump = false;
+                    playerRB.AddForce(Vector2.up * currJumpForce, ForceMode2D.Impulse);  
+                }
+            }
+
         }
 
-        //If I let go of spacebar, we should stop gliding for this frame
-        if (Input.GetKeyUp(KeyCode.Space) && isGliding)
+        //If I let go of Q, we should stop gliding for this frame
+        if (Input.GetKeyUp(KeyCode.Q) && isGliding)
         {
             isGliding = false;
         }
 
         //Glide, only if not dashing or on the ground
-        if (Input.GetKey(KeyCode.Space) && !isGrounded && !isDashing && canGlide)
+        if(glideUnlocked)
         {
-            //if we just started gliding, zero out our velocity so we stop jumping as soon as we start the glide
-            if(!isGliding)
+            if (Input.GetKey(KeyCode.Q) && !isGrounded && !isDashing && canGlide)
             {
-                playerRB.velocity = Vector2.zero;
+                //if we just started gliding, zero out our velocity so we stop jumping as soon as we start the glide
+                if(!isGliding)
+                {
+                    playerRB.velocity = Vector2.zero;
+                }
+                //Lower gravity, mark us as gliding
+                playerRB.AddForce(currentWindForce * windGlideModifier);
+                playerRB.gravityScale = glideGravAmt;
+                isGliding = true;
             }
-            //Lower gravity, mark us as gliding
-            playerRB.gravityScale = glideGravAmt;
-            isGliding = true;
         }
 
         //Dash
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing)
+        if(dashUnlocked)
         {
-            isDashing = true;
-            //set the gravity scale to 0 so we get a straight midair dash if necessary
-            if(!isGrounded)
+            if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing)
             {
-                playerRB.gravityScale = 0;
+                isDashing = true;
+                //set the gravity scale to 0 so we get a straight midair dash if necessary
+                if(!isGrounded)
+                {
+                    playerRB.gravityScale = 0;
+                }
+                //add to the velocity
+                if(direction == -1)
+                {
+                    playerRB.velocity = Vector2.left * dashSpeed;
+                }
+                else
+                {
+                    playerRB.velocity = Vector2.right * dashSpeed;
+                }                
             }
-            //add to the velocity
-            if(direction == -1)
-            {
-                playerRB.velocity = Vector2.left * dashSpeed;
-            }
-            else
-            {
-                playerRB.velocity = Vector2.right * dashSpeed;
-            }
-            
         }
-
+        
         //if we're not dashing/gliding/climbing, turn gravity back on pls
         if (!isDashing && !isGliding && !isClimbing)
         {
@@ -158,9 +194,10 @@ public class Player : MonoBehaviour
             }
         }
 
-        //if we arent grounded we can look to glide
+        //if we arent grounded we can look to glide and apply wind force
         if(!isGrounded)
         {
+            playerRB.AddForce(currentWindForce);
             startGlideTimer = true;
         }    
     }
@@ -170,11 +207,21 @@ public class Player : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Bouncy_Platform"))
-            currJumpForce *= 1.5f;
+        {
+            OnCollide(1);
+        }
         if (col.gameObject.CompareTag("Sticky_Platform"))
-            currJumpForce *= 0.5f;
+        {
+            OnCollide(2);
+        }
         if (col.gameObject.CompareTag("Fail_Platform"))
-            OnFail();
+        {
+            OnCollide(3);
+        }
+        if(col.gameObject.CompareTag("Avoid_Platform"))
+        {
+            OnCollide(4);
+        }
     }
 
     void OnCollisionStay2D(Collision2D col)
@@ -210,6 +257,32 @@ public class Player : MonoBehaviour
                 isClimbing = true;
             }
         }
+
+        if(col.gameObject.CompareTag("Checkpoint"))
+        {
+            OnTrigger("Checkpoint", col.gameObject);
+        }
+
+        if(col.gameObject.CompareTag("Double_Jump_Unlock"))
+        {
+            OnTrigger("Double_Jump_Unlock", null);
+        }
+
+        if(col.gameObject.CompareTag("Dash_Unlock"))
+        {
+            OnTrigger("Dash_Unlock", null);
+        }
+
+        if(col.gameObject.CompareTag("Glide_Unlock"))
+        {
+            OnTrigger("Glide_Unlock", null);
+        }
+
+        if(col.gameObject.CompareTag("Wind"))
+        {
+            inWind = true;
+            currentWindForce = col.gameObject.GetComponent<Wind>().getForce();
+        }
     }
 
     void OnTriggerExit2D(Collider2D col)
@@ -218,15 +291,46 @@ public class Player : MonoBehaviour
         {
             isClimbing = false;
         }
+        if(col.gameObject.CompareTag("Wind"))
+        {
+            inWind = false;
+            currentWindForce = Vector2.zero;
+        }
     }
     #endregion
 
-    /// <summary>
-    /// Handles fail state stuff
-    /// </summary>
-    private void OnFail()
+    public void setJumpForce(float newForce)
     {
-        transform.position = new Vector2(10.72f, 1.95f);
+        currJumpForce = newForce;
     }
+
+    public float getDefaultJumpForce()
+    {
+        return jumpForce;
+    }
+
+    public void unlockAbility(int ability)
+    {
+        switch(ability)
+        {
+            case 0:
+                dblJumpUnlocked = true;
+                break;
+            case 1:
+                dashUnlocked = true;
+                break;
+            case 2:
+                glideUnlocked = true;
+                break;
+        }
+    }
+
+    // /// <summary>
+    // /// Handles fail state stuff
+    // /// </summary>
+    // private void OnFail()
+    // {
+    //     transform.position = new Vector2(10.72f, 1.95f);
+    // }
 
 }
