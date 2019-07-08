@@ -65,7 +65,6 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -78,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: eae52bc158dce5a458dcd89d84cd5466, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 14371e3e8b45e014f9485b262332d18c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -127,7 +126,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.44, y: 8.53}
+    oldSize: {x: 6.59, y: 11.4}
     newSize: {x: 4.44, y: 8.53}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -145,17 +144,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 4549886841259883386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b558e1b6555ad4d8761516d6e73fd1, type: 3}
+  m_Script: {fileID: 11500000, guid: 385bdd8d77ce55141bde0c03e70aa3e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveAmount: 0.2
-  jumpForce: 40
-  dashSpeed: 50
-  gravAmt: 7
-  dashTime: 0
-  startDashTime: 0.3
+  jumpForce: 5
+  dashSpeed: 5
+  gravAmt: 5
+  dashTime: 5
+  startDashTime: 5
+  ladderClimbSpeed: 5
+  glideDelayTimer: 5
+  glideMoveModifier: 5
+  windGlideModifier: 5
+  glideGravModifier: 5
   isGrounded: 0
   isDashing: 0
+  isGliding: 0
+  isClimbing: 0
+  inWind: 0
+  dblJumpUnlocked: 0
+  dashUnlocked: 0
+  glideUnlocked: 0
 --- !u!1 &4549886841602128110
 GameObject:
   m_ObjectHideFlags: 0
