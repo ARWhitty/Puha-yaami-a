@@ -9,14 +9,13 @@ public class Player : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private float dashSpeed;
     [SerializeField] private float gravAmt;
-    [SerializeField] private float dashTime;
     [SerializeField] private float startDashTime;
     [SerializeField] private float ladderClimbSpeed;
     [SerializeField] private float glideDelayTimer;
     [SerializeField] private float glideMoveModifier;
     [SerializeField] private float windGlideModifier;
 
-    [SerializeField] private int glideGravModifier;
+    [SerializeField] private float glideGravModifier;
 
     #endregion
 
@@ -48,6 +47,7 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D playerRB;
 
+    private float dashTime;
     private float currJumpForce;
     private float glideGravAmt;
     private float glideDelayTimerCount;
