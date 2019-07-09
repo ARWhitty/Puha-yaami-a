@@ -1,9 +1,5 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Tests/Test.unity
-=======
-- path: Assets/Levels/debugging.unity
->>>>>>> master
+- path: Assets/Levels/Playground.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
