@@ -147,25 +147,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 385bdd8d77ce55141bde0c03e70aa3e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveAmount: 0.2
-  jumpForce: 5
-  dashSpeed: 5
-  gravAmt: 5
-  dashTime: 5
-  startDashTime: 5
-  ladderClimbSpeed: 5
-  glideDelayTimer: 5
-  glideMoveModifier: 5
-  windGlideModifier: 5
+  moveAmount: 0.4
+  jumpForce: 35
+  dashSpeed: 30
+  gravAmt: 7
+  startDashTime: 0.5
+  ladderClimbSpeed: 0.4
+  glideDelayTimer: 0
+  glideMoveModifier: 0
+  windGlideModifier: 1
   glideGravModifier: 5
   isGrounded: 0
   isDashing: 0
   isGliding: 0
   isClimbing: 0
   inWind: 0
-  dblJumpUnlocked: 0
-  dashUnlocked: 0
-  glideUnlocked: 0
+  dblJumpUnlocked: 1
+  dashUnlocked: 1
+  glideUnlocked: 1
 --- !u!1 &4549886841602128110
 GameObject:
   m_ObjectHideFlags: 0
