@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerObj;
     private Player player;
     private GameObject lastCheckpoint;
+    private Vector2 playerStartPos;
     [SerializeField] private int score;
     public Text scoreText;
 
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
     {
         player = playerObj.GetComponent<Player>();
         updateScoreText();
+        playerStartPos = player.transform.position;
     }
 
     // Update is called once per frame
@@ -92,7 +94,10 @@ public class GameManager : MonoBehaviour
 
     void onFail()
     {
-        playerObj.transform.position = lastCheckpoint.transform.position;
+        if (lastCheckpoint != null)
+            playerObj.transform.position = lastCheckpoint.transform.position;
+        else
+            playerObj.transform.position = playerStartPos;
     }
 
     void scoreLoss()

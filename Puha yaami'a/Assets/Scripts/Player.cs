@@ -5,16 +5,26 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     #region Tailored Fields
+    [Header("Tailored Fields")]
+    [Tooltip("The amount the player moves each frame side to side")]
     [SerializeField] private float moveAmount;
+    [Tooltip("The amount of force the player jumps with")]
     [SerializeField] private float jumpForce;
+    [Tooltip("The amount of force applied when the player dashes")]
     [SerializeField] private float dashSpeed;
+    [Tooltip("The force of gravity affecting the player. Higher = more pull")]
     [SerializeField] private float gravAmt;
+    [Tooltip("The length of a player's dash, in seconds")]
     [SerializeField] private float startDashTime;
+    [Tooltip("Speed the player climbs a ladder")]
     [SerializeField] private float ladderClimbSpeed;
+    [Tooltip("The delay, in seconds, before the player can begin to clide once they've jumped")]
     [SerializeField] private float glideDelayTimer;
+    [Tooltip("Multiplier for how much extra a player moves horizontally when gliding side to side. Numbers should range from 1.01 and up")]
     [SerializeField] private float glideMoveModifier;
+    [Tooltip("Makes wind stronger or weaker on the player. Values may range from 0.01 and up")]
     [SerializeField] private float windGlideModifier;
-
+    [Tooltip("Reduces the gravity on the player while gliding. Values should range between 0.01 and 1 (no modification)")]
     [SerializeField] private float glideGravModifier;
 
     #endregion
@@ -61,7 +71,7 @@ public class Player : MonoBehaviour
         climbVector = new Vector3(0f, ladderClimbSpeed);
         playerRB = this.GetComponent<Rigidbody2D>();
         playerRB.gravityScale = gravAmt;
-        glideGravAmt = gravAmt / glideGravModifier;
+        glideGravAmt = gravAmt * glideGravModifier;
         glideDelayTimerCount = glideDelayTimer;
 
         isGrounded = true;
@@ -81,7 +91,7 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-        if(Input.GetKey(KeyCode.D))
+        if(Input.GetKey(KeyCode.D) && !isDashing)
         {
             //If we're gliding, modify our movement to be a little faster
             if (isGliding)
@@ -90,7 +100,7 @@ public class Player : MonoBehaviour
                 this.transform.position += moveVector;
             direction = 1;
         }
-        else if (Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A) && !isDashing)
         {
             //If we're gliding, modify our movement to be a little faster
             if (isGliding)

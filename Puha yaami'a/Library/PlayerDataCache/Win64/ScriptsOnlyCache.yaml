@@ -1,11 +1,17 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - GameManager
     - PlatformCrumble
     - PlatformMove
     - Player
-    UnityEditor.TestRunner.dll:
-    - UnityEditor.TestTools.TestRunner.TestListCacheData
+    - Wind
+    UnityEngine.UI.dll:
+    - UnityEngine.EventSystems.EventSystem
+    - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.CanvasScaler
+    - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.Text
   sceneClasses:
     Assets/Levels/debugging.unity:
     - Class: 1
@@ -24,21 +30,35 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 61
       Script: {instanceID: 0}
+    - Class: 70
+      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9310}
+      Script: {instanceID: 9340}
     - Class: 114
-      Script: {instanceID: 9418}
+      Script: {instanceID: 9346}
     - Class: 114
-      Script: {instanceID: 9782}
+      Script: {instanceID: 9352}
     - Class: 114
-      Script: {instanceID: 11468}
+      Script: {instanceID: 9396}
     - Class: 114
-      Script: {instanceID: 11472}
+      Script: {instanceID: 9398}
+    - Class: 114
+      Script: {instanceID: 9430}
+    - Class: 114
+      Script: {instanceID: 9436}
+    - Class: 114
+      Script: {instanceID: 9846}
+    - Class: 114
+      Script: {instanceID: 9938}
+    - Class: 114
+      Script: {instanceID: 10576}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -46,15 +66,31 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
     - Class: 224
       Script: {instanceID: 0}
   scriptHashData:
+  - hash:
+      serializedVersion: 2
+      Hash: 1629bda54e1acc0d98a0491b0c6e2ff8
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: CreativeSpore.SuperTilemapEditor
+    className: RogueLikeMapGenerator
   - hash:
       serializedVersion: 2
       Hash: 984dcc0ba3707b7691fbdca8ff508d28
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_SelectionCaret
+  - hash:
+      serializedVersion: 2
+      Hash: 1924ef239f5db08b8c939c934ac85b8b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: CreativeSpore.SuperTilemapEditor
+    className: AnimBrush
   - hash:
       serializedVersion: 2
       Hash: 87ff43d2baf3385cba327d8f803a4ebb
@@ -69,6 +105,12 @@ ScriptsOnlyBuild:
     className: TMP_Dropdown
   - hash:
       serializedVersion: 2
+      Hash: f9970087a7e6cae4f51a6db2d6a25584
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: CreativeSpore.SuperTilemapEditor
+    className: STETilemap
+  - hash:
+      serializedVersion: 2
       Hash: e7a73f5f78ba6445195ec23b74a1ce2d
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -81,16 +123,16 @@ ScriptsOnlyBuild:
     className: GroupTrack
   - hash:
       serializedVersion: 2
+      Hash: e15a1582d64621b840737991ff6df0dc
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: CreativeSpore.SuperTilemapEditor
+    className: CarpetBrush
+  - hash:
+      serializedVersion: 2
       Hash: a5781dc71a671b1ad2b38de19f24b71f
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: ActivationTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 1ba22813e7a8a11932c6d7ea203d8275
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Player
   - hash:
       serializedVersion: 2
       Hash: cf9f5cf2c3145a37ac07f00e50e460f9
@@ -297,6 +339,24 @@ ScriptsOnlyBuild:
     className: PlatformMove
   - hash:
       serializedVersion: 2
+      Hash: 4eca366d9260b95b6d4cec8c8604577b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Wind
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: UnityEngine.Advertisements.dll
+    namespaceName: UnityEngine.Advertisements
+    className: CallbackExecutor
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: UnityEngine.Advertisements.dll
+    namespaceName: UnityEngine.Advertisements.Editor
+    className: Placeholder
+  - hash:
+      serializedVersion: 2
       Hash: cf9f5cf2c3145a37ac07f00e50e460f9
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -495,6 +555,18 @@ ScriptsOnlyBuild:
     className: SignalAsset
   - hash:
       serializedVersion: 2
+      Hash: 250ea697b99a9d0d6305e34961160bb2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: CreativeSpore.SuperTilemapEditor
+    className: RandomBrush
+  - hash:
+      serializedVersion: 2
+      Hash: a7ffc27862063386d902bebdb494aed6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: CreativeSpore.SuperTilemapEditor
+    className: TilemapChunk
+  - hash:
+      serializedVersion: 2
       Hash: f08a111e17bb701f9c9ec57bb78d9920
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -543,10 +615,22 @@ ScriptsOnlyBuild:
     className: ControlTrack
   - hash:
       serializedVersion: 2
+      Hash: 34107b62fb0794862baa55256e962b4a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: CreativeSpore.SuperTilemapEditor
+    className: TilemapGroup
+  - hash:
+      serializedVersion: 2
       Hash: 98f7b2496ad7b6b71649a127cb6a8d09
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlatformCrumble
+  - hash:
+      serializedVersion: 2
+      Hash: 700ec9009eeb2e6f14ea326eaedbce49
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: CreativeSpore.SuperTilemapEditor
+    className: PathfindingBehaviour
   - hash:
       serializedVersion: 2
       Hash: b3ab2106268377ffe25dd18ac23dca28
@@ -555,10 +639,22 @@ ScriptsOnlyBuild:
     className: TMP_Asset
   - hash:
       serializedVersion: 2
+      Hash: 42457f4596a927afba27c7797119957c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: CubesTeam
+    className: PyxelEdit
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: SignalTrack
+  - hash:
+      serializedVersion: 2
+      Hash: d51bd7ab6d119b169f93376d4348ac70
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameManager
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -603,6 +699,12 @@ ScriptsOnlyBuild:
     className: ActivationPlayableAsset
   - hash:
       serializedVersion: 2
+      Hash: 11ce46a275737fc2f6a10a4e1f5dd859
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: CreativeSpore.SuperTilemapEditor
+    className: BrushFortySeven
+  - hash:
+      serializedVersion: 2
       Hash: 88cc9df3c6fc697bfbeacd24c0d6f2d7
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools
@@ -645,6 +747,18 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
+      Hash: 874e33b197c00b6ddbac7df6fc88dd6c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: CreativeSpore.SuperTilemapEditor
+    className: Tileset
+  - hash:
+      serializedVersion: 2
+      Hash: d96b084b599d87512850f7292075937f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: CreativeSpore.SuperTilemapEditor
+    className: TilesetBrush
+  - hash:
+      serializedVersion: 2
       Hash: ee0cef6caaac8ae485bfa82f000f0f7b
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -663,16 +777,46 @@ ScriptsOnlyBuild:
     className: AudioTrack
   - hash:
       serializedVersion: 2
+      Hash: 11ce46a275737fc2f6a10a4e1f5dd859
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: CreativeSpore.SuperTilemapEditor
+    className: A2X2Brush
+  - hash:
+      serializedVersion: 2
+      Hash: 0dab522371d0ff1e1dae683d3fb93494
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: CreativeSpore.SuperTilemapEditor
+    className: BrushBehaviour
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DialogueDisplay
   - hash:
       serializedVersion: 2
+      Hash: 2dfd6aecb80d36d3a3519ac2793dd24a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: CreativeSpore.SuperTilemapEditor
+    className: TileObjectBehaviour
+  - hash:
+      serializedVersion: 2
+      Hash: f5c1553f356b79a9a525aa160f821af7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: CreativeSpore.SuperTilemapEditor
+    className: TileObjMesh
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: MarkerTrack
+  - hash:
+      serializedVersion: 2
+      Hash: b2135b1c1b1a940cc0e56f8668b9e65e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Player
   - hash:
       serializedVersion: 2
       Hash: d791aa6007fa3640be1164ea75bb087d
@@ -691,6 +835,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_ColorGradient
+  - hash:
+      serializedVersion: 2
+      Hash: 11ce46a275737fc2f6a10a4e1f5dd859
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: CreativeSpore.SuperTilemapEditor
+    className: RoadBrush
   - hash:
       serializedVersion: 2
       Hash: 8649814970b42d345b89944b862453cc
