@@ -122,12 +122,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveAmount: 0.4
-  jumpForce: 25
-  dashSpeed: 50
-  gravAmt: 3
-  startDashTime: 1
-  ladderClimbSpeed: 1
-  glideDelayTimer: 1
+  jumpForce: 35
+  dashSpeed: 30
+  gravAmt: 7
+  startDashTime: 0.5
+  ladderClimbSpeed: 0.4
+  glideDelayTimer: 0.5
   glideMoveModifier: 1.5
   windGlideModifier: 1
   glideGravModifier: 0.5
@@ -136,8 +136,8 @@ MonoBehaviour:
   isGliding: 0
   isClimbing: 0
   inWind: 0
-  dblJumpUnlocked: 0
-  dashUnlocked: 0
+  dblJumpUnlocked: 1
+  dashUnlocked: 1
   glideUnlocked: 1
 --- !u!70 &227621397
 CapsuleCollider2D:
