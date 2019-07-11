@@ -228,10 +228,6 @@ public class Player : MonoBehaviour
         {
             OnCollide(3);
         }
-        if(col.gameObject.CompareTag("Avoid_Platform"))
-        {
-            OnCollide(4);
-        }
     }
 
     void OnCollisionStay2D(Collision2D col)
@@ -292,6 +288,11 @@ public class Player : MonoBehaviour
         {
             inWind = true;
             currentWindForce = col.gameObject.GetComponent<Wind>().getForce();
+        }
+
+        if (col.gameObject.CompareTag("Score_Loss"))
+        {
+            OnCollide(4);
         }
     }
 

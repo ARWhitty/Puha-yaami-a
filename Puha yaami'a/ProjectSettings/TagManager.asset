@@ -3,7 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Platform
+  - Climbable
+  - Fail_Platform
+  - Wind
+  - Bouncy_Platform
+  - Sticky_Platform
+  - Score_Loss
+  - Checkpoint
+  - Double_Jump_Unlock
+  - Dash_Unlock
+  - Glide_Unlock
   layers:
   - Default
   - TransparentFX

@@ -53,7 +53,12 @@ public class PlatformCrumble : MonoBehaviour
     {
         if(col.gameObject.CompareTag("Player"))
         {
-            isCrumbling = true;
+            Vector2 contactPt = col.contacts[0].point;
+            Vector2 center = col.collider.bounds.center;
+            if(contactPt.y < center.y)
+            {
+                isCrumbling = true;
+            }
         }
     }
 
