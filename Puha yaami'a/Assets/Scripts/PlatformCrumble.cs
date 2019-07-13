@@ -47,18 +47,14 @@ public class PlatformCrumble : MonoBehaviour
                 ResetLocation();
             }
         }
+        
     }
 
-    void OnCollisionStay2D(Collision2D col)
+    private void OnTriggerStay2D(Collider2D col)
     {
-        if(col.gameObject.CompareTag("Player"))
+        if(col.gameObject.tag == "Player")
         {
-            Vector2 contactPt = col.contacts[0].point;
-            Vector2 center = col.collider.bounds.center;
-            if(contactPt.y < center.y)
-            {
-                isCrumbling = true;
-            }
+            isCrumbling = true;
         }
     }
 

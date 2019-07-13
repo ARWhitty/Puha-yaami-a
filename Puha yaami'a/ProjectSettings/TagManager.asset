@@ -24,8 +24,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Player
+  - Platforms
   - 
   - 
   - 
@@ -51,4 +51,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Special Platforms
+    uniqueID: 2205648995
+    locked: 0
+  - name: Hazards
+    uniqueID: 387747821
+    locked: 0
+  - name: Standard Platforms
+    uniqueID: 3860388427
+    locked: 0
+  - name: Player
+    uniqueID: 1886506763
+    locked: 0
+  - name: UI
+    uniqueID: 3074112229
     locked: 0
