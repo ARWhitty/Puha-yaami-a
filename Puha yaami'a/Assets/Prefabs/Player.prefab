@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1886506763
-  m_SortingLayer: 1
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 14371e3e8b45e014f9485b262332d18c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -121,16 +121,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 385bdd8d77ce55141bde0c03e70aa3e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveAmount: 0.2
-  jumpForce: 45
+  moveAmount: 0.4
+  jumpForce: 53
   dashSpeed: 80
-  gravAmt: 7
+  gravAmt: 9.5
   startDashTime: 0.3
   ladderClimbSpeed: 0.4
   glideDelayTimer: 0.5
-  glideMoveModifier: 1.5
+  glideMoveModifier: 1
   windGlideModifier: 1
-  glideGravModifier: 0.2
+  glideGravModifier: 1
   isDashing: 0
   isGliding: 0
   isClimbing: 0
