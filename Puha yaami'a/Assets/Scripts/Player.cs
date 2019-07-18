@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
     #region Internal Fields
     //-1 is left, 1 is right, 0 is not moving
     private int direction_KB, direction_CTRL;
+    private int num_jumps;
 
     [SerializeField]private bool isDashing, isGliding, isClimbing, inWind, startDashCd, canDash;
     private bool canGlide = false;
@@ -51,7 +52,7 @@ public class Player : MonoBehaviour
 
     private Vector2 currentWindForce = Vector2.zero;
 
-    private Vector3 moveVector, climbVector, widthOffset;
+    private Vector3 moveVector, climbVector, widthOffset, jumpNudge;
 
     [SerializeField] private bool dblJumpUnlocked = false;
     [SerializeField] private bool dashUnlocked = false;
@@ -66,6 +67,7 @@ public class Player : MonoBehaviour
     private float dashCd;
 
     private float spriteWidth;
+    private float collHeight;
 
     private LayerMask groundedFilter;
     #endregion
@@ -76,6 +78,8 @@ public class Player : MonoBehaviour
     {
         moveVector = new Vector3(moveAmount, 0f);
         climbVector = new Vector3(0f, ladderClimbSpeed);
+        jumpNudge = new Vector3(0f, 0.02f);
+
         playerRB = this.GetComponent<Rigidbody2D>();
         playerRB.gravityScale = gravAmt;
         glideGravAmt = gravAmt * glideGravModifier;
@@ -86,6 +90,7 @@ public class Player : MonoBehaviour
         isGliding = false;
         isClimbing = false;
         startDashCd = false;
+        canDoubleJump = false;
 
         dashTime = startDashTime;
         dashCd = dashCooldown;
@@ -93,12 +98,14 @@ public class Player : MonoBehaviour
 
         direction_KB = 0;
         direction_CTRL = 0;
+        num_jumps = 0;
 
         currJumpForce = jumpForce;
 
         groundedFilter = LayerMask.GetMask("Platforms");
 
         spriteWidth = (float)this.GetComponent<SpriteRenderer>().bounds.size.x;
+        collHeight = (float)this.GetComponent<Collider2D>().bounds.size.y / 2;
         widthOffset = new Vector3(spriteWidth/2 - 1.4f, 0, 0);
     }
 
@@ -186,7 +193,12 @@ public class Player : MonoBehaviour
         {
             playerRB.AddForce(currentWindForce);
             startGlideTimer = true;
-        }   
+        }
+        //If we are set the jumps we have available to 1
+        else
+        {
+            num_jumps = 1;
+        }
     }
     #endregion
 
@@ -215,20 +227,27 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        if (isGrounded())
+        if(num_jumps > 0)
         {
+            //set the upwards velocity to 0 so we don't have additive jump, then add the force
+            playerRB.velocity = Vector2.zero;
+            //this is here so that the player is not instantly marked grounded again and able to triple jump
+            //may want to make this better in the future? Clever workaround solution for now
+            this.transform.position += jumpNudge;
             playerRB.AddForce(Vector2.up * currJumpForce, ForceMode2D.Impulse);
             canDoubleJump = true;
+            num_jumps = 0;
+            Debug.Log(num_jumps);
+            Debug.Log("Jump 1");
         }
-        else
+
+        else if (dblJumpUnlocked && canDoubleJump)
         {
-            if (dblJumpUnlocked && canDoubleJump)
-            {
-                canDoubleJump = false;
-                //set the upwards velocity to 0 so we don't have additive jump, then add the force
-                playerRB.velocity = Vector2.zero;
-                playerRB.AddForce(Vector2.up * currJumpForce, ForceMode2D.Impulse);
-            }
+            canDoubleJump = false;
+            //set the upwards velocity to 0 so we don't have additive jump, then add the force
+            playerRB.velocity = Vector2.zero;
+            playerRB.AddForce(Vector2.up * currJumpForce, ForceMode2D.Impulse);
+            Debug.Log("dbl");
         }
     }
 
@@ -255,7 +274,7 @@ public class Player : MonoBehaviour
     {
         if (dashUnlocked)
         {
-            if (canDash && !isDashing && !isGrounded() && dir != 0)
+            if (canDash && !isDashing && dir != 0)
             {
                 isDashing = true;
                 //set the gravity scale to 0 so we get a straight midair dash if necessary
@@ -278,11 +297,11 @@ public class Player : MonoBehaviour
 
     private bool isGrounded()
     {
-        RaycastHit2D hitCenter = Physics2D.Raycast(transform.position, Vector2.down, 6.0f, groundedFilter);
-        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position - widthOffset, Vector2.down, 6.0f, groundedFilter);
-        RaycastHit2D hitRight = Physics2D.Raycast(transform.position + widthOffset, Vector2.down, 6.0f, groundedFilter);
+        RaycastHit2D hitCenter = Physics2D.Raycast(transform.position, Vector2.down, collHeight, groundedFilter);
+        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position - widthOffset, Vector2.down, collHeight, groundedFilter);
+        RaycastHit2D hitRight = Physics2D.Raycast(transform.position + widthOffset, Vector2.down, collHeight, groundedFilter);
 
-        Debug.DrawRay(transform.position - widthOffset, Vector2.down * 6f, Color.blue);
+        Debug.DrawRay(transform.position - widthOffset, Vector2.down * collHeight, Color.blue);
         if ((hitCenter.collider != null && hitCenter.collider.gameObject.tag.Contains("Platform")) || (hitLeft.collider != null && hitLeft.collider.gameObject.tag.Contains("Platform")) || (hitRight.collider != null && hitRight.collider.gameObject.tag.Contains("Platform")))
         {
             return true;
