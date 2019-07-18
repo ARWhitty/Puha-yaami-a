@@ -750,7 +750,11 @@ MonoBehaviour:
       width: 0.1
       height: 0.125
     collData:
-      vertices: []
+      vertices:
+      - {x: 0, y: 0}
+      - {x: 0, y: 1}
+      - {x: 1, y: 1}
+      - {x: 1, y: 0}
       type: 1
     paramContainer:
       m_paramList: []
