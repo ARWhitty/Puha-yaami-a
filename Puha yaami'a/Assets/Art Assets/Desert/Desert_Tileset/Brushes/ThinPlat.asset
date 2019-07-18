@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a8e407e6aafc3440a04af21fd9b7ff1, type: 3}
   m_Name: ThinPlat
   m_EditorClassIdentifier: 
-  Tileset: {fileID: 11400000, guid: 2e4b889172bd91c49b9929cab33464fc, type: 2}
+  Tileset: {fileID: 11400000, guid: b680709c5618562439fb09edccac8a46, type: 2}
   Params:
     m_paramList: []
   m_group: 1
   m_autotilingMode: 1
   m_showInPalette: 1
-  TileIds: 1c00000005000e001d00000006000d0005000e0005000e0006000d0006000d001f00000008000c001e00000007000b0008000c0008000c0007000b0007000b00
+  TileIds: 3c000e003c000e003d000d003d000d003c000e003c000e003d000d003d000d003f000a003f000a003e0003003e0003003f000a003f000a003e0003003e000300

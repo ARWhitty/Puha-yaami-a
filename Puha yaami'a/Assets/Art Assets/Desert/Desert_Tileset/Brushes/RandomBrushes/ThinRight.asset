@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5656c5e200a31c945b469abda4211525, type: 3}
   m_Name: ThinRight
   m_EditorClassIdentifier: 
-  Tileset: {fileID: 11400000, guid: 77b42b5160737c7468b6e8b8d2848dfa, type: 2}
+  Tileset: {fileID: 11400000, guid: b680709c5618562439fb09edccac8a46, type: 2}
   Params:
     m_paramList: []
   m_group: 0
@@ -20,13 +20,11 @@ MonoBehaviour:
   m_showInPalette: 0
   RandomTiles: 
   RandomTileList:
-  - tileData: 8
+  - tileData: 63
     probabilityFactor: 1
-  - tileData: 59
+  - tileData: 73
     probabilityFactor: 1
-  - tileData: 71
-    probabilityFactor: 1
-  - tileData: 83
+  - tileData: 67
     probabilityFactor: 1
   RandomizeFlagMask: 0
   RemoveBrushIdAfterRefresh: 0
