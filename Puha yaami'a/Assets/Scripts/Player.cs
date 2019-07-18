@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float windGlideModifier;
     [Tooltip("Reduces the gravity on the player while gliding. Values should range between 0.01 and 1 (no modification)")]
     [SerializeField] private float glideGravModifier;
+    [Tooltip("The cooldown before a player may dash again, in seconds")]
+    [SerializeField] private float dashCooldown;
 
     #endregion
 
@@ -42,14 +44,14 @@ public class Player : MonoBehaviour
     //-1 is left, 1 is right, 0 is not moving
     private int direction_KB, direction_CTRL;
 
-    [SerializeField]private bool isDashing, isGliding, isClimbing, inWind;
+    [SerializeField]private bool isDashing, isGliding, isClimbing, inWind, startDashCd, canDash;
     private bool canGlide = false;
     private bool startGlideTimer = false;
     private bool canDoubleJump = false;
 
     private Vector2 currentWindForce = Vector2.zero;
 
-    private Vector3 moveVector, climbVector;
+    private Vector3 moveVector, climbVector, widthOffset;
 
     [SerializeField] private bool dblJumpUnlocked = false;
     [SerializeField] private bool dashUnlocked = false;
@@ -61,6 +63,9 @@ public class Player : MonoBehaviour
     private float currJumpForce;
     private float glideGravAmt;
     private float glideDelayTimerCount;
+    private float dashCd;
+
+    private float spriteWidth;
 
     private LayerMask groundedFilter;
     #endregion
@@ -80,8 +85,11 @@ public class Player : MonoBehaviour
         isDashing = false;
         isGliding = false;
         isClimbing = false;
+        startDashCd = false;
 
         dashTime = startDashTime;
+        dashCd = dashCooldown;
+        canDash = true;
 
         direction_KB = 0;
         direction_CTRL = 0;
@@ -89,6 +97,9 @@ public class Player : MonoBehaviour
         currJumpForce = jumpForce;
 
         groundedFilter = LayerMask.GetMask("Platforms");
+
+        spriteWidth = (float)this.GetComponent<SpriteRenderer>().bounds.size.x;
+        widthOffset = new Vector3(spriteWidth/2 - 1.4f, 0, 0);
     }
 
     // Update is called once per frame
@@ -142,6 +153,8 @@ public class Player : MonoBehaviour
                 dashTime = startDashTime;
                 playerRB.velocity = Vector2.zero;
                 isDashing = false;
+                startDashCd = true;
+                canDash = false;
             }
         }
         //If we are in the middle of a jump, start our glide timer so we delay when we can glide
@@ -153,6 +166,18 @@ public class Player : MonoBehaviour
                 glideDelayTimerCount = glideDelayTimer;
                 canGlide = true;
                 startGlideTimer = false;
+            }
+        }
+
+        //Cooldown between dashes
+        if(startDashCd)
+        {
+            dashCd -= Time.deltaTime;
+            if(dashCd <= 0)
+            {
+                dashCd = dashCooldown;
+                startDashCd = false;
+                canDash = true;
             }
         }
 
@@ -230,7 +255,7 @@ public class Player : MonoBehaviour
     {
         if (dashUnlocked)
         {
-            if (!isDashing && !isGrounded() && dir != 0)
+            if (canDash && !isDashing && !isGrounded() && dir != 0)
             {
                 isDashing = true;
                 //set the gravity scale to 0 so we get a straight midair dash if necessary
@@ -253,8 +278,12 @@ public class Player : MonoBehaviour
 
     private bool isGrounded()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 5.7f, groundedFilter);
-        if(hit.collider != null && hit.collider.gameObject.tag.Contains("Platform"))
+        RaycastHit2D hitCenter = Physics2D.Raycast(transform.position, Vector2.down, 6.0f, groundedFilter);
+        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position - widthOffset, Vector2.down, 6.0f, groundedFilter);
+        RaycastHit2D hitRight = Physics2D.Raycast(transform.position + widthOffset, Vector2.down, 6.0f, groundedFilter);
+
+        Debug.DrawRay(transform.position - widthOffset, Vector2.down * 6f, Color.blue);
+        if ((hitCenter.collider != null && hitCenter.collider.gameObject.tag.Contains("Platform")) || (hitLeft.collider != null && hitLeft.collider.gameObject.tag.Contains("Platform")) || (hitRight.collider != null && hitRight.collider.gameObject.tag.Contains("Platform")))
         {
             return true;
         }
@@ -384,12 +413,18 @@ public class Player : MonoBehaviour
         }
     }
 
-    // /// <summary>
-    // /// Handles fail state stuff
-    // /// </summary>
-    // private void OnFail()
-    // {
-    //     transform.position = new Vector2(10.72f, 1.95f);
-    // }
+    #region accessors/public modifiers
+    /// <summary>
+    /// Called from OnFail in GameManager to avoid cooldown locking immediately after dying
+    /// </summary>
+    public void ResetCooldowns()
+    {
+        dashCd = dashCooldown;
+        canDash = true;
+        isClimbing = false;
+        isDashing = false;
+        isGliding = false;
+    }
+    #endregion
 
 }
