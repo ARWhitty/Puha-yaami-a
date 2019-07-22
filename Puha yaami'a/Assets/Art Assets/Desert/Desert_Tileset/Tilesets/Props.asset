@@ -33,7 +33,7 @@ MonoBehaviour:
       height: 0.25
     collData:
       vertices: []
-      type: 0
+      type: 1
     paramContainer:
       m_paramList: []
     prefabData:
@@ -52,7 +52,7 @@ MonoBehaviour:
       height: 0.25
     collData:
       vertices: []
-      type: 0
+      type: 1
     paramContainer:
       m_paramList: []
     prefabData:
@@ -71,7 +71,7 @@ MonoBehaviour:
       height: 0.25
     collData:
       vertices: []
-      type: 0
+      type: 1
     paramContainer:
       m_paramList: []
     prefabData:
@@ -90,7 +90,7 @@ MonoBehaviour:
       height: 0.25
     collData:
       vertices: []
-      type: 0
+      type: 1
     paramContainer:
       m_paramList: []
     prefabData:
@@ -109,7 +109,7 @@ MonoBehaviour:
       height: 0.25
     collData:
       vertices: []
-      type: 0
+      type: 1
     paramContainer:
       m_paramList: []
     prefabData:
@@ -128,7 +128,7 @@ MonoBehaviour:
       height: 0.25
     collData:
       vertices: []
-      type: 0
+      type: 1
     paramContainer:
       m_paramList: []
     prefabData:
@@ -147,7 +147,7 @@ MonoBehaviour:
       height: 0.25
     collData:
       vertices: []
-      type: 0
+      type: 1
     paramContainer:
       m_paramList: []
     prefabData:
@@ -166,7 +166,7 @@ MonoBehaviour:
       height: 0.25
     collData:
       vertices: []
-      type: 0
+      type: 1
     paramContainer:
       m_paramList: []
     prefabData:
@@ -185,7 +185,7 @@ MonoBehaviour:
       height: 0.25
     collData:
       vertices: []
-      type: 0
+      type: 1
     paramContainer:
       m_paramList: []
     prefabData:
@@ -261,7 +261,7 @@ MonoBehaviour:
       height: 0.25
     collData:
       vertices: []
-      type: 0
+      type: 1
     paramContainer:
       m_paramList: []
     prefabData:
@@ -279,8 +279,12 @@ MonoBehaviour:
       width: 0.083333336
       height: 0.25
     collData:
-      vertices: []
-      type: 0
+      vertices:
+      - {x: 0, y: 0}
+      - {x: 0.005859375, y: 0.54296875}
+      - {x: 0.98828125, y: 0.55859375}
+      - {x: 1, y: 0}
+      type: 1
     paramContainer:
       m_paramList: []
     prefabData:
@@ -299,7 +303,7 @@ MonoBehaviour:
       height: 0.25
     collData:
       vertices: []
-      type: 0
+      type: 1
     paramContainer:
       m_paramList: []
     prefabData:
@@ -318,7 +322,7 @@ MonoBehaviour:
       height: 0.25
     collData:
       vertices: []
-      type: 0
+      type: 1
     paramContainer:
       m_paramList: []
     prefabData:
@@ -337,7 +341,7 @@ MonoBehaviour:
       height: 0.25
     collData:
       vertices: []
-      type: 0
+      type: 1
     paramContainer:
       m_paramList: []
     prefabData:
@@ -356,7 +360,7 @@ MonoBehaviour:
       height: 0.25
     collData:
       vertices: []
-      type: 0
+      type: 1
     paramContainer:
       m_paramList: []
     prefabData:
@@ -375,7 +379,7 @@ MonoBehaviour:
       height: 0.25
     collData:
       vertices: []
-      type: 0
+      type: 1
     paramContainer:
       m_paramList: []
     prefabData:
@@ -394,7 +398,7 @@ MonoBehaviour:
       height: 0.25
     collData:
       vertices: []
-      type: 0
+      type: 1
     paramContainer:
       m_paramList: []
     prefabData:
@@ -413,7 +417,7 @@ MonoBehaviour:
       height: 0.25
     collData:
       vertices: []
-      type: 0
+      type: 1
     paramContainer:
       m_paramList: []
     prefabData:
@@ -489,7 +493,7 @@ MonoBehaviour:
       height: 0.25
     collData:
       vertices: []
-      type: 0
+      type: 1
     paramContainer:
       m_paramList: []
     prefabData:
@@ -508,7 +512,7 @@ MonoBehaviour:
       height: 0.25
     collData:
       vertices: []
-      type: 0
+      type: 1
     paramContainer:
       m_paramList: []
     prefabData:
@@ -717,7 +721,7 @@ MonoBehaviour:
       height: 0.25
     collData:
       vertices: []
-      type: 0
+      type: 1
     paramContainer:
       m_paramList: []
     prefabData:
@@ -736,7 +740,7 @@ MonoBehaviour:
       height: 0.25
     collData:
       vertices: []
-      type: 0
+      type: 1
     paramContainer:
       m_paramList: []
     prefabData:
