@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float windGlideModifier;
     [Tooltip("Reduces the gravity on the player while gliding. Values should range between 0.01 and 1 (no modification)")]
     [SerializeField] private float glideGravModifier;
+    [Tooltip("The curve for how fast a player returns to normal gravity while gliding. Values should range between 0.01 and 1, the alrger the number the faster the fall as glide continues")]
+    [SerializeField] private float glideCurveModifier;
     [Tooltip("The cooldown before a player may dash again, in seconds")]
     [SerializeField] private float dashCooldown;
 
@@ -106,7 +108,7 @@ public class Player : MonoBehaviour
 
         spriteWidth = (float)this.GetComponent<SpriteRenderer>().bounds.size.x;
         collHeight = (float)this.GetComponent<Collider2D>().bounds.size.y / 2;
-        widthOffset = new Vector3(spriteWidth/2 - 1.4f, 0, 0);
+        widthOffset = new Vector3(spriteWidth/2 - 2.0f, 0, 0);
     }
 
     // Update is called once per frame
@@ -140,16 +142,18 @@ public class Player : MonoBehaviour
         }
 
         //If I let go of glide button, we should stop gliding for this frame
-        if (Input.GetAxisRaw("Glide_KB") == 0 || Input.GetAxisRaw("Glide_CTRL") == 0)
+/*        if (Input.GetAxisRaw("Glide_KB") == 0 || Input.GetAxisRaw("Glide_CTRL") == 0)
         {
             isGliding = false;
-        }
+        }*/
 
         //if we're not dashing/gliding/climbing, turn gravity back on pls
         if (!isDashing && !isGliding && !isClimbing)
         {
             playerRB.gravityScale = gravAmt;
+            glideGravAmt = gravAmt * glideGravModifier;
         }
+
         //If we are, decrease our timer
         if(isDashing)
         {
@@ -194,10 +198,10 @@ public class Player : MonoBehaviour
             playerRB.AddForce(currentWindForce);
             startGlideTimer = true;
         }
-        //If we are set the jumps we have available to 1
+        //If we are set the jumps we have available to 1 and reset our glide gravity
         else
         {
-            num_jumps = 1;
+            num_jumps = GetMaxJumps();    
         }
     }
     #endregion
@@ -236,18 +240,19 @@ public class Player : MonoBehaviour
             this.transform.position += jumpNudge;
             playerRB.AddForce(Vector2.up * currJumpForce, ForceMode2D.Impulse);
             canDoubleJump = true;
-            num_jumps = 0;
-            Debug.Log(num_jumps);
-            Debug.Log("Jump 1");
+            num_jumps-=1;
         }
+    }
 
-        else if (dblJumpUnlocked && canDoubleJump)
+    private int GetMaxJumps()
+    {
+        if(dblJumpUnlocked)
         {
-            canDoubleJump = false;
-            //set the upwards velocity to 0 so we don't have additive jump, then add the force
-            playerRB.velocity = Vector2.zero;
-            playerRB.AddForce(Vector2.up * currJumpForce, ForceMode2D.Impulse);
-            Debug.Log("dbl");
+            return 2;
+        }
+        else
+        {
+            return 1;
         }
     }
 
@@ -255,18 +260,26 @@ public class Player : MonoBehaviour
     {
         if (glideUnlocked)
         {
-            if (!isGrounded() && !isDashing && canGlide)
+            // if we're already gliding, curve our glide fall speed
+            if(isGliding)
+            {
+                if(glideGravAmt <= gravAmt)
+                    glideGravAmt += glideCurveModifier;
+            }
+            //Otherwise set up the glide
+            else if (!isGrounded() && !isDashing && canGlide)
             {
                 //if we just started gliding, zero out our velocity so we stop jumping as soon as we start the glide
                 if (!isGliding)
                 {
                     playerRB.velocity = Vector2.zero;
                 }
-                //Lower gravity, mark us as gliding
-                playerRB.AddForce(currentWindForce * windGlideModifier);
-                playerRB.gravityScale = glideGravAmt;
                 isGliding = true;
             }
+
+            //Lower gravity, mark us as gliding
+            playerRB.AddForce(currentWindForce * windGlideModifier);
+            playerRB.gravityScale = glideGravAmt;
         }
     }
 
@@ -281,16 +294,6 @@ public class Player : MonoBehaviour
 
                 playerRB.gravityScale = 0;
                 playerRB.velocity = new Vector2(dir, 0) * dashSpeed;
-
-                /*//add to the velocity
-                if (direction == -1)
-                {
-                    playerRB.velocity = Vector2.left * dashSpeed;
-                }
-                else
-                {
-                    playerRB.velocity = Vector2.right * dashSpeed;
-                }*/
             }
         }
     }
@@ -301,7 +304,10 @@ public class Player : MonoBehaviour
         RaycastHit2D hitLeft = Physics2D.Raycast(transform.position - widthOffset, Vector2.down, collHeight, groundedFilter);
         RaycastHit2D hitRight = Physics2D.Raycast(transform.position + widthOffset, Vector2.down, collHeight, groundedFilter);
 
-        Debug.DrawRay(transform.position - widthOffset, Vector2.down * collHeight, Color.blue);
+        //DEBUG stuff for my own sanity. Please do not delete until everything is done
+        /*Debug.DrawRay(transform.position + widthOffset, Vector2.down * collHeight, Color.blue);
+        Debug.DrawRay(transform.position, Vector2.down * collHeight, Color.blue);
+        Debug.DrawRay(transform.position - widthOffset, Vector2.down * collHeight, Color.blue);*/
         if ((hitCenter.collider != null && hitCenter.collider.gameObject.tag.Contains("Platform")) || (hitLeft.collider != null && hitLeft.collider.gameObject.tag.Contains("Platform")) || (hitRight.collider != null && hitRight.collider.gameObject.tag.Contains("Platform")))
         {
             return true;

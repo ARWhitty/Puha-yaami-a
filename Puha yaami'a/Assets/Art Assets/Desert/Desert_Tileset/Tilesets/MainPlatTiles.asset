@@ -522,8 +522,12 @@ MonoBehaviour:
       width: 0.1
       height: 0.125
     collData:
-      vertices: []
-      type: 1
+      vertices:
+      - {x: 1, y: 0.00390625}
+      - {x: 1, y: 1}
+      - {x: 0, y: 1}
+      - {x: 0, y: 0}
+      type: 2
     paramContainer:
       m_paramList: []
     prefabData:
@@ -560,7 +564,11 @@ MonoBehaviour:
       width: 0.1
       height: 0.125
     collData:
-      vertices: []
+      vertices:
+      - {x: 0, y: 0}
+      - {x: 0, y: 1}
+      - {x: 1, y: 1}
+      - {x: 1, y: 0}
       type: 1
     paramContainer:
       m_paramList: []
@@ -693,7 +701,11 @@ MonoBehaviour:
       width: 0.1
       height: 0.125
     collData:
-      vertices: []
+      vertices:
+      - {x: 0, y: 0}
+      - {x: 0, y: 1}
+      - {x: 1, y: 1}
+      - {x: 1, y: 0}
       type: 1
     paramContainer:
       m_paramList: []
