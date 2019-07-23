@@ -204,7 +204,7 @@ public class Player : MonoBehaviour
         }
 
         //if we arent grounded we can look to glide and apply wind force
-        if(!isGrounded())
+        if(!IsGrounded())
         {
             playerRB.AddForce(currentWindForce);
             startGlideTimer = true;
@@ -212,7 +212,6 @@ public class Player : MonoBehaviour
         //If we are set the jumps we have available to our maximum
         else
         {
-            Debug.Log("grounded");
             num_jumps = GetMaxJumps();    
         }
     }
@@ -273,9 +272,8 @@ public class Player : MonoBehaviour
         if (glideUnlocked)
         {
             //set up glide if necessary
-            if (!isGrounded() && !isDashing && canGlide)
+            if (!IsGrounded() && !isDashing && canGlide)
             {
-                Debug.Log("hitting glide setup");
                 //if we just started gliding, zero out our velocity so we stop jumping as soon as we start the glide
                 if (!isGliding)
                 {
@@ -288,7 +286,6 @@ public class Player : MonoBehaviour
 
     private void Dash(int dir)
     {
-        Debug.Log("dash call");
         if (dashUnlocked)
         {
             if (canDash && !isDashing && dir != 0)
@@ -313,16 +310,16 @@ public class Player : MonoBehaviour
         }
     }
 
-    private bool isGrounded()
+    private bool IsGrounded()
     {
         RaycastHit2D hitCenter = Physics2D.Raycast(transform.position, Vector2.down, collHeight, groundedFilter);
         RaycastHit2D hitLeft = Physics2D.Raycast(transform.position - widthOffset, Vector2.down, collHeight, groundedFilter);
         RaycastHit2D hitRight = Physics2D.Raycast(transform.position + widthOffset, Vector2.down, collHeight, groundedFilter);
 
         //DEBUG stuff for my own sanity. Please do not delete until everything is done
-        Debug.DrawRay(transform.position + widthOffset, Vector2.down * collHeight, Color.blue);
+/*        Debug.DrawRay(transform.position + widthOffset, Vector2.down * collHeight, Color.blue);
         Debug.DrawRay(transform.position, Vector2.down * collHeight, Color.blue);
-        Debug.DrawRay(transform.position - widthOffset, Vector2.down * collHeight, Color.blue);
+        Debug.DrawRay(transform.position - widthOffset, Vector2.down * collHeight, Color.blue);*/
         if (hitCenter.collider != null|| hitLeft.collider != null || hitRight.collider != null)
         {
             return true;
@@ -422,17 +419,17 @@ public class Player : MonoBehaviour
     }
     #endregion
 
-    public void setJumpForce(float newForce)
+    public void SetJumpForce(float newForce)
     {
         currJumpForce = newForce;
     }
 
-    public float getDefaultJumpForce()
+    public float GetDefaultJumpForce()
     {
         return jumpForce;
     }
 
-    public void unlockAbility(int ability)
+    public void UnlockAbility(int ability)
     {
         switch(ability)
         {

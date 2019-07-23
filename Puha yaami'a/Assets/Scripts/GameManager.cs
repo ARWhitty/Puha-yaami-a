@@ -14,26 +14,25 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private float bouncyModifier = 1.5f;
     [SerializeField] private float stickyModifier = 0.5f;
-
     [SerializeField] private List<GameObject> checkpoints;
 
     void OnEnable()
     {
-        Player.OnCollide += handlePlatformCollide;
-        Player.OnTrigger += handleTriggerCollision;
+        Player.OnCollide += HandlePlatformCollide;
+        Player.OnTrigger += HandleTriggerCollision;
     }
 
     void OnDisable()
     {
-        Player.OnCollide -= handlePlatformCollide;
-        Player.OnTrigger -= handleTriggerCollision;
+        Player.OnCollide -= HandlePlatformCollide;
+        Player.OnTrigger -= HandleTriggerCollision;
     }
 
     // Start is called before the first frame update
     void Start()
     {
         player = playerObj.GetComponent<Player>();
-        updateScoreText();
+        UpdateScoreText();
         playerStartPos = player.transform.position;
     }
 
@@ -43,7 +42,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    void handlePlatformCollide(int type)
+    void HandlePlatformCollide(int type)
     {
         switch(type)
         {
@@ -52,24 +51,24 @@ public class GameManager : MonoBehaviour
                 break;
             //bouncy
             case 1:
-                player.setJumpForce(player.getDefaultJumpForce() * bouncyModifier);
+                player.SetJumpForce(player.GetDefaultJumpForce() * bouncyModifier);
                 break;
             //sticky
             case 2:
-                player.setJumpForce(player.getDefaultJumpForce() * stickyModifier);
+                player.SetJumpForce(player.GetDefaultJumpForce() * stickyModifier);
                 break;
             //fail
             case 3:
-                onFail();
+                OnFail();
                 break;
             //score loss
             case 4:
-                scoreLoss();
+                ScoreLoss();
                 break;
         }
     }
 
-    void handleTriggerCollision(string type, GameObject obj)
+    void HandleTriggerCollision(string type, GameObject obj)
     {
         switch(type)
         {
@@ -81,18 +80,18 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case "Double_Jump_Unlock":
-                player.unlockAbility(0);
+                player.UnlockAbility(0);
                 break;
             case "Dash_Unlock":
-                player.unlockAbility(1);
+                player.UnlockAbility(1);
                 break;
             case "Glide_Unlock":
-                player.unlockAbility(2);
+                player.UnlockAbility(2);
                 break;
         }
     }
 
-    void onFail()
+    void OnFail()
     {
         if (lastCheckpoint != null)
             playerObj.transform.position = lastCheckpoint.transform.position;
@@ -100,13 +99,13 @@ public class GameManager : MonoBehaviour
             playerObj.transform.position = playerStartPos;
     }
 
-    void scoreLoss()
+    void ScoreLoss()
     {
         score += 500;
-        updateScoreText();
+        UpdateScoreText();
     }
 
-    void updateScoreText()
+    void UpdateScoreText()
     {
         scoreText.text = "Score: " + score;
     }
