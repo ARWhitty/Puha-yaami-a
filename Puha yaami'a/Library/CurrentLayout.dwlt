@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 6}
-  m_MinSize: {x: 950, y: 394}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -44,14 +44,10 @@ MonoBehaviour:
     y: 30
     width: 2560
     height: 1307
-  m_MinSize: {x: 679, y: 344}
-  m_MaxSize: {x: 12004, y: 8044}
+  m_MinSize: {x: 683, y: 344}
+  m_MaxSize: {x: 12008, y: 8044}
   vertical: 0
-<<<<<<< HEAD
-  controlID: 123
-=======
   controlID: 13
->>>>>>> master
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -71,8 +67,8 @@ MonoBehaviour:
     y: 0
     width: 519
     height: 1307
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 277, y: 72}
+  m_MaxSize: {x: 4002, y: 4022}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -97,8 +93,8 @@ MonoBehaviour:
     y: 0
     width: 505
     height: 791
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 222}
+  m_MaxSize: {x: 4002, y: 4022}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -153,7 +149,7 @@ MonoBehaviour:
     y: 0
     width: 2560
     height: 1357
-  m_MinSize: {x: 950, y: 394}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &7
 MonoBehaviour:
@@ -219,10 +215,10 @@ MonoBehaviour:
     y: 0
     width: 2041
     height: 1307
-  m_MinSize: {x: 404, y: 344}
-  m_MaxSize: {x: 8004, y: 8044}
+  m_MinSize: {x: 406, y: 344}
+  m_MaxSize: {x: 8006, y: 8044}
   vertical: 1
-  controlID: 58
+  controlID: 14
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -244,10 +240,10 @@ MonoBehaviour:
     y: 0
     width: 2041
     height: 791
-  m_MinSize: {x: 404, y: 222}
-  m_MaxSize: {x: 8004, y: 4022}
+  m_MinSize: {x: 406, y: 222}
+  m_MaxSize: {x: 8006, y: 4022}
   vertical: 0
-  controlID: 59
+  controlID: 15
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -340,26 +336,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Levels/Redrock
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Levels/Redrock
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Game Projects\Unity\Summer_game_2019\Puha yaami'a
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-<<<<<<< HEAD
-    m_SelectedIDs: d2320000
-    m_LastClickedID: 13010
-    m_ExpandedIDs: 00000000922f000000ca9a3b
-=======
-    m_SelectedIDs: 782d0000
-    m_LastClickedID: 11640
-    m_ExpandedIDs: 00000000302a0000842a0000682b0000ec2c0000542e000000ca9a3b
->>>>>>> master
+    m_SelectedIDs: 682d0000
+    m_LastClickedID: 11624
+    m_ExpandedIDs: 00000000542a00005e2c0000102d00001a2d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -375,7 +365,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 5}
+      m_ClientGUIView: {fileID: 0}
     m_SearchString: 
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
@@ -387,11 +377,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-<<<<<<< HEAD
-    m_ExpandedIDs: 00000000922f0000
-=======
-    m_ExpandedIDs: 00000000302a0000842a0000682b0000ec2c0000542e0000
->>>>>>> master
+    m_ExpandedIDs: 00000000542a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -416,13 +402,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-<<<<<<< HEAD
-    m_SelectedInstanceIDs: d0e3ffff
-    m_LastClickedInstanceID: -7216
-=======
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
->>>>>>> master
+    m_SelectedInstanceIDs: 4a2b0000
+    m_LastClickedInstanceID: 11082
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
@@ -440,7 +421,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 5}
+      m_ClientGUIView: {fileID: 0}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -516,26 +497,20 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-<<<<<<< HEAD
-      m_SelectedIDs: c4e3ffff
-      m_LastClickedID: -7228
-      m_ExpandedIDs: d0e3ffff4ae4ffff76e4ffff0ae5ffff0ee5ffff2ae6ffff52e6ffffeae7ffffeee7ffff4eebffff76ebffff6eecffff22edfffffaf8ffff12f9fffffa460000
-=======
-      m_SelectedIDs: ce2e0000
-      m_LastClickedID: 11982
-      m_ExpandedIDs: 8ae4ffff8efbffffe62e0000
->>>>>>> master
+      m_SelectedIDs: 82790000
+      m_LastClickedID: 31106
+      m_ExpandedIDs: 8ccdffff7aceffff6acffffffcf4fffff0faffff36fbffff862f000078790000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Score Block
-        m_OriginalName: Score Block
+        m_Name: LevelManager
+        m_OriginalName: LevelManager
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -7206
+        m_UserData: -1304
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
         m_OriginalEventType: 0
@@ -547,7 +522,7 @@ MonoBehaviour:
     m_LockTracker:
       m_IsLocked: 0
     m_CurrentSortingName: TransformSorting
-  m_WindowGUID: 4ce9b5dc82d835c4984f316ec4b18e7c
+  m_WindowGUID: 2d28c575b9b15d543bf7edfa5633bb36
 --- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -575,7 +550,7 @@ MonoBehaviour:
     height: 772
   m_ViewDataDictionary: {fileID: 0}
   m_ShowContextualTools: 0
-  m_WindowGUID: 07c9a4da220a02c4f81986b7aef799c6
+  m_WindowGUID: 7622ebd3baef4b14b92c87108af98390
   m_Gizmos: 1
   m_SceneIsLit: 1
   m_SceneLighting: 1
@@ -584,15 +559,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-<<<<<<< HEAD
-    m_Target: {x: 711.8851, y: 371.1453, z: -104.151085}
+    m_Target: {x: 317.76184, y: 140.6528, z: -1598.125}
     speed: 2
-    m_Value: {x: 711.8851, y: 371.1453, z: -104.151085}
-=======
-    m_Target: {x: 706.52893, y: 30.346907, z: -1137.361}
-    speed: 2
-    m_Value: {x: 705.5849, y: 27.826078, z: -1136.2203}
->>>>>>> master
+    m_Value: {x: 317.76184, y: 140.6528, z: -1598.125}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -625,15 +594,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-<<<<<<< HEAD
-    m_Target: 1310.0636
+    m_Target: 700.5895
     speed: 2
-    m_Value: 1310.0636
-=======
-    m_Target: 264.92258
-    speed: 2
-    m_Value: 253.51443
->>>>>>> master
+    m_Value: 670.42053
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -737,7 +700,7 @@ MonoBehaviour:
   m_LastWindowPixelSize: {x: 1534, y: 772}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
-  m_LowResolutionForAspectRatios: 01000000000100000100
+  m_LowResolutionForAspectRatios: 01000000000000000000
   m_XRRenderMode: 0
 --- !u!114 &18
 MonoBehaviour:

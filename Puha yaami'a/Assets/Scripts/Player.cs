@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
     public delegate void PlatformCollisions(int type);
     public static event PlatformCollisions OnCollide;
 
-    public delegate void TriggerPassthroughs(string type, GameObject obj);
+    public delegate void TriggerPassthroughs(string type, Collider2D obj);
     public static event TriggerPassthroughs OnTrigger;
     #endregion
 
@@ -379,7 +379,7 @@ public class Player : MonoBehaviour
         }
         if(col.gameObject.CompareTag("Checkpoint"))
         {
-            OnTrigger("Checkpoint", col.gameObject);
+            OnTrigger("Checkpoint", col);
         }
 
         if(col.gameObject.CompareTag("Double_Jump_Unlock"))

@@ -7,14 +7,14 @@ public class GameManager : MonoBehaviour
 {
     public GameObject playerObj;
     private Player player;
-    private GameObject lastCheckpoint;
-    private Vector2 playerStartPos;
+    [SerializeField] private Vector3 lastCheckpoint;
+    [SerializeField]private Vector3 playerStartPos;
     [SerializeField] private int score;
     public Text scoreText;
 
     [SerializeField] private float bouncyModifier = 1.5f;
     [SerializeField] private float stickyModifier = 0.5f;
-    [SerializeField] private List<GameObject> checkpoints;
+    [SerializeField] private List<Vector3> checkpoints;
 
     void OnEnable()
     {
@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
         player = playerObj.GetComponent<Player>();
         UpdateScoreText();
         playerStartPos = player.transform.position;
+        checkpoints.Add(playerStartPos);
     }
 
     // Update is called once per frame
@@ -68,15 +69,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void HandleTriggerCollision(string type, GameObject obj)
+    void HandleTriggerCollision(string type, Collider2D checkpointCollider)
     {
         switch(type)
         {
             case "Checkpoint":
-                if(!checkpoints.Contains(obj))
+                if(!checkpoints.Contains(checkpointCollider.transform.position))
                 {
-                    lastCheckpoint = obj;
-                    checkpoints.Add(obj);
+                    lastCheckpoint = checkpointCollider.transform.position;
+                    checkpoints.Add(checkpointCollider.transform.position);
                 }
                 break;
             case "Double_Jump_Unlock":
@@ -94,9 +95,12 @@ public class GameManager : MonoBehaviour
     void OnFail()
     {
         if (lastCheckpoint != null)
-            playerObj.transform.position = lastCheckpoint.transform.position;
+            playerObj.transform.position = lastCheckpoint;
         else
-            playerObj.transform.position = playerStartPos;
+        {
+            Debug.LogError("NO CHECKPOINTS FOUND");
+        }
+
     }
 
     void ScoreLoss()
