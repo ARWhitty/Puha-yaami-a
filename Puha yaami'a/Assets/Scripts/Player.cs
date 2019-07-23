@@ -71,6 +71,7 @@ public class Player : MonoBehaviour
 
     private float spriteWidth;
     private float collHeight;
+    private int currDirection = 0;
 
     private LayerMask groundedFilter;
     private LayerMask ladderFilter;
@@ -117,12 +118,17 @@ public class Player : MonoBehaviour
         widthOffset = new Vector3(spriteWidth/2 - 2.0f, 0, 0);
     }
 
+    private void FixedUpdate()
+    {
+        currDirection = getDirFromAxis("Horizontal");
+        Move(currDirection);
+    }
+
     // Update is called once per frame
     void Update()
     {
         //Horizontal Movement
-        int currDirection = getDirFromAxis("Horizontal");
-        Move(currDirection);
+
 
         if(Input.GetButtonDown("Jump"))
         {
