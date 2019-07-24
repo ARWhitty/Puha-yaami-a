@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
     public delegate void PlatformCollisions(int type);
     public static event PlatformCollisions OnCollide;
 
-    public delegate void TriggerPassthroughs(string type, GameObject obj);
+    public delegate void TriggerPassthroughs(string type, Collider2D obj);
     public static event TriggerPassthroughs OnTrigger;
     #endregion
 
@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
     private int direction_KB, direction_CTRL;
     private int num_jumps;
 
-    [SerializeField]private bool isDashing, isGliding, isClimbing, inWind, startDashCd, canDash;
+    [SerializeField]private bool isDashing, isGliding, isClimbing, inWind, startDashCd, canDash, climbPressed, onLadder;
     private bool canGlide = false;
     private bool startGlideTimer = false;
     private bool canDoubleJump = false;
@@ -67,20 +67,24 @@ public class Player : MonoBehaviour
     private float glideGravAmt;
     private float glideDelayTimerCount;
     private float dashCd;
+    private float ladderCheckDistance;
 
     private float spriteWidth;
     private float collHeight;
+    private int currDirection = 0;
 
     private LayerMask groundedFilter;
+    private LayerMask ladderFilter;
     #endregion
 
-    #region Start/Update
+    #region Start/Update/Enable
+
     // Start is called before the first frame update
     void Start()
     {
         moveVector = new Vector3(moveAmount, 0f);
         climbVector = new Vector3(0f, ladderClimbSpeed);
-        jumpNudge = new Vector3(0f, 0.02f);
+        jumpNudge = new Vector3(0f, 0.3f);
 
         playerRB = this.GetComponent<Rigidbody2D>();
         playerRB.gravityScale = gravAmt;
@@ -93,6 +97,7 @@ public class Player : MonoBehaviour
         isClimbing = false;
         startDashCd = false;
         canDoubleJump = false;
+        climbPressed = false;
 
         dashTime = startDashTime;
         dashCd = dashCooldown;
@@ -101,51 +106,63 @@ public class Player : MonoBehaviour
         direction_KB = 0;
         direction_CTRL = 0;
         num_jumps = 0;
+        ladderCheckDistance = 6.0f;
 
         currJumpForce = jumpForce;
 
         groundedFilter = LayerMask.GetMask("Platforms");
+        ladderFilter = LayerMask.GetMask("Climbable");
 
         spriteWidth = (float)this.GetComponent<SpriteRenderer>().bounds.size.x;
         collHeight = (float)this.GetComponent<Collider2D>().bounds.size.y / 2;
         widthOffset = new Vector3(spriteWidth/2 - 2.0f, 0, 0);
     }
 
+    private void FixedUpdate()
+    {
+        currDirection = getDirFromAxis("Horizontal");
+        Move(currDirection);
+    }
+
     // Update is called once per frame
     void Update()
     {
         //Horizontal Movement
-        direction_KB = getDirFromAxis("Horiz_KB");
-        direction_CTRL = getDirFromAxis("Horiz_CTRL");
 
-        Move(direction_KB);
-        Move(direction_CTRL);
 
-        if(Input.GetButtonDown("Jump_KB") || Input.GetButtonDown("Jump_CTRL"))
+        if(Input.GetButtonDown("Jump"))
         {
             Jump();
         }
 
-        if(Input.GetAxisRaw("Glide_KB") > 0 || Input.GetAxisRaw("Glide_CTRL") > 0)
-        {
+        if(Input.GetButtonDown("Glide"))
+        { 
             Glide();
         }
-
-        if (Input.GetButtonDown("Dash_KB"))
-        {
-            Dash(direction_KB);
-        }
-
-        if (Input.GetButtonDown("Dash_CTRL"))
-        {
-            Dash(direction_CTRL);
-        }
-
-        //If I let go of glide button, we should stop gliding for this frame
-/*        if (Input.GetAxisRaw("Glide_KB") == 0 || Input.GetAxisRaw("Glide_CTRL") == 0)
+        if(Input.GetButtonUp("Glide"))
         {
             isGliding = false;
-        }*/
+        }
+        // if we're already gliding, curve our glide fall speed
+        if (isGliding)
+        {
+            if (glideGravAmt <= gravAmt)
+                glideGravAmt += glideCurveModifier;
+
+            //Lower gravity, mark us as gliding
+            playerRB.AddForce(currentWindForce * windGlideModifier);
+            playerRB.gravityScale = glideGravAmt;
+        }
+
+        if (Input.GetButtonDown("Dash"))
+        {
+            Dash(currDirection);
+        }
+
+        if(Input.GetAxisRaw("Vertical") != 0)
+        {
+            Climb(getDirFromAxis("Vertical"));
+        }
 
         //if we're not dashing/gliding/climbing, turn gravity back on pls
         if (!isDashing && !isGliding && !isClimbing)
@@ -193,12 +210,12 @@ public class Player : MonoBehaviour
         }
 
         //if we arent grounded we can look to glide and apply wind force
-        if(!isGrounded())
+        if(!IsGrounded())
         {
             playerRB.AddForce(currentWindForce);
             startGlideTimer = true;
         }
-        //If we are set the jumps we have available to 1 and reset our glide gravity
+        //If we are set the jumps we have available to our maximum
         else
         {
             num_jumps = GetMaxJumps();    
@@ -240,7 +257,7 @@ public class Player : MonoBehaviour
             this.transform.position += jumpNudge;
             playerRB.AddForce(Vector2.up * currJumpForce, ForceMode2D.Impulse);
             canDoubleJump = true;
-            num_jumps-=1;
+            num_jumps -= 1;
         }
     }
 
@@ -260,14 +277,8 @@ public class Player : MonoBehaviour
     {
         if (glideUnlocked)
         {
-            // if we're already gliding, curve our glide fall speed
-            if(isGliding)
-            {
-                if(glideGravAmt <= gravAmt)
-                    glideGravAmt += glideCurveModifier;
-            }
-            //Otherwise set up the glide
-            else if (!isGrounded() && !isDashing && canGlide)
+            //set up glide if necessary
+            if (!IsGrounded() && !isDashing && canGlide)
             {
                 //if we just started gliding, zero out our velocity so we stop jumping as soon as we start the glide
                 if (!isGliding)
@@ -276,10 +287,6 @@ public class Player : MonoBehaviour
                 }
                 isGliding = true;
             }
-
-            //Lower gravity, mark us as gliding
-            playerRB.AddForce(currentWindForce * windGlideModifier);
-            playerRB.gravityScale = glideGravAmt;
         }
     }
 
@@ -298,17 +305,28 @@ public class Player : MonoBehaviour
         }
     }
 
-    private bool isGrounded()
+    private void Climb(int dir)
+    {
+        if(onLadder)
+        {
+            playerRB.velocity = Vector2.zero;
+            playerRB.gravityScale = 0;
+            isClimbing = true;
+            transform.position += climbVector * dir;
+        }
+    }
+
+    private bool IsGrounded()
     {
         RaycastHit2D hitCenter = Physics2D.Raycast(transform.position, Vector2.down, collHeight, groundedFilter);
         RaycastHit2D hitLeft = Physics2D.Raycast(transform.position - widthOffset, Vector2.down, collHeight, groundedFilter);
         RaycastHit2D hitRight = Physics2D.Raycast(transform.position + widthOffset, Vector2.down, collHeight, groundedFilter);
 
         //DEBUG stuff for my own sanity. Please do not delete until everything is done
-        /*Debug.DrawRay(transform.position + widthOffset, Vector2.down * collHeight, Color.blue);
+/*        Debug.DrawRay(transform.position + widthOffset, Vector2.down * collHeight, Color.blue);
         Debug.DrawRay(transform.position, Vector2.down * collHeight, Color.blue);
         Debug.DrawRay(transform.position - widthOffset, Vector2.down * collHeight, Color.blue);*/
-        if ((hitCenter.collider != null && hitCenter.collider.gameObject.tag.Contains("Platform")) || (hitLeft.collider != null && hitLeft.collider.gameObject.tag.Contains("Platform")) || (hitRight.collider != null && hitRight.collider.gameObject.tag.Contains("Platform")))
+        if (hitCenter.collider != null|| hitLeft.collider != null || hitRight.collider != null)
         {
             return true;
         }
@@ -363,17 +381,11 @@ public class Player : MonoBehaviour
     {
         if(col.gameObject.CompareTag("Climbable"))
         {
-            if (Input.GetKey(KeyCode.W))
-            {
-                playerRB.gravityScale = 0;
-                this.transform.position += climbVector;
-                isClimbing = true;
-            }
+            onLadder = true;
         }
-
         if(col.gameObject.CompareTag("Checkpoint"))
         {
-            OnTrigger("Checkpoint", col.gameObject);
+            OnTrigger("Checkpoint", col);
         }
 
         if(col.gameObject.CompareTag("Double_Jump_Unlock"))
@@ -402,9 +414,10 @@ public class Player : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Climbable"))
         {
+            onLadder = false;
             isClimbing = false;
         }
-        if(col.gameObject.CompareTag("Wind"))
+        if (col.gameObject.CompareTag("Wind"))
         {
             inWind = false;
             currentWindForce = Vector2.zero;
@@ -412,17 +425,17 @@ public class Player : MonoBehaviour
     }
     #endregion
 
-    public void setJumpForce(float newForce)
+    public void SetJumpForce(float newForce)
     {
         currJumpForce = newForce;
     }
 
-    public float getDefaultJumpForce()
+    public float GetDefaultJumpForce()
     {
         return jumpForce;
     }
 
-    public void unlockAbility(int ability)
+    public void UnlockAbility(int ability)
     {
         switch(ability)
         {
