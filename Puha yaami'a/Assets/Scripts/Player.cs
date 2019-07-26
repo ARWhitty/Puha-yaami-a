@@ -30,6 +30,10 @@ public class Player : MonoBehaviour
     [SerializeField] private float glideCurveModifier;
     [Tooltip("The cooldown before a player may dash again, in seconds")]
     [SerializeField] private float dashCooldown;
+    [Tooltip("How long, in seconds, a player may hold the jump button to jump higher")]
+    [SerializeField] private float jumpTimer;
+    [Tooltip("The extra force added when holding the jump key, values between 0.8-1.2 seem to work best")]
+    [SerializeField] private float additiveJumpAmount;
 
     #endregion
 
@@ -47,7 +51,7 @@ public class Player : MonoBehaviour
     private int direction_KB, direction_CTRL;
     private int num_jumps;
 
-    [SerializeField]private bool isDashing, isGliding, isClimbing, inWind, startDashCd, canDash, climbPressed, onLadder;
+    [SerializeField]private bool isDashing, isGliding, isClimbing, inWind, startDashCd, canDash, climbPressed, onLadder, isJumping;
     private bool canGlide = false;
     private bool startGlideTimer = false;
     private bool canDoubleJump = false;
@@ -71,6 +75,7 @@ public class Player : MonoBehaviour
 
     private float spriteWidth;
     private float collHeight;
+    private float jumpTimerCount;
     private int currDirection = 0;
 
     private LayerMask groundedFilter;
@@ -98,6 +103,7 @@ public class Player : MonoBehaviour
         startDashCd = false;
         canDoubleJump = false;
         climbPressed = false;
+        isJumping = false;
 
         dashTime = startDashTime;
         dashCd = dashCooldown;
@@ -116,6 +122,8 @@ public class Player : MonoBehaviour
         spriteWidth = (float)this.GetComponent<SpriteRenderer>().bounds.size.x;
         collHeight = (float)this.GetComponent<Collider2D>().bounds.size.y / 2;
         widthOffset = new Vector3(spriteWidth/2 - 2.0f, 0, 0);
+
+        jumpTimerCount = jumpTimer;
     }
 
     private void FixedUpdate()
@@ -133,6 +141,16 @@ public class Player : MonoBehaviour
         if(Input.GetButtonDown("Jump"))
         {
             Jump();
+        }
+
+        if(Input.GetButton("Jump"))
+        {
+            Jump();
+        }
+
+        if(Input.GetButtonUp("Jump"))
+        {
+            isJumping = false;
         }
 
         if(Input.GetButtonDown("Glide"))
@@ -218,7 +236,7 @@ public class Player : MonoBehaviour
         //If we are set the jumps we have available to our maximum
         else
         {
-            num_jumps = GetMaxJumps();    
+            num_jumps = GetMaxJumps();
         }
     }
     #endregion
@@ -248,15 +266,30 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        if(num_jumps > 0)
+        //if we're already mid-jump, keep adding force while our timer ticks
+        if(isJumping)
         {
+            if(jumpTimerCount <= 0)
+            {
+                isJumping = false;
+            }
+            else
+            {
+                jumpTimerCount -= Time.deltaTime;
+                playerRB.AddForce(Vector2.up * additiveJumpAmount, ForceMode2D.Impulse);
+            }
+        }
+
+        else if(num_jumps > 0)
+        {
+            isJumping = true;
+            jumpTimerCount = jumpTimer;
             //set the upwards velocity to 0 so we don't have additive jump, then add the force
             playerRB.velocity = Vector2.zero;
             //this is here so that the player is not instantly marked grounded again and able to triple jump
             //may want to make this better in the future? Clever workaround solution for now
             this.transform.position += jumpNudge;
             playerRB.AddForce(Vector2.up * currJumpForce, ForceMode2D.Impulse);
-            canDoubleJump = true;
             num_jumps -= 1;
         }
     }
