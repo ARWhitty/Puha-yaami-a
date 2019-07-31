@@ -1617,7 +1617,7 @@ MonoBehaviour:
       showTileWithPrefab: 0
       showPrefabPreviewInTilePalette: 0
     autilingGroup: 0
-  m_pixelsPerUnit: 100
+  m_pixelsPerUnit: 512
   m_brushGroupNames:
   - Default
   - 
