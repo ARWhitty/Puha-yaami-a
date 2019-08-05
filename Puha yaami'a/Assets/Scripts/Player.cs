@@ -145,7 +145,7 @@ public class Player : MonoBehaviour
 
         if(Input.GetButton("Jump"))
         {
-            Jump();
+            ContinueJump();
         }
 
         if(Input.GetButtonUp("Jump"))
@@ -264,12 +264,12 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Jump()
+    private void ContinueJump()
     {
         //if we're already mid-jump, keep adding force while our timer ticks
-        if(isJumping)
+        if (isJumping)
         {
-            if(jumpTimerCount <= 0)
+            if (jumpTimerCount <= 0)
             {
                 isJumping = false;
             }
@@ -279,8 +279,11 @@ public class Player : MonoBehaviour
                 playerRB.AddForce(Vector2.up * additiveJumpAmount, ForceMode2D.Impulse);
             }
         }
+    }
 
-        else if(num_jumps > 0)
+    private void Jump()
+    {
+        if(num_jumps > 0)
         {
             isJumping = true;
             jumpTimerCount = jumpTimer;
