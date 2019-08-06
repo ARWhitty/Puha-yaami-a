@@ -95,7 +95,11 @@ public class GameManager : MonoBehaviour
     void OnFail()
     {
         if (lastCheckpoint != null)
+        {
             playerObj.transform.position = lastCheckpoint;
+            player.ResetCooldowns();
+        }
+
         else
         {
             Debug.LogError("NO CHECKPOINTS FOUND");

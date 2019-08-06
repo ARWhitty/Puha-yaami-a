@@ -34,12 +34,12 @@ public class Player : MonoBehaviour
     [SerializeField] private float jumpTimer;
     [Tooltip("The extra force added when holding the jump key, values between 0.8-1.2 seem to work best")]
     [SerializeField] private float additiveJumpAmount;
-
+    [Tooltip("TList of Any Triggers created in the Animation Window")]
     [SerializeField] private List<string> animTriggers;
 
     #endregion
 
-    #region events
+    #region Events
     //0 is normal, 1 is bouncy, 2 is sticky, 3 is death, 4 is score loss
     public delegate void PlatformCollisions(int type);
     public static event PlatformCollisions OnCollide;
@@ -49,14 +49,12 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Internal Fields
-    //-1 is left, 1 is right, 0 is not moving
-    private int direction_KB, direction_CTRL;
     private int num_jumps;
+    private int prev_dir = 1;
 
-    [SerializeField]private bool isDashing, isGliding, isClimbing, inWind, startDashCd, canDash, climbPressed, onLadder, isJumping;
+    [SerializeField]private bool isDashing, isGliding, isClimbing, inWind, startDashCd, canDash, onLadder, isJumping;
     private bool canGlide = false;
     private bool startGlideTimer = false;
-    private bool canDoubleJump = false;
 
     private Vector2 currentWindForce = Vector2.zero;
 
@@ -65,6 +63,7 @@ public class Player : MonoBehaviour
     [SerializeField] private bool dblJumpUnlocked = false;
     [SerializeField] private bool dashUnlocked = false;
     [SerializeField] private bool glideUnlocked = false;
+    private bool isGroundedInternal;
 
     private Rigidbody2D playerRB;
     private Animator playerAnim;
@@ -74,7 +73,6 @@ public class Player : MonoBehaviour
     private float glideGravAmt;
     private float glideDelayTimerCount;
     private float dashCd;
-    private float ladderCheckDistance;
 
     private float spriteWidth;
     private float collHeight;
@@ -82,7 +80,6 @@ public class Player : MonoBehaviour
     private int currDirection = 0;
 
     private LayerMask groundedFilter;
-    private LayerMask ladderFilter;
 
     private SpriteRenderer playerSprite;
     #endregion
@@ -104,28 +101,21 @@ public class Player : MonoBehaviour
 
         playerAnim = this.GetComponent<Animator>();
 
-        //isGrounded = true;
         isDashing = false;
         isGliding = false;
         isClimbing = false;
         startDashCd = false;
-        canDoubleJump = false;
-        climbPressed = false;
         isJumping = false;
 
         dashTime = startDashTime;
         dashCd = dashCooldown;
         canDash = true;
 
-        direction_KB = 0;
-        direction_CTRL = 0;
         num_jumps = 0;
-        ladderCheckDistance = 6.0f;
 
         currJumpForce = jumpForce;
 
         groundedFilter = LayerMask.GetMask("Platforms");
-        ladderFilter = LayerMask.GetMask("Climbable");
 
         spriteWidth = (float)this.GetComponent<SpriteRenderer>().bounds.size.x;
         collHeight = (float)this.GetComponent<Collider2D>().bounds.size.y / 2;
@@ -137,35 +127,36 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        currDirection = getDirFromAxis("Horizontal");
+        //Horizontal Movement
+        currDirection = GetDirFromAxis("Horizontal");
         Move(currDirection);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Horizontal Movement
-
-
+        //Jump
         if(Input.GetButtonDown("Jump"))
         {
             Jump();
         }
-
+        //Jump Button Held
         if(Input.GetButton("Jump"))
         {
             ContinueJump();
         }
-
+        //Release of Jump buttong
         if(Input.GetButtonUp("Jump"))
         {
             isJumping = false;
         }
 
+        //Glide begin
         if(Input.GetButtonDown("Glide"))
         { 
             Glide();
         }
+        //Glide End
         if(Input.GetButtonUp("Glide"))
         {
             isGliding = false;
@@ -186,14 +177,16 @@ public class Player : MonoBehaviour
             playerAnim.SetBool("gliding", false);
         }
 
+        //Dash
         if (Input.GetButtonDown("Dash"))
         {
             Dash(currDirection);
         }
 
+        //Climb
         if(Input.GetAxisRaw("Vertical") != 0)
         {
-            Climb(getDirFromAxis("Vertical"));
+            Climb(GetDirFromAxis("Vertical"));
         }
 
         //if we're not dashing/gliding/climbing, turn gravity back on pls
@@ -243,12 +236,15 @@ public class Player : MonoBehaviour
             }
         }
 
+        //internal bool for small efficiency gain
+        isGroundedInternal = IsGrounded();
         //if we arent grounded we can look to glide and apply wind force
-        if(!IsGrounded())
+        if(!isGroundedInternal)
         {
+            //if we aren't gliding set that we should loop the air animation
             if(!isGliding)
             {
-                playerAnim.SetBool("airLoop", false);
+                playerAnim.SetBool("airLoop", true);
             }
             playerRB.AddForce(currentWindForce);
             startGlideTimer = true;
@@ -256,22 +252,49 @@ public class Player : MonoBehaviour
         //If we are set the jumps we have available to our maximum
         else
         {
-            playerAnim.SetBool("airLoop", true);
+            playerAnim.SetBool("airLoop", false);
             num_jumps = GetMaxJumps();
         }
     }
     #endregion
 
-    private int getDirFromAxis(string axisName)
+    #region Mechanical Methods
+    /// <summary>
+    /// Retrieves the current direction the player should move from the horizontal axis, and faces the player sprite accordingly
+    /// </summary>
+    /// <param name="axisName"></param>
+    /// <returns>1 for right, -1 for left, 0 for no movement</returns>
+    private int GetDirFromAxis(string axisName)
     {
         float axisAmt = Input.GetAxisRaw(axisName);
         if (axisAmt > 0)
+        {
+            prev_dir = 1;
+            playerSprite.flipX = false;
             return 1;
+        }
         if (axisAmt < 0)
+        {
+            prev_dir = -1;
+            playerSprite.flipX = true;
             return -1;
+        }
+
+        if(prev_dir == 1)
+        {
+            playerSprite.flipX = false;
+        }
+        else
+        {
+            playerSprite.flipX = true;
+        }
         return 0;
     }
 
+    /// <summary>
+    /// Moves the player in the given direction via vector translation
+    /// </summary>
+    /// <param name="dir">Direction to move (1 is right, -1 is left, 0 is no movpement)</param>
     private void Move(int dir)
     { 
         //TODO: Make this not shit
@@ -280,11 +303,11 @@ public class Player : MonoBehaviour
         //     playerSprite.flipX = true;
         // }
         ResetAllAnimTriggers();
-        if(dir != 0)
+        if(dir != 0 && isGroundedInternal)
         {
             playerAnim.SetTrigger("Run");
         }
-        else
+        else if(isGroundedInternal)
         {
             playerAnim.SetTrigger("Idle");
         }
@@ -299,30 +322,15 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void ContinueJump()
-    {
-        //if we're already mid-jump, keep adding force while our timer ticks
-        if (isJumping)
-        {
-            if (jumpTimerCount <= 0)
-            {
-                isJumping = false;
-            }
-            else
-            {
-                jumpTimerCount -= Time.deltaTime;
-                playerRB.AddForce(Vector2.up * additiveJumpAmount, ForceMode2D.Impulse);
-            }
-        }
-    }
-
+    /// <summary>
+    /// Translates the player upwards with the designer-defined jump force, marks the player as jumping, and plays the correct animation for jump/double jump
+    /// </summary>
     private void Jump()
     {
-        if(num_jumps > 0)
+        if (num_jumps > 0)
         {
             ResetAllAnimTriggers();
-
-            if(num_jumps == 2)
+            if (num_jumps == 2)
             {
                 playerAnim.SetTrigger("JumpStart");
 
@@ -344,6 +352,30 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Continues to translate the player upwards while the jump button is held, until a certain thrshold
+    /// </summary>
+    private void ContinueJump()
+    {
+        //if we're already mid-jump, keep adding force while our timer ticks
+        if (isJumping)
+        {
+            if (jumpTimerCount <= 0)
+            {
+                isJumping = false;
+            }
+            else
+            {
+                jumpTimerCount -= Time.deltaTime;
+                playerRB.AddForce(Vector2.up * additiveJumpAmount, ForceMode2D.Impulse);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Returns the macimum number of jumps the player currently has access to
+    /// </summary>
+    /// <returns>2 if double jump is unlocked, 1 otherwise</returns>
     private int GetMaxJumps()
     {
         if(dblJumpUnlocked)
@@ -356,15 +388,18 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Translates the player horizontally further than a normal move command while also slowing descent speed
+    /// </summary>
     private void Glide()
     {
         if (glideUnlocked)
         {
-            ResetAllAnimTriggers();
-            playerAnim.SetTrigger("Glide");
             //set up glide if necessary
             if (!IsGrounded() && !isDashing && canGlide)
             {
+                ResetAllAnimTriggers();
+                playerAnim.SetTrigger("Glide");
                 //if we just started gliding, zero out our velocity so we stop jumping as soon as we start the glide
                 if (!isGliding)
                 {
@@ -375,6 +410,10 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Translates the player forward quickly in the given direction without gravity
+    /// </summary>
+    /// <param name="dir">The direction to dash</param>
     private void Dash(int dir)
     {
         if (dashUnlocked)
@@ -392,6 +431,10 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Translates the player up a climbable object
+    /// </summary>
+    /// <param name="dir">The direction to climb, 1 for up, -1 for down</param>
     private void Climb(int dir)
     {
         if(onLadder)
@@ -405,16 +448,23 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Checks if a player is grounded by casting 3 rays downwards from the player
+    /// Each ray is precisely half the height of the player collider plus a small offset, and are spaced so that a player may
+    /// walk nicely on ledges.
+    /// </summary>
+    /// <returns></returns>
     private bool IsGrounded()
     {
-        RaycastHit2D hitCenter = Physics2D.Raycast(transform.position, Vector2.down, collHeight, groundedFilter);
-        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position - widthOffset, Vector2.down, collHeight, groundedFilter);
-        RaycastHit2D hitRight = Physics2D.Raycast(transform.position + widthOffset, Vector2.down, collHeight, groundedFilter);
+        float heightOffset = 0.1f;
+        RaycastHit2D hitCenter = Physics2D.Raycast(transform.position, Vector2.down, collHeight + heightOffset, groundedFilter);
+        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position - widthOffset, Vector2.down, collHeight + heightOffset, groundedFilter);
+        RaycastHit2D hitRight = Physics2D.Raycast(transform.position + widthOffset, Vector2.down, collHeight + heightOffset, groundedFilter);
 
         //DEBUG stuff for my own sanity. Please do not delete until everything is done
-        // Debug.DrawRay(transform.position + widthOffset, Vector2.down * collHeight, Color.blue);
-        // Debug.DrawRay(transform.position, Vector2.down * collHeight, Color.blue);
-        // Debug.DrawRay(transform.position - widthOffset, Vector2.down * collHeight, Color.blue);
+/*        Debug.DrawRay(transform.position + widthOffset, Vector2.down * collHeight, Color.blue);
+        Debug.DrawRay(transform.position, Vector2.down * collHeight, Color.blue);
+        Debug.DrawRay(transform.position - widthOffset, Vector2.down * collHeight, Color.blue);*/
         if (hitCenter.collider != null|| hitLeft.collider != null || hitRight.collider != null)
         {
             return true;
@@ -422,6 +472,9 @@ public class Player : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Resets all animation triggers for the player so that the correct animation may be played when necessaey.
+    /// </summary>
     private void ResetAllAnimTriggers()
     {
         foreach (string trigger in animTriggers)
@@ -429,8 +482,13 @@ public class Player : MonoBehaviour
             playerAnim.ResetTrigger(trigger);
         }
     }
+    #endregion
 
     #region Collisions
+    /// <summary>
+    /// Handles Collision with all non-trigger objects, the Game Manager performs the corresponding function
+    /// </summary>
+    /// <param name="col">the collider encountered by the player</param>
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Bouncy_Platform"))
@@ -447,6 +505,10 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles collisions where the player stays in contact (mostly for boolean checks)
+    /// </summary>
+    /// <param name="col">the collider encountered by the player</param>
     void OnCollisionStay2D(Collision2D col)
     {
         if (col.gameObject.tag.Contains("Platform"))
@@ -456,6 +518,10 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles small mechanical changes based on varying types of platforms
+    /// </summary>
+    /// <param name="col">the collider encountered by the player</param>
     void OnCollisionExit2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Bouncy_Platform"))
@@ -466,6 +532,10 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Triggers
+    /// <summary>
+    /// Handles score loss objects, sent to Game Manager
+    /// </summary>
+    /// <param name="col">the collider encountered by the player</param>
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Score_Loss"))
@@ -474,6 +544,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles any triggers the player stays within for longer periods, specific functionality performed by corresponding
+    /// Game Manager call
+    /// </summary>
+    /// <param name="col">the collider encountered by the player</param>
     void OnTriggerStay2D(Collider2D col)
     {
         if(col.gameObject.CompareTag("Climbable"))
@@ -507,6 +582,10 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles exiting of triggers
+    /// </summary>
+    /// <param name="col">the collider encountered by the player</param>
     void OnTriggerExit2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Climbable"))
@@ -522,19 +601,44 @@ public class Player : MonoBehaviour
     }
     #endregion
 
+    #region Accessors/Public Modifiers
+    /// <summary>
+    /// Called from OnFail in GameManager to avoid cooldown locking immediately after dying
+    /// </summary>
+    public void ResetCooldowns()
+    {
+        dashCd = dashCooldown;
+        canDash = true;
+        isClimbing = false;
+        isDashing = false;
+        isGliding = false;
+    }
+
+    /// <summary>
+    /// updates players jump force if necessary
+    /// </summary>
+    /// <param name="newForce">the force to change jumpforce to</param>
     public void SetJumpForce(float newForce)
     {
         currJumpForce = newForce;
     }
 
+    /// <summary>
+    /// Returns the player's standard jump force
+    /// </summary>
+    /// <returns>a flot of the players standard jump force</returns>
     public float GetDefaultJumpForce()
     {
         return jumpForce;
     }
 
+    /// <summary>
+    /// Flags a certain ability as unlocked for use from then onwards
+    /// </summary>
+    /// <param name="ability">The index number of the ability to unlock</param>
     public void UnlockAbility(int ability)
     {
-        switch(ability)
+        switch (ability)
         {
             case 0:
                 dblJumpUnlocked = true;
@@ -547,19 +651,5 @@ public class Player : MonoBehaviour
                 break;
         }
     }
-
-    #region accessors/public modifiers
-    /// <summary>
-    /// Called from OnFail in GameManager to avoid cooldown locking immediately after dying
-    /// </summary>
-    public void ResetCooldowns()
-    {
-        dashCd = dashCooldown;
-        canDash = true;
-        isClimbing = false;
-        isDashing = false;
-        isGliding = false;
-    }
     #endregion
-
 }

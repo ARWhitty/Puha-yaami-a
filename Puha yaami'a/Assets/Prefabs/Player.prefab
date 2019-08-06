@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4549886841259883385}
   - component: {fileID: 4549886841259883384}
   - component: {fileID: 796036061}
-  - component: {fileID: 7003959762430858994}
+  - component: {fileID: 4080493828233435583}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -30,7 +30,7 @@ RectTransform:
   m_GameObject: {fileID: 4549886841259883386}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6212978, y: 0.6212978, z: 0.88756824}
+  m_LocalScale: {x: 0.57482994, y: 0.57482994, z: 0.57482994}
   m_Children:
   - {fileID: 4549886841602128111}
   m_Father: {fileID: 0}
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 1886506763
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5599fac9c47c305459d3b3609d645b20, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 14371e3e8b45e014f9485b262332d18c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -123,20 +123,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 385bdd8d77ce55141bde0c03e70aa3e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveAmount: 0.4
-  jumpForce: 40
+  moveAmount: 0.25
+  jumpForce: 60
   dashSpeed: 80
-  gravAmt: 11.5
+  gravAmt: 9.5
   startDashTime: 0.3
   ladderClimbSpeed: 0.4
   glideDelayTimer: 0.5
   glideMoveModifier: 1
   windGlideModifier: 1
-  glideGravModifier: 1
-  glideCurveModifier: 0
+  glideGravModifier: 0.1
+  glideCurveModifier: 0.02
   dashCooldown: 3
-  jumpTimer: 0.5
-  additiveJumpAmount: 0.8
+  jumpTimer: 0.2
+  additiveJumpAmount: 0.5
   animTriggers:
   - Run
   - Idle
@@ -151,12 +151,11 @@ MonoBehaviour:
   inWind: 0
   startDashCd: 0
   canDash: 0
-  climbPressed: 0
   onLadder: 0
   isJumping: 0
   dblJumpUnlocked: 1
-  dashUnlocked: 1
-  glideUnlocked: 1
+  dashUnlocked: 0
+  glideUnlocked: 0
 --- !u!61 &796036061
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -170,7 +169,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.21, y: 0.49}
+  m_Offset: {x: 0.024748921, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -181,9 +180,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4, y: 9.25}
+  m_Size: {x: 4.86133, y: 11.4}
   m_EdgeRadius: 0
---- !u!95 &7003959762430858994
+--- !u!95 &4080493828233435583
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -228,7 +227,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4549886841602128110}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 5, z: -50}
+  m_LocalPosition: {x: 0.48850727, y: 1.94471, z: -50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4549886841259883391}
@@ -259,7 +258,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 40
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
