@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,6 +35,8 @@ public class Player : MonoBehaviour
     [Tooltip("The extra force added when holding the jump key, values between 0.8-1.2 seem to work best")]
     [SerializeField] private float additiveJumpAmount;
 
+    [SerializeField] private List<string> animTriggers;
+
     #endregion
 
     #region events
@@ -65,6 +67,7 @@ public class Player : MonoBehaviour
     [SerializeField] private bool glideUnlocked = false;
 
     private Rigidbody2D playerRB;
+    private Animator playerAnim;
 
     private float dashTime;
     private float currJumpForce;
@@ -80,6 +83,8 @@ public class Player : MonoBehaviour
 
     private LayerMask groundedFilter;
     private LayerMask ladderFilter;
+
+    private SpriteRenderer playerSprite;
     #endregion
 
     #region Start/Update/Enable
@@ -89,12 +94,15 @@ public class Player : MonoBehaviour
     {
         moveVector = new Vector3(moveAmount, 0f);
         climbVector = new Vector3(0f, ladderClimbSpeed);
-        jumpNudge = new Vector3(0f, 0.3f);
+        //TODO: calculate based on sprite size
+        jumpNudge = new Vector3(0f, 0.5f);
 
         playerRB = this.GetComponent<Rigidbody2D>();
         playerRB.gravityScale = gravAmt;
         glideGravAmt = gravAmt * glideGravModifier;
         glideDelayTimerCount = glideDelayTimer;
+
+        playerAnim = this.GetComponent<Animator>();
 
         //isGrounded = true;
         isDashing = false;
@@ -122,6 +130,7 @@ public class Player : MonoBehaviour
         spriteWidth = (float)this.GetComponent<SpriteRenderer>().bounds.size.x;
         collHeight = (float)this.GetComponent<Collider2D>().bounds.size.y / 2;
         widthOffset = new Vector3(spriteWidth/2 - 2.0f, 0, 0);
+        playerSprite = this.GetComponent<SpriteRenderer>();
 
         jumpTimerCount = jumpTimer;
     }
@@ -164,12 +173,17 @@ public class Player : MonoBehaviour
         // if we're already gliding, curve our glide fall speed
         if (isGliding)
         {
+            playerAnim.SetBool("gliding", true);
             if (glideGravAmt <= gravAmt)
                 glideGravAmt += glideCurveModifier;
 
             //Lower gravity, mark us as gliding
             playerRB.AddForce(currentWindForce * windGlideModifier);
             playerRB.gravityScale = glideGravAmt;
+        }
+        else
+        {
+            playerAnim.SetBool("gliding", false);
         }
 
         if (Input.GetButtonDown("Dash"))
@@ -192,10 +206,12 @@ public class Player : MonoBehaviour
         //If we are, decrease our timer
         if(isDashing)
         {
+            playerAnim.SetBool("dashing", true);
             //decrease dash time
             dashTime -= Time.deltaTime;
             if (dashTime <= 0)
             {
+                playerAnim.SetBool("dashing", false);
                 dashTime = startDashTime;
                 playerRB.velocity = Vector2.zero;
                 isDashing = false;
@@ -230,12 +246,17 @@ public class Player : MonoBehaviour
         //if we arent grounded we can look to glide and apply wind force
         if(!IsGrounded())
         {
+            if(!isGliding)
+            {
+                playerAnim.SetBool("airLoop", false);
+            }
             playerRB.AddForce(currentWindForce);
             startGlideTimer = true;
         }
         //If we are set the jumps we have available to our maximum
         else
         {
+            playerAnim.SetBool("airLoop", true);
             num_jumps = GetMaxJumps();
         }
     }
@@ -252,7 +273,21 @@ public class Player : MonoBehaviour
     }
 
     private void Move(int dir)
-    {
+    { 
+        //TODO: Make this not shit
+        // if(dir == -1)
+        // {
+        //     playerSprite.flipX = true;
+        // }
+        ResetAllAnimTriggers();
+        if(dir != 0)
+        {
+            playerAnim.SetTrigger("Run");
+        }
+        else
+        {
+            playerAnim.SetTrigger("Idle");
+        }
         if(!isDashing)
         {
             //If we're gliding, modify our movement to be a little faster
@@ -285,6 +320,18 @@ public class Player : MonoBehaviour
     {
         if(num_jumps > 0)
         {
+            ResetAllAnimTriggers();
+
+            if(num_jumps == 2)
+            {
+                playerAnim.SetTrigger("JumpStart");
+
+            }
+            else
+            {
+                playerAnim.SetTrigger("DoubleJumpStart");
+            }
+
             isJumping = true;
             jumpTimerCount = jumpTimer;
             //set the upwards velocity to 0 so we don't have additive jump, then add the force
@@ -313,6 +360,8 @@ public class Player : MonoBehaviour
     {
         if (glideUnlocked)
         {
+            ResetAllAnimTriggers();
+            playerAnim.SetTrigger("Glide");
             //set up glide if necessary
             if (!IsGrounded() && !isDashing && canGlide)
             {
@@ -332,6 +381,8 @@ public class Player : MonoBehaviour
         {
             if (canDash && !isDashing && dir != 0)
             {
+                ResetAllAnimTriggers();
+                playerAnim.SetTrigger("DashStart");
                 isDashing = true;
                 //set the gravity scale to 0 so we get a straight midair dash if necessary
 
@@ -345,6 +396,8 @@ public class Player : MonoBehaviour
     {
         if(onLadder)
         {
+            ResetAllAnimTriggers();
+            playerAnim.SetTrigger("Climb");
             playerRB.velocity = Vector2.zero;
             playerRB.gravityScale = 0;
             isClimbing = true;
@@ -359,14 +412,22 @@ public class Player : MonoBehaviour
         RaycastHit2D hitRight = Physics2D.Raycast(transform.position + widthOffset, Vector2.down, collHeight, groundedFilter);
 
         //DEBUG stuff for my own sanity. Please do not delete until everything is done
-/*        Debug.DrawRay(transform.position + widthOffset, Vector2.down * collHeight, Color.blue);
-        Debug.DrawRay(transform.position, Vector2.down * collHeight, Color.blue);
-        Debug.DrawRay(transform.position - widthOffset, Vector2.down * collHeight, Color.blue);*/
+        // Debug.DrawRay(transform.position + widthOffset, Vector2.down * collHeight, Color.blue);
+        // Debug.DrawRay(transform.position, Vector2.down * collHeight, Color.blue);
+        // Debug.DrawRay(transform.position - widthOffset, Vector2.down * collHeight, Color.blue);
         if (hitCenter.collider != null|| hitLeft.collider != null || hitRight.collider != null)
         {
             return true;
         }
         return false;
+    }
+
+    private void ResetAllAnimTriggers()
+    {
+        foreach (string trigger in animTriggers)
+        {
+            playerAnim.ResetTrigger(trigger);
+        }
     }
 
     #region Collisions
