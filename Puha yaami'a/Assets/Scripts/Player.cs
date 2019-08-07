@@ -117,10 +117,11 @@ public class Player : MonoBehaviour
 
         groundedFilter = LayerMask.GetMask("Platforms");
 
-        spriteWidth = (float)this.GetComponent<SpriteRenderer>().bounds.size.x;
-        collHeight = (float)this.GetComponent<Collider2D>().bounds.size.y / 2;
-        widthOffset = new Vector3(spriteWidth/2 - 2.0f, 0, 0);
         playerSprite = this.GetComponent<SpriteRenderer>();
+        spriteWidth = (float)playerSprite.bounds.size.x;
+        collHeight = (float)playerSprite.bounds.size.y / 2;
+        Debug.Log("Sprite height: " + (float)playerSprite.bounds.size.y);
+        widthOffset = new Vector3(spriteWidth/2 - 2.0f, 0, 0);
 
         jumpTimerCount = jumpTimer;
     }
