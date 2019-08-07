@@ -92,7 +92,7 @@ public class Player : MonoBehaviour
         moveVector = new Vector3(moveAmount, 0f);
         climbVector = new Vector3(0f, ladderClimbSpeed);
         //TODO: calculate based on sprite size
-        jumpNudge = new Vector3(0f, 0.5f);
+        jumpNudge = new Vector3(0f, 1.0f);
 
         playerRB = this.GetComponent<Rigidbody2D>();
         playerRB.gravityScale = gravAmt;
@@ -120,7 +120,6 @@ public class Player : MonoBehaviour
         playerSprite = this.GetComponent<SpriteRenderer>();
         spriteWidth = (float)playerSprite.bounds.size.x;
         collHeight = (float)playerSprite.bounds.size.y / 2;
-        Debug.Log("Sprite height: " + (float)playerSprite.bounds.size.y);
         widthOffset = new Vector3(spriteWidth/2 - 2.0f, 0, 0);
 
         jumpTimerCount = jumpTimer;
