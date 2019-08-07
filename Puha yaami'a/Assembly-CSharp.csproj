@@ -99,6 +99,7 @@
     <Compile Include="Assets\CreativeSpore\SuperTilemapEditor\Scripts\Utils\TilemapDrawingUtils.cs" />
     <Compile Include="Assets\CreativeSpore\SuperTilemapEditor\Scripts\Utils\TilemapUtils.cs" />
     <Compile Include="Assets\CreativeSpore\SuperTilemapEditor\Scripts\Utils\TilemapVertexPaintUtils.cs" />
+    <Compile Include="Assets\CtrlNavigation.cs" />
     <Compile Include="Assets\FreeParallax\Scripts\FreeParallax.cs" />
     <Compile Include="Assets\FreeParallax\Scripts\FreeParallaxDemo.cs" />
     <Compile Include="Assets\Scripts\Climbable.cs" />

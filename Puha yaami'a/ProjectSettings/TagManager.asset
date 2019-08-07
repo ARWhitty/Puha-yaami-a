@@ -16,6 +16,7 @@ TagManager:
   - Dash_Unlock
   - Glide_Unlock
   - Avoid_Platform
+  - UI_Element
   layers:
   - Default
   - TransparentFX

@@ -127,134 +127,140 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //Horizontal Movement
-        currDirection = GetDirFromAxis("Horizontal");
-        Move(currDirection);
+        if(!PauseMenu.gamePaused)
+        {
+            //Horizontal Movement
+            currDirection = GetDirFromAxis("Horizontal");
+            Move(currDirection);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Jump
-        if(Input.GetButtonDown("Jump"))
+        if(!PauseMenu.gamePaused)
         {
-            Jump();
-        }
-        //Jump Button Held
-        if(Input.GetButton("Jump"))
-        {
-            ContinueJump();
-        }
-        //Release of Jump buttong
-        if(Input.GetButtonUp("Jump"))
-        {
-            isJumping = false;
-        }
-
-        //Glide begin
-        if(Input.GetButtonDown("Glide"))
-        { 
-            Glide();
-        }
-        //Glide End
-        if(Input.GetButtonUp("Glide"))
-        {
-            isGliding = false;
-        }
-        // if we're already gliding, curve our glide fall speed
-        if (isGliding)
-        {
-            playerAnim.SetBool("gliding", true);
-            if (glideGravAmt <= gravAmt)
-                glideGravAmt += glideCurveModifier;
-
-            //Lower gravity, mark us as gliding
-            playerRB.AddForce(currentWindForce * windGlideModifier);
-            playerRB.gravityScale = glideGravAmt;
-        }
-        else
-        {
-            playerAnim.SetBool("gliding", false);
-        }
-
-        //Dash
-        if (Input.GetButtonDown("Dash"))
-        {
-            Dash(currDirection);
-        }
-
-        //Climb
-        if(Input.GetAxisRaw("Vertical") != 0)
-        {
-            Climb(GetDirFromAxis("Vertical"));
-        }
-
-        //if we're not dashing/gliding/climbing, turn gravity back on pls
-        if (!isDashing && !isGliding && !isClimbing)
-        {
-            playerRB.gravityScale = gravAmt;
-            glideGravAmt = gravAmt * glideGravModifier;
-        }
-
-        //If we are, decrease our timer
-        if(isDashing)
-        {
-            playerAnim.SetBool("dashing", true);
-            //decrease dash time
-            dashTime -= Time.deltaTime;
-            if (dashTime <= 0)
+            //Jump
+            if (Input.GetButtonDown("Jump"))
             {
-                playerAnim.SetBool("dashing", false);
-                dashTime = startDashTime;
-                playerRB.velocity = Vector2.zero;
-                isDashing = false;
-                startDashCd = true;
-                canDash = false;
+                Jump();
             }
-        }
-        //If we are in the middle of a jump, start our glide timer so we delay when we can glide
-        if(startGlideTimer)
-        {
-            glideDelayTimerCount -= Time.deltaTime;
-            if(glideDelayTimerCount <= 0)
+            //Jump Button Held
+            if (Input.GetButton("Jump"))
             {
-                glideDelayTimerCount = glideDelayTimer;
-                canGlide = true;
-                startGlideTimer = false;
+                ContinueJump();
             }
-        }
+            //Release of Jump buttong
+            if (Input.GetButtonUp("Jump"))
+            {
+                isJumping = false;
+            }
 
-        //Cooldown between dashes
-        if(startDashCd)
-        {
-            dashCd -= Time.deltaTime;
-            if(dashCd <= 0)
+            //Glide begin
+            if (Input.GetButtonDown("Glide"))
             {
-                dashCd = dashCooldown;
-                startDashCd = false;
-                canDash = true;
+                Glide();
             }
-        }
+            //Glide End
+            if (Input.GetButtonUp("Glide"))
+            {
+                isGliding = false;
+            }
+            // if we're already gliding, curve our glide fall speed
+            if (isGliding)
+            {
+                playerAnim.SetBool("gliding", true);
+                if (glideGravAmt <= gravAmt)
+                    glideGravAmt += glideCurveModifier;
 
-        //internal bool for small efficiency gain
-        isGroundedInternal = IsGrounded();
-        //if we arent grounded we can look to glide and apply wind force
-        if(!isGroundedInternal)
-        {
-            //if we aren't gliding set that we should loop the air animation
-            if(!isGliding)
-            {
-                playerAnim.SetBool("airLoop", true);
+                //Lower gravity, mark us as gliding
+                playerRB.AddForce(currentWindForce * windGlideModifier);
+                playerRB.gravityScale = glideGravAmt;
             }
-            playerRB.AddForce(currentWindForce);
-            startGlideTimer = true;
-        }
-        //If we are set the jumps we have available to our maximum
-        else
-        {
-            playerAnim.SetBool("airLoop", false);
-            num_jumps = GetMaxJumps();
-        }
+            else
+            {
+                playerAnim.SetBool("gliding", false);
+            }
+
+            //Dash
+            if (Input.GetButtonDown("Dash"))
+            {
+                Dash(currDirection);
+            }
+
+            //Climb
+            if (Input.GetAxisRaw("Vertical") != 0)
+            {
+                Climb(GetDirFromAxis("Vertical"));
+            }
+
+            //if we're not dashing/gliding/climbing, turn gravity back on pls
+            if (!isDashing && !isGliding && !isClimbing)
+            {
+                playerRB.gravityScale = gravAmt;
+                glideGravAmt = gravAmt * glideGravModifier;
+            }
+
+            //If we are, decrease our timer
+            if (isDashing)
+            {
+                playerAnim.SetBool("dashing", true);
+                //decrease dash time
+                dashTime -= Time.deltaTime;
+                if (dashTime <= 0)
+                {
+                    playerAnim.SetBool("dashing", false);
+                    dashTime = startDashTime;
+                    playerRB.velocity = Vector2.zero;
+                    isDashing = false;
+                    startDashCd = true;
+                    canDash = false;
+                }
+            }
+            //If we are in the middle of a jump, start our glide timer so we delay when we can glide
+            if (startGlideTimer)
+            {
+                glideDelayTimerCount -= Time.deltaTime;
+                if (glideDelayTimerCount <= 0)
+                {
+                    glideDelayTimerCount = glideDelayTimer;
+                    canGlide = true;
+                    startGlideTimer = false;
+                }
+            }
+
+            //Cooldown between dashes
+            if (startDashCd)
+            {
+                dashCd -= Time.deltaTime;
+                if (dashCd <= 0)
+                {
+                    dashCd = dashCooldown;
+                    startDashCd = false;
+                    canDash = true;
+                }
+            }
+
+            //internal bool for small efficiency gain
+            isGroundedInternal = IsGrounded();
+            //if we arent grounded we can look to glide and apply wind force
+            if (!isGroundedInternal)
+            {
+                //if we aren't gliding set that we should loop the air animation
+                if (!isGliding)
+                {
+                    playerAnim.SetBool("airLoop", true);
+                }
+                playerRB.AddForce(currentWindForce);
+                startGlideTimer = true;
+            }
+            //If we are set the jumps we have available to our maximum
+            else
+            {
+                playerAnim.SetBool("airLoop", false);
+                num_jumps = GetMaxJumps();
+            }
+        }     
     }
     #endregion
 
