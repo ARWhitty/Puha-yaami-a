@@ -40,12 +40,6 @@ public class GameManager : MonoBehaviour
         LoadData();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void LoadData()
     {
         //Load data
@@ -66,6 +60,7 @@ public class GameManager : MonoBehaviour
 
         //Update score
         score = gmData.score;
+        UpdateScoreText();
 
         //Load last checkpoint and update
         Vector3 loadedLastCheckpoint;

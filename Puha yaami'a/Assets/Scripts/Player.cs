@@ -48,6 +48,8 @@ public class Player : MonoBehaviour
     [Tooltip("Give me the Paralax object in the scene :)")]
     public FreeParallax backgroundParallax;
 
+    public Camera camera;
+
     #endregion
 
     #region Events
@@ -95,6 +97,7 @@ public class Player : MonoBehaviour
     private LayerMask groundedFilter;
 
     private SpriteRenderer playerSprite;
+    private Vector2 lastFrameCameraPos;
     #endregion
 
     #region Start/Update/Enable
@@ -145,6 +148,7 @@ public class Player : MonoBehaviour
             //Horizontal Movement
             currDirection = GetDirFromAxis("Horizontal");
             Move(currDirection);
+            lastFrameCameraPos = camera.transform.position;
         }
     }
 
@@ -281,8 +285,7 @@ public class Player : MonoBehaviour
             {
                 ResetAllAnimTriggers("");
                 playerAnim.SetBool("glide", false);
-            }
-            
+            }    
         }
     }
     #endregion
@@ -345,7 +348,14 @@ public class Player : MonoBehaviour
             else
                 this.transform.position += moveVector * dir;
         }
-        backgroundParallax.Speed = parallaxSpeed * -dir;
+        if(camera.transform.position.x != lastFrameCameraPos.x)
+        {
+            backgroundParallax.Speed = parallaxSpeed * dir;
+        }
+        else
+        {
+            backgroundParallax.Speed = 0;
+        }
     }
 
     /// <summary>
