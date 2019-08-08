@@ -34,8 +34,19 @@ public class Player : MonoBehaviour
     [SerializeField] private float jumpTimer;
     [Tooltip("The extra force added when holding the jump key, values between 0.8-1.2 seem to work best")]
     [SerializeField] private float additiveJumpAmount;
-    [Tooltip("TList of Any Triggers created in the Animation Window")]
+    [Tooltip("List of Any Triggers created in the Animation Window")]
     [SerializeField] private List<string> animTriggers;
+    [Tooltip("List of Any bools created in the Animation Window")]
+    [SerializeField] private List<string> animbools;
+    [Tooltip("here for tailoring when to start the land animation")]
+    [SerializeField] private float landAnimOffset;
+    [Tooltip("here for tailoring when to start the Glide End animation")]
+    [SerializeField] private float glideEndAnimOffset;
+    [Tooltip("The speed at which the background parallax moves")]
+    [SerializeField] private float parallaxSpeed;
+
+    [Tooltip("Give me the Paralax object in the scene :)")]
+    public FreeParallax backgroundParallax;
 
     #endregion
 
@@ -256,10 +267,20 @@ public class Player : MonoBehaviour
             }
             //If we are set the jumps we have available to our maximum
             else
-            {
-                playerAnim.SetBool("airLoop", false);
+            {           
                 num_jumps = GetMaxJumps();
             }
+
+            if(!isGliding && EndAirAnim())
+            {
+                playerAnim.SetBool("airLoop", false);     
+            }
+            else if(isGliding && EndGlideAnim())
+            {
+                ResetAllAnimTriggers("");
+                playerAnim.SetBool("glide", false);
+            }
+            
         }     
     }
     #endregion
@@ -303,18 +324,14 @@ public class Player : MonoBehaviour
     /// <param name="dir">Direction to move (1 is right, -1 is left, 0 is no movpement)</param>
     private void Move(int dir)
     { 
-        //TODO: Make this not shit
-        // if(dir == -1)
-        // {
-        //     playerSprite.flipX = true;
-        // }
-        ResetAllAnimTriggers();
         if(dir != 0 && isGroundedInternal)
         {
+            ResetAllAnimTriggers("Run");
             playerAnim.SetTrigger("Run");
         }
         else if(isGroundedInternal)
         {
+            ResetAllAnimTriggers("Idle");
             playerAnim.SetTrigger("Idle");
         }
         if(!isDashing)
@@ -326,6 +343,7 @@ public class Player : MonoBehaviour
             else
                 this.transform.position += moveVector * dir;
         }
+        backgroundParallax.Speed = parallaxSpeed * -dir;
     }
 
     /// <summary>
@@ -335,14 +353,14 @@ public class Player : MonoBehaviour
     {
         if (num_jumps > 0)
         {
-            ResetAllAnimTriggers();
             if (num_jumps == 2)
             {
+                ResetAllAnimTriggers("JumpStart");
                 playerAnim.SetTrigger("JumpStart");
-
             }
             else
             {
+                ResetAllAnimTriggers("DoubleJumpStart");
                 playerAnim.SetTrigger("DoubleJumpStart");
             }
 
@@ -404,7 +422,7 @@ public class Player : MonoBehaviour
             //set up glide if necessary
             if (!IsGrounded() && !isDashing && canGlide)
             {
-                ResetAllAnimTriggers();
+                ResetAllAnimTriggers("Glide");
                 playerAnim.SetTrigger("Glide");
                 //if we just started gliding, zero out our velocity so we stop jumping as soon as we start the glide
                 if (!isGliding)
@@ -426,7 +444,7 @@ public class Player : MonoBehaviour
         {
             if (canDash && !isDashing && dir != 0)
             {
-                ResetAllAnimTriggers();
+                ResetAllAnimTriggers("DashStart");
                 playerAnim.SetTrigger("DashStart");
                 isDashing = true;
                 //set the gravity scale to 0 so we get a straight midair dash if necessary
@@ -445,7 +463,7 @@ public class Player : MonoBehaviour
     {
         if(onLadder)
         {
-            ResetAllAnimTriggers();
+            ResetAllAnimTriggers("Climb");
             playerAnim.SetTrigger("Climb");
             playerRB.velocity = Vector2.zero;
             playerRB.gravityScale = 0;
@@ -478,14 +496,42 @@ public class Player : MonoBehaviour
         return false;
     }
 
+    private bool EndAirAnim()
+    {
+        //Debug.DrawRay(transform.position, Vector2.down * (collHeight + landAnimOffset), Color.red);
+        RaycastHit2D hitGround = Physics2D.Raycast(transform.position, Vector2.down, collHeight + landAnimOffset, groundedFilter);
+        if(hitGround.collider != null)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private bool EndGlideAnim()
+    {
+        Debug.DrawRay(transform.position, Vector2.down * (collHeight + glideEndAnimOffset), Color.red);
+        RaycastHit2D hitGround = Physics2D.Raycast(transform.position, Vector2.down, collHeight + glideEndAnimOffset, groundedFilter);
+        if (hitGround.collider != null)
+        {
+            return true;
+        }
+        return false;
+    }
+
     /// <summary>
     /// Resets all animation triggers for the player so that the correct animation may be played when necessaey.
     /// </summary>
-    private void ResetAllAnimTriggers()
+    private void ResetAllAnimTriggers(string toExclude)
     {
         foreach (string trigger in animTriggers)
         {
-            playerAnim.ResetTrigger(trigger);
+            if(trigger != toExclude)
+                playerAnim.ResetTrigger(trigger);
+        }
+        foreach(string animbool in animbools)
+        {
+            if(animbool != toExclude)
+                playerAnim.SetBool(animbool, false);
         }
     }
     #endregion
