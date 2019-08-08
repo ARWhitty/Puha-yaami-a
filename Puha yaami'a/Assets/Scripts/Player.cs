@@ -90,6 +90,8 @@ public class Player : MonoBehaviour
     private float jumpTimerCount;
     private int currDirection = 0;
 
+    private bool isColliding;
+
     private LayerMask groundedFilter;
 
     private SpriteRenderer playerSprite;
@@ -281,7 +283,7 @@ public class Player : MonoBehaviour
                 playerAnim.SetBool("glide", false);
             }
             
-        }     
+        }
     }
     #endregion
 
@@ -594,6 +596,10 @@ public class Player : MonoBehaviour
         {
             OnCollide(4);
         }
+        if (col.gameObject.CompareTag("Checkpoint"))
+        {
+            OnTrigger("Checkpoint", col);
+        }
     }
 
     /// <summary>
@@ -606,10 +612,6 @@ public class Player : MonoBehaviour
         if(col.gameObject.CompareTag("Climbable"))
         {
             onLadder = true;
-        }
-        if(col.gameObject.CompareTag("Checkpoint"))
-        {
-            OnTrigger("Checkpoint", col);
         }
 
         if(col.gameObject.CompareTag("Double_Jump_Unlock"))

@@ -9,6 +9,9 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject pauseMenuUI;
     [SerializeField] private GameObject settingsMenuUI;
 
+    public Player player;
+    public GameManager gm;
+
     // Update is called once per frame
     void Update()
     {
@@ -53,7 +56,7 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMainMenu()
     {
-        //TODO: add save event/call here
+        SaveSystem.SaveAll(player, gm);
         Time.timeScale = 1f;
         Debug.LogError("Main Menu scene not created yet, nothing to load");
         //SceneManager.LoadScene("MainMenu");
@@ -62,6 +65,8 @@ public class PauseMenu : MonoBehaviour
     public void QuitGame()
     {
         Debug.Log("Quitting");
+        SaveSystem.SaveAll(player, gm);
+        Debug.Log("save complete");
         //TODO: add save call/event here
         Application.Quit();
     }

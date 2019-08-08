@@ -9,12 +9,12 @@ public class GameManager : MonoBehaviour
     private Player player;
     [SerializeField] private Vector3 lastCheckpoint;
     [SerializeField]private Vector3 playerStartPos;
-    [SerializeField] private int score;
+    [SerializeField] private int score = 0;
     public Text scoreText;
 
     [SerializeField] private float bouncyModifier = 1.5f;
     [SerializeField] private float stickyModifier = 0.5f;
-    [SerializeField] private List<Vector3> checkpoints;
+    //[SerializeField] private List<Vector3> checkpoints;
 
     void OnEnable()
     {
@@ -34,13 +34,59 @@ public class GameManager : MonoBehaviour
         player = playerObj.GetComponent<Player>();
         UpdateScoreText();
         playerStartPos = player.transform.position;
-        checkpoints.Add(playerStartPos);
+        lastCheckpoint = playerStartPos;
+        //checkpoints.Add(playerStartPos);
+
+        LoadData();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    private void LoadData()
+    {
+        //Load data
+        PlayerData pData = SaveSystem.LoadPlayer();
+
+        //Fill in transform
+        Vector3 playerLoadedPos;
+        playerLoadedPos.x = pData.pos[0];
+        playerLoadedPos.y = pData.pos[1];
+        playerLoadedPos.z = pData.pos[2];
+
+        //Move player to loaded transform
+        player.transform.position = playerLoadedPos;
+
+
+        //Load gm data
+        GameManagerData gmData = SaveSystem.LoadGM();
+
+        //Update score
+        score = gmData.score;
+
+        //Load last checkpoint and update
+        Vector3 loadedLastCheckpoint;
+        loadedLastCheckpoint.x = gmData.lastCheckpoint[0];
+        loadedLastCheckpoint.y = gmData.lastCheckpoint[1];
+        loadedLastCheckpoint.z = gmData.lastCheckpoint[2];
+
+        //Load all stored checkpoints and update
+        /*        List<Vector3> loadedCheckpoints = new List<Vector3>();
+                foreach(Vec3 pos in gmData.checkpointPositions)
+                {
+                    Vector3 loadedChkpt;
+                    loadedChkpt.x = pos.x;
+                    loadedChkpt.y = pos.y;
+                    loadedChkpt.z = pos.z;
+
+                    loadedCheckpoints.Add(loadedChkpt);
+                }*/
+
+        //checkpoints = loadedCheckpoints;
+        lastCheckpoint = loadedLastCheckpoint;
     }
 
     void HandlePlatformCollide(int type)
@@ -74,11 +120,14 @@ public class GameManager : MonoBehaviour
         switch(type)
         {
             case "Checkpoint":
-                if(!checkpoints.Contains(checkpointCollider.transform.position))
+                /*                if(!checkpoints.Contains(checkpointCollider.transform.position))
+                                {*/
+                if (lastCheckpoint != checkpointCollider.transform.position)
                 {
                     lastCheckpoint = checkpointCollider.transform.position;
-                    checkpoints.Add(checkpointCollider.transform.position);
                 }
+                    //checkpoints.Add(checkpointCollider.transform.position);
+                //}
                 break;
             case "Double_Jump_Unlock":
                 player.UnlockAbility(0);
@@ -116,5 +165,20 @@ public class GameManager : MonoBehaviour
     void UpdateScoreText()
     {
         scoreText.text = "Score: " + score;
+    }
+
+    public int GetScore()
+    {
+        return score;
+    }
+
+/*    public List<Vector3> GetCheckpoints()
+    {
+        return checkpoints;
+    }*/
+
+    public Vector3 GetLastCheckpoint()
+    {
+        return lastCheckpoint;
     }
 }
