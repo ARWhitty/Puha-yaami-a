@@ -263,6 +263,10 @@ public class Player : MonoBehaviour
             //if we arent grounded we can look to glide and apply wind force
             if (!isGroundedInternal)
             {
+                if(num_jumps != 0)
+                {
+                    num_jumps = 1;
+                }
                 //if we aren't gliding set that we should loop the air animation
                 if (!isGliding)
                 {

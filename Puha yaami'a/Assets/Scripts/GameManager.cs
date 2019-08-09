@@ -153,7 +153,7 @@ public class GameManager : MonoBehaviour
 
     void ScoreLoss()
     {
-        score += 500;
+        score -= 500;
         UpdateScoreText();
     }
 
