@@ -514,9 +514,10 @@ public class Player : MonoBehaviour
 
     private bool EndAirAnim()
     {
+        float currVel = playerRB.velocity.y;
         //Debug.DrawRay(transform.position, Vector2.down * (collHeight + landAnimOffset), Color.red);
         RaycastHit2D hitGround = Physics2D.Raycast(transform.position, Vector2.down, collHeight + landAnimOffset, groundedFilter);
-        if(hitGround.collider != null)
+        if(currVel < 0 && hitGround.collider != null)
         {
             return true;
         }
