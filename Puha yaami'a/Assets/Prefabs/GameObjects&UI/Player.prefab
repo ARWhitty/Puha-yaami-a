@@ -145,9 +145,10 @@ MonoBehaviour:
   - DashStart
   - Glide
   - Climb
+  - Fall
   animbools: []
-  landAnimOffset: 7
-  glideEndAnimOffset: 0
+  landAnimOffset: 11
+  glideEndAnimOffset: 3
   parallaxSpeed: 24
   backgroundParallax: {fileID: 0}
   camera: {fileID: 4549886841602128109}
@@ -264,7 +265,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 45
   orthographic: 0
   orthographic size: 5
   m_Depth: 0

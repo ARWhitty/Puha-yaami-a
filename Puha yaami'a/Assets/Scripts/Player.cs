@@ -139,6 +139,8 @@ public class Player : MonoBehaviour
         widthOffset = new Vector3(spriteWidth/2 - 2.0f, 0, 0);
 
         jumpTimerCount = jumpTimer;
+
+        ResetAllAnimTriggers("");
     }
 
     private void FixedUpdate()
@@ -274,22 +276,24 @@ public class Player : MonoBehaviour
                 }
                 playerRB.AddForce(currentWindForce);
                 startGlideTimer = true;
+
+                if (!isGliding && EndAirAnim())
+                {
+                    ResetAllAnimTriggers("airLoop");
+                    playerAnim.SetTrigger("Fall");
+                }
+                else if (isGliding && EndGlideAnim())
+                {
+                    ResetAllAnimTriggers("");
+                    playerAnim.SetBool("glide", false);
+                }
             }
             //If we are set the jumps we have available to our maximum
             else
-            {           
+            {
+                playerAnim.SetBool("airLoop", false);
                 num_jumps = GetMaxJumps();
             }
-
-            if(!isGliding && EndAirAnim())
-            {
-                playerAnim.SetBool("airLoop", false);     
-            }
-            else if(isGliding && EndGlideAnim())
-            {
-                ResetAllAnimTriggers("");
-                playerAnim.SetBool("glide", false);
-            }    
         }
     }
     #endregion
@@ -517,7 +521,7 @@ public class Player : MonoBehaviour
         float currVel = playerRB.velocity.y;
         //Debug.DrawRay(transform.position, Vector2.down * (collHeight + landAnimOffset), Color.red);
         RaycastHit2D hitGround = Physics2D.Raycast(transform.position, Vector2.down, collHeight + landAnimOffset, groundedFilter);
-        if(currVel < 0 && hitGround.collider != null)
+        if (currVel < 0f && hitGround.collider != null)
         {
             return true;
         }
@@ -526,7 +530,7 @@ public class Player : MonoBehaviour
 
     private bool EndGlideAnim()
     {
-        Debug.DrawRay(transform.position, Vector2.down * (collHeight + glideEndAnimOffset), Color.red);
+        //Debug.DrawRay(transform.position, Vector2.down * (collHeight + glideEndAnimOffset), Color.red);
         RaycastHit2D hitGround = Physics2D.Raycast(transform.position, Vector2.down, collHeight + glideEndAnimOffset, groundedFilter);
         if (hitGround.collider != null)
         {
