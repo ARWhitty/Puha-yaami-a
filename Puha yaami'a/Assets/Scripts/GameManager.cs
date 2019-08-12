@@ -54,6 +54,16 @@ public class GameManager : MonoBehaviour
         //Move player to loaded transform
         player.transform.position = playerLoadedPos;
 
+        //unlock the correct stuff
+        bool gu = pData.glideUnlocked;
+        bool du = pData.dashUnlocked;
+        bool dju = pData.dblJumpUnlocked;
+        if (dju)
+            player.UnlockAbility(0);
+        if (du)
+            player.UnlockAbility(1);
+        if (gu)
+            player.UnlockAbility(2);
 
         //Load gm data
         GameManagerData gmData = SaveSystem.LoadGM();

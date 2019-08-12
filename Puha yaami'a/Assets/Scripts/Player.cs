@@ -131,12 +131,12 @@ public class Player : MonoBehaviour
 
         currJumpForce = jumpForce;
 
-        groundedFilter = LayerMask.GetMask("Platforms");
-
+        groundedFilter = LayerMask.GetMask("Level");
         playerSprite = this.GetComponent<SpriteRenderer>();
-        spriteWidth = (float)playerSprite.bounds.size.x;
-        collHeight = (float)playerSprite.bounds.size.y / 2;
-        widthOffset = new Vector3(spriteWidth/2 - 2.0f, 0, 0);
+        BoxCollider2D playerCol = this.GetComponent<BoxCollider2D>();
+        collHeight = (float)playerCol.bounds.size.y / 2;
+        //note: can add a float offset after dividing by 2 here for more leeway on jumps
+        widthOffset = new Vector3(playerCol.bounds.size.x/2, 0, 0);
 
         jumpTimerCount = jumpTimer;
 
@@ -356,7 +356,10 @@ public class Player : MonoBehaviour
             else
                 this.transform.position += moveVector * dir;
         }
-        if(camera.transform.position.x != lastFrameCameraPos.x)
+
+        float cameraOffset = camera.transform.position.x - lastFrameCameraPos.x;
+
+        if(cameraOffset >= moveAmount || cameraOffset <= -moveAmount)
         {
             backgroundParallax.Speed = parallaxSpeed * dir;
         }
@@ -371,6 +374,7 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Jump()
     {
+        //Debug.Break();
         if (num_jumps > 0)
         {
             if (num_jumps == 2)
@@ -506,9 +510,9 @@ public class Player : MonoBehaviour
         RaycastHit2D hitRight = Physics2D.Raycast(transform.position + widthOffset, Vector2.down, collHeight + heightOffset, groundedFilter);
 
         //DEBUG stuff for my own sanity. Please do not delete until everything is done
-/*        Debug.DrawRay(transform.position + widthOffset, Vector2.down * collHeight, Color.blue);
-        Debug.DrawRay(transform.position, Vector2.down * collHeight, Color.blue);
-        Debug.DrawRay(transform.position - widthOffset, Vector2.down * collHeight, Color.blue);*/
+        Debug.DrawRay(transform.position + widthOffset, Vector2.down * collHeight, Color.red);
+        Debug.DrawRay(transform.position, Vector2.down * collHeight, Color.red);
+        Debug.DrawRay(transform.position - widthOffset, Vector2.down * collHeight, Color.red);
         if (hitCenter.collider != null|| hitLeft.collider != null || hitRight.collider != null)
         {
             return true;
@@ -723,6 +727,21 @@ public class Player : MonoBehaviour
                 glideUnlocked = true;
                 break;
         }
+    }
+
+    public bool GetGlideUnlocked()
+    {
+        return glideUnlocked;
+    }
+
+    public bool GetDblUnlocked()
+    {
+        return dblJumpUnlocked;
+    }
+
+    public bool GetDashUnlocked()
+    {
+        return dashUnlocked;
     }
     #endregion
 }

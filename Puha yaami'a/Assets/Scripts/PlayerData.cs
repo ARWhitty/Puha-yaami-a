@@ -6,6 +6,9 @@ using UnityEngine;
 public class PlayerData
 {
     public float[] pos;
+    public bool dashUnlocked;
+    public bool dblJumpUnlocked;
+    public bool glideUnlocked;
 
     public PlayerData(Player player)
     {
@@ -13,5 +16,9 @@ public class PlayerData
         pos[0] = player.transform.position.x;
         pos[1] = player.transform.position.y;
         pos[2] = player.transform.position.z;
+
+        dashUnlocked = player.GetDashUnlocked();
+        dblJumpUnlocked = player.GetDblUnlocked();
+        glideUnlocked = player.GetGlideUnlocked();
     }
 }
