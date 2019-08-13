@@ -134,7 +134,7 @@ MonoBehaviour:
   windGlideModifier: 1
   glideGravModifier: 0.1
   glideCurveModifier: 0.02
-  dashCooldown: 3
+  dashCooldown: 1.5
   jumpTimer: 0.2
   additiveJumpAmount: 0.5
   animTriggers:
