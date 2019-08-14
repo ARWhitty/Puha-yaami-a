@@ -378,18 +378,28 @@ public class Player : MonoBehaviour
         //Debug.Break();
         if (num_jumps > 0)
         {
-            if (num_jumps == 2)
+            if(dblJumpUnlocked)
+            {
+                if (num_jumps == 2)
+                {
+                    ResetAllAnimTriggers("JumpStart");
+                    playerAnim.SetTrigger("JumpStart");
+                    audioMgr.Play("Jump");
+                }
+                else
+                {
+                    ResetAllAnimTriggers("DoubleJumpStart");
+                    playerAnim.SetTrigger("DoubleJumpStart");
+                    audioMgr.Play("DoubleJump");
+                }
+            }
+            else
             {
                 ResetAllAnimTriggers("JumpStart");
                 playerAnim.SetTrigger("JumpStart");
                 audioMgr.Play("Jump");
             }
-            else
-            {
-                ResetAllAnimTriggers("DoubleJumpStart");
-                playerAnim.SetTrigger("DoubleJumpStart");
-                audioMgr.Play("DoubleJump");
-            }
+
 
             isJumping = true;
             jumpTimerCount = jumpTimer;
