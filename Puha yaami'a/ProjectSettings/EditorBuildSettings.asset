@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Levels/Redrock/Redrock_1.unity
     guid: 0e5794d39654e8444a5baf0307924746
   - enabled: 1

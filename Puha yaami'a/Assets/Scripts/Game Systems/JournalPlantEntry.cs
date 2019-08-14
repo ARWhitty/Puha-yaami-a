@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 [CreateAssetMenu(fileName ="New Journal Entry", menuName = "Journal Entry/Plant")]
 public class JournalPlantEntry : ScriptableObject
 {
@@ -10,4 +11,6 @@ public class JournalPlantEntry : ScriptableObject
 
     public Sprite lockedImage;
     public Sprite unlockedImage;
+
+    public bool unlocked = false;
 }

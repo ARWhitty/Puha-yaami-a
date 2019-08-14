@@ -26,6 +26,10 @@ public class PlatformMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(PauseMenu.gamePaused)
+        {
+            return;
+        }
         //get where we currently are
         currentPos = transform.position;
 
