@@ -20,6 +20,8 @@ public class JournalManager : MonoBehaviour
     public Image image_mid;
     public Image image_bot;
 
+    private string undiscovered = "???";
+
     private void OnEnable()
     {
         UpdatePageUI();
@@ -32,7 +34,6 @@ public class JournalManager : MonoBehaviour
 
     public void NextPage()
     {
-        Debug.Log(pages.Count);
         if(currPage < pages.Count - 1)
         {
             currPage += 1;
@@ -55,28 +56,44 @@ public class JournalManager : MonoBehaviour
         JournalPlantEntry mid = pages[currPage].mid;
         JournalPlantEntry bottom = pages[currPage].bottom;
 
-        name_top.text = top.name;
-        name_mid.text = mid.name;
-        name_bot.text = bottom.name;
-
-        desc_top.text = top.description;
-        desc_mid.text = mid.description;
-        desc_bot.text = bottom.description;
-
         if (!top.unlocked)
+        {
             image_top.sprite = top.lockedImage;
+            name_top.text = undiscovered;
+            desc_top.text = undiscovered;
+        }
         else
+        {
             image_top.sprite = top.unlockedImage;
+            name_top.text = top.name;
+            desc_top.text = top.description;
+        }
 
         if (!mid.unlocked)
+        {
             image_mid.sprite = mid.lockedImage;
+            name_mid.text = undiscovered;
+            desc_mid.text = undiscovered;
+        }
         else
+        {
             image_mid.sprite = mid.unlockedImage;
+            name_mid.text = mid.name;
+            desc_mid.text = mid.description;
+        }
 
         if (!bottom.unlocked)
+        {
             image_bot.sprite = bottom.lockedImage;
+            name_bot.text = undiscovered;
+            desc_bot.text = undiscovered;
+        }
         else
+        {
             image_bot.sprite = bottom.unlockedImage;
+            name_bot.text = bottom.name;
+            desc_bot.text = bottom.description;
+        }
     }
 
 

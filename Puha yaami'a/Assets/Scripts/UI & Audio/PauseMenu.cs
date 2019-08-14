@@ -48,7 +48,7 @@ public class PauseMenu : MonoBehaviour
     public void ReturnToMap()
     {
         //throw new System.NotImplementedException("Not yet implemented");
-        Debug.LogError("WARNING ERROR: this will be hooked up to map, currently here to test journal functionality");
+        Debug.LogWarning("WARNING: this will be hooked up to map, currently here to test journal functionality");
         pauseMenuUI.SetActive(false);
         journalMenuUI.SetActive(true);
     }
