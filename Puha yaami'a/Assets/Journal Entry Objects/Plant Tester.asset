@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: New Journal Entry
+  m_Name: Plant Tester
   m_EditorClassIdentifier: Assembly-CSharp::JournalEntry
-  title: Cactus
+  title: 
   description: 
   image: {fileID: 0}

@@ -102,6 +102,7 @@
     <Compile Include="Assets\FreeParallax\Scripts\FreeParallax.cs" />
     <Compile Include="Assets\FreeParallax\Scripts\FreeParallaxDemo.cs" />
     <Compile Include="Assets\Scripts\Data Mangement\GameManagerData.cs" />
+    <Compile Include="Assets\Scripts\Data Mangement\JournalPage.cs" />
     <Compile Include="Assets\Scripts\Data Mangement\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Data Mangement\SaveSystem.cs" />
     <Compile Include="Assets\Scripts\Game Systems\Climbable.cs" />
@@ -125,25 +126,40 @@
     <None Include="Assets\CreativeSpore\SuperTilemapEditor\changelog.txt" />
     <None Include="Assets\CreativeSpore\SuperTilemapEditor\Extra\Importers\Pyxel Edit\Documentation\PyxelEditManual.txt" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/dpink/Desktop/Summer Game 2019/Puha-yaami-a/Puha yaami'a/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/jackc/Desktop/Puha-yaami-a/Puha yaami'a/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VSCode.Editor">
+      <HintPath>C:/Users/jackc/Desktop/Puha-yaami-a/Puha yaami'a/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/dpink/Desktop/Summer Game 2019/Puha-yaami-a/Puha yaami'a/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/jackc/Desktop/Puha-yaami-a/Puha yaami'a/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/dpink/Desktop/Summer Game 2019/Puha-yaami-a/Puha yaami'a/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>C:/Users/jackc/Desktop/Puha-yaami-a/Puha yaami'a/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/dpink/Desktop/Summer Game 2019/Puha-yaami-a/Puha yaami'a/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/jackc/Desktop/Puha-yaami-a/Puha yaami'a/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/dpink/Desktop/Summer Game 2019/Puha-yaami-a/Puha yaami'a/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/jackc/Desktop/Puha-yaami-a/Puha yaami'a/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Rider.Editor">
+      <HintPath>C:/Users/jackc/Desktop/Puha-yaami-a/Puha yaami'a/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>C:/Users/jackc/Desktop/Puha-yaami-a/Puha yaami'a/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Editor">
+      <HintPath>C:/Users/jackc/Desktop/Puha-yaami-a/Puha yaami'a/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/dpink/Desktop/Summer Game 2019/Puha-yaami-a/Puha yaami'a/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/jackc/Desktop/Puha-yaami-a/Puha yaami'a/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/Users/dpink/Desktop/Summer Game 2019/Puha-yaami-a/Puha yaami'a/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>C:/Users/jackc/Desktop/Puha-yaami-a/Puha yaami'a/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>C:/Users/jackc/Desktop/Puha-yaami-a/Puha yaami'a/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -316,14 +332,14 @@
     <Reference Include="UnityEngine.XRModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Locator">
-      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.8f1/Editor/Data/Managed/Unity.Locator.dll</HintPath>
+    <Reference Include="Unity.Analytics.Editor">
+      <HintPath>C:/Users/jackc/Desktop/Puha-yaami-a/Puha yaami'a/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.8f1/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+    <Reference Include="Unity.Analytics.StandardEvents">
+      <HintPath>C:/Users/jackc/Desktop/Puha-yaami-a/Puha yaami'a/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.TestRunner">
-      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.8f1/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
+    <Reference Include="Unity.Analytics.Tracker">
+      <HintPath>C:/Users/jackc/Desktop/Puha-yaami-a/Puha yaami'a/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.8f1/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>

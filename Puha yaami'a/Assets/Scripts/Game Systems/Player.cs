@@ -362,11 +362,13 @@ public class Player : MonoBehaviour
 
         if(cameraOffset >= moveAmount || cameraOffset <= -moveAmount)
         {
-            backgroundParallax.Speed = parallaxSpeed * dir;
+            if(backgroundParallax != null)
+                backgroundParallax.Speed = parallaxSpeed * dir;
         }
         else
         {
-            backgroundParallax.Speed = 0;
+            if (backgroundParallax != null)
+                backgroundParallax.Speed = 0;
         }
     }
 
@@ -378,18 +380,28 @@ public class Player : MonoBehaviour
         //Debug.Break();
         if (num_jumps > 0)
         {
-            if (num_jumps == 2)
+            if(dblJumpUnlocked)
+            {
+                if (num_jumps == 2)
+                {
+                    ResetAllAnimTriggers("JumpStart");
+                    playerAnim.SetTrigger("JumpStart");
+                    audioMgr.Play("Jump");
+                }
+                else
+                {
+                    ResetAllAnimTriggers("DoubleJumpStart");
+                    playerAnim.SetTrigger("DoubleJumpStart");
+                    audioMgr.Play("DoubleJump");
+                }
+            }
+            else
             {
                 ResetAllAnimTriggers("JumpStart");
                 playerAnim.SetTrigger("JumpStart");
                 audioMgr.Play("Jump");
             }
-            else
-            {
-                ResetAllAnimTriggers("DoubleJumpStart");
-                playerAnim.SetTrigger("DoubleJumpStart");
-                audioMgr.Play("DoubleJump");
-            }
+
 
             isJumping = true;
             jumpTimerCount = jumpTimer;
@@ -527,7 +539,7 @@ public class Player : MonoBehaviour
     {
         float currVel = playerRB.velocity.y;
         //Debug.DrawRay(transform.position, Vector2.down * (collHeight + landAnimOffset), Color.red);
-        RaycastHit2D hitGround = Physics2D.Raycast(transform.position, Vector2.down, collHeight + landAnimOffset, groundedFilter);
+        //RaycastHit2D hitGround = Physics2D.Raycast(transform.position, Vector2.down, collHeight + landAnimOffset, groundedFilter);
         if (currVel < 0f/* && hitGround.collider != null*/)
         {
             return true;
