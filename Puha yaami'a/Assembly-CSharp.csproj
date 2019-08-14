@@ -344,7 +344,11 @@
       <HintPath>C:/Users/jackc/Desktop/Puha-yaami-a/Puha yaami'a/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
+<<<<<<< HEAD
       <HintPath>C:/Users/jackc/Desktop/Puha-yaami-a/Puha yaami'a/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
+=======
+      <HintPath>D:/Game Projects/Unity/Summer_game_2019/Puha yaami'a/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
+>>>>>>> master
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.0f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
