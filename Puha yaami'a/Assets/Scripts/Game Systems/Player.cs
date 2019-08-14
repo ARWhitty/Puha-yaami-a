@@ -527,7 +527,7 @@ public class Player : MonoBehaviour
     {
         float currVel = playerRB.velocity.y;
         //Debug.DrawRay(transform.position, Vector2.down * (collHeight + landAnimOffset), Color.red);
-        RaycastHit2D hitGround = Physics2D.Raycast(transform.position, Vector2.down, collHeight + landAnimOffset, groundedFilter);
+        //RaycastHit2D hitGround = Physics2D.Raycast(transform.position, Vector2.down, collHeight + landAnimOffset, groundedFilter);
         if (currVel < 0f/* && hitGround.collider != null*/)
         {
             return true;
