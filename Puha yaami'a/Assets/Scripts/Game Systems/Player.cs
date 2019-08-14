@@ -362,11 +362,13 @@ public class Player : MonoBehaviour
 
         if(cameraOffset >= moveAmount || cameraOffset <= -moveAmount)
         {
-            backgroundParallax.Speed = parallaxSpeed * dir;
+            if(backgroundParallax != null)
+                backgroundParallax.Speed = parallaxSpeed * dir;
         }
         else
         {
-            backgroundParallax.Speed = 0;
+            if (backgroundParallax != null)
+                backgroundParallax.Speed = 0;
         }
     }
 

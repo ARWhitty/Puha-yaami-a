@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Levels/Redrock/Redrocks 2 Sandbox.unity
+- path: Assets/Levels/Tests/Playground.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

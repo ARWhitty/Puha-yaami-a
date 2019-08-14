@@ -102,6 +102,7 @@
     <Compile Include="Assets\FreeParallax\Scripts\FreeParallax.cs" />
     <Compile Include="Assets\FreeParallax\Scripts\FreeParallaxDemo.cs" />
     <Compile Include="Assets\Scripts\Data Mangement\GameManagerData.cs" />
+    <Compile Include="Assets\Scripts\Data Mangement\JournalPage.cs" />
     <Compile Include="Assets\Scripts\Data Mangement\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Data Mangement\SaveSystem.cs" />
     <Compile Include="Assets\Scripts\Game Systems\Climbable.cs" />
