@@ -17,6 +17,8 @@ TagManager:
   - Glide_Unlock
   - Avoid_Platform
   - UI_Element
+  - Poems
+  - Encyclopedia
   layers:
   - Default
   - TransparentFX
@@ -30,8 +32,8 @@ TagManager:
   - Level
   - Climbable
   - Fail
-  - 
-  - 
+  - Poem
+  - Encyclopedia
   - 
   - 
   - 
@@ -69,8 +71,14 @@ TagManager:
   - name: Fail
     uniqueID: 4169725749
     locked: 0
+  - name: Poems
+    uniqueID: 2500586061
+    locked: 0
   - name: Player
     uniqueID: 1886506763
+    locked: 0
+  - name: Encyclopedia
+    uniqueID: 2279035185
     locked: 0
   - name: UI
     uniqueID: 3074112229

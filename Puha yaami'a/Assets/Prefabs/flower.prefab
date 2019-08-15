@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1646037161772415289}
   - component: {fileID: 6069481133856275568}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: flower
-  m_TagString: Untagged
+  m_TagString: Encyclopedia
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 8579135710912170891}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -80.12125, y: 35.09423, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -66,10 +66,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -2015932111
+  m_SortingLayer: 8
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 065b30088532e4241932088216f8dc20, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b62b27a3dcf04454baa1270d529868ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -247,6 +247,11 @@ PrefabInstance:
       propertyPath: audioMgr
       value: 
       objectReference: {fileID: 488131099}
+    - target: {fileID: 4549886841259883384, guid: bc07f6223806921439f40603db3ef635,
+        type: 3}
+      propertyPath: dblJumpUnlocked
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc07f6223806921439f40603db3ef635, type: 3}
 --- !u!114 &14960822 stripped
@@ -1354,12 +1359,12 @@ PrefabInstance:
     - target: {fileID: 1182909672214299986, guid: 2479c9910f7e20a419e184e98e37118d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 492.16
+      value: 492.22
       objectReference: {fileID: 0}
     - target: {fileID: 1182909672214299986, guid: 2479c9910f7e20a419e184e98e37118d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 106.44751
+      value: 106.08
       objectReference: {fileID: 0}
     - target: {fileID: 1182909672214299986, guid: 2479c9910f7e20a419e184e98e37118d,
         type: 3}
@@ -1488,104 +1493,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &563641623
-GameObject:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 563641626}
-  - component: {fileID: 563641625}
-  - component: {fileID: 563641624}
-  m_Layer: 0
-  m_Name: Brush
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &563641624
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 563641623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 860611cc84144924c8a95e2a1670d236, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Offset: {x: 0, y: 0}
-  IsUndoEnabled: 1
-  m_brushTilemap: {fileID: 563641625}
---- !u!114 &563641625
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 563641623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dec3ca0fe88506448df84e8bf55b2dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowGrid: 1
-  InnerPadding: 0
-  ColliderDepth: 0.1
-  ColliderType: 0
-  Collider2DType: 0
-  ShowColliderNormals: 1
-  ColliderDisplayMode: 0
-  IsUndoEnabled: 0
-  SortOrder: 0
-  m_sortingLayer: -434578869
-  m_sortingLayerName: Main Level
-  m_orderInLayer: 0
-  m_material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_tintColor: {r: 0.7, g: 0.7, b: 0.7, a: 0.7}
-  m_pixelSnap: 0
-  m_isVisible: 0
-  m_allowPaintingOutOfBounds: 1
-  m_autoShrink: 0
-  m_enableUndoWhilePainting: 1
-  m_isTrigger: 0
-  m_physicMaterial: {fileID: 0}
-  m_physicMaterial2D: {fileID: 0}
-  m_cellSize: {x: 0.32, y: 0.32}
-  m_mapBounds:
-    m_Center: {x: 0.16, y: 0.16, z: 0}
-    m_Extent: {x: 0.16, y: 0.16, z: 0}
-  m_tileset: {fileID: 11400000, guid: b680709c5618562439fb09edccac8a46, type: 2}
-  m_minGridX: 0
-  m_minGridY: 0
-  m_maxGridX: 0
-  m_maxGridY: 0
-  m_parentTilemapGroup: {fileID: 0}
-  m_parallaxFactor: {x: 1, y: 1}
-  m_chunkRendererProperties:
-    castShadows: 0
-    receiveShadows: 0
-    useLightProbes: 0
-    reflectionProbeUsage: 0
-    anchorOverride: {fileID: 0}
---- !u!4 &563641626
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 563641623}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 268.8, y: 208, z: -0.01}
-  m_LocalScale: {x: 10, y: 10, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &565639451 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4739083189511526246, guid: aa2ab81583a026f4bb6e703ec389da1b,
@@ -1607,9 +1514,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 691144128}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Journal
-  m_TagString: Untagged
+  m_TagString: Poems
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2579,7 +2486,7 @@ PrefabInstance:
     - target: {fileID: 1646037161772415289, guid: 063d37ac0098bae409302b48543940ca,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 100.8
+      value: 100.17
       objectReference: {fileID: 0}
     - target: {fileID: 1646037161772415289, guid: 063d37ac0098bae409302b48543940ca,
         type: 3}
@@ -3349,6 +3256,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8695345214475198979, guid: a93923f37b298d4449b5c497f5d1d3cb,
+        type: 3}
+      propertyPath: playerObj
+      value: 
+      objectReference: {fileID: 796036060}
+    - target: {fileID: 8695345214475198979, guid: a93923f37b298d4449b5c497f5d1d3cb,
+        type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 219318471}
+    - target: {fileID: 8695345214475198979, guid: a93923f37b298d4449b5c497f5d1d3cb,
+        type: 3}
+      propertyPath: parallaxBk
+      value: 
+      objectReference: {fileID: 928259948}
     - target: {fileID: 8695345214475198978, guid: a93923f37b298d4449b5c497f5d1d3cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3404,21 +3326,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8695345214475198979, guid: a93923f37b298d4449b5c497f5d1d3cb,
-        type: 3}
-      propertyPath: playerObj
-      value: 
-      objectReference: {fileID: 796036060}
-    - target: {fileID: 8695345214475198979, guid: a93923f37b298d4449b5c497f5d1d3cb,
-        type: 3}
-      propertyPath: scoreText
-      value: 
-      objectReference: {fileID: 219318471}
-    - target: {fileID: 8695345214475198979, guid: a93923f37b298d4449b5c497f5d1d3cb,
-        type: 3}
-      propertyPath: parallaxBk
-      value: 
-      objectReference: {fileID: 928259948}
     - target: {fileID: 143760810, guid: a93923f37b298d4449b5c497f5d1d3cb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 595.8
@@ -3547,12 +3454,12 @@ PrefabInstance:
     - target: {fileID: 1646037161772415289, guid: 063d37ac0098bae409302b48543940ca,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 97.7
+      value: 97.31
       objectReference: {fileID: 0}
     - target: {fileID: 1646037161772415289, guid: 063d37ac0098bae409302b48543940ca,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 107.2
+      value: 106.62
       objectReference: {fileID: 0}
     - target: {fileID: 1646037161772415289, guid: 063d37ac0098bae409302b48543940ca,
         type: 3}
@@ -3616,12 +3523,12 @@ PrefabInstance:
     - target: {fileID: 1182909672214299986, guid: 2479c9910f7e20a419e184e98e37118d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 137.6
+      value: 138.15
       objectReference: {fileID: 0}
     - target: {fileID: 1182909672214299986, guid: 2479c9910f7e20a419e184e98e37118d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 96.89
+      value: 96.54
       objectReference: {fileID: 0}
     - target: {fileID: 1182909672214299986, guid: 2479c9910f7e20a419e184e98e37118d,
         type: 3}
@@ -3768,15 +3675,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: paper
       objectReference: {fileID: 0}
+    - target: {fileID: 1864142974953677148, guid: 8b02f42090638424c8158de2f6ab0496,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864142974953677148, guid: 8b02f42090638424c8158de2f6ab0496,
+        type: 3}
+      propertyPath: m_TagString
+      value: Poems
+      objectReference: {fileID: 0}
     - target: {fileID: 4148285796300492024, guid: 8b02f42090638424c8158de2f6ab0496,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.2020817
+      value: 6.33
       objectReference: {fileID: 0}
     - target: {fileID: 4148285796300492024, guid: 8b02f42090638424c8158de2f6ab0496,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 126.962685
+      value: 125.7
       objectReference: {fileID: 0}
     - target: {fileID: 4148285796300492024, guid: 8b02f42090638424c8158de2f6ab0496,
         type: 3}
@@ -3921,12 +3838,12 @@ PrefabInstance:
     - target: {fileID: 1646037161772415289, guid: 063d37ac0098bae409302b48543940ca,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 255.8
+      value: 255.71
       objectReference: {fileID: 0}
     - target: {fileID: 1646037161772415289, guid: 063d37ac0098bae409302b48543940ca,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 120.07251
+      value: 119.26
       objectReference: {fileID: 0}
     - target: {fileID: 1646037161772415289, guid: 063d37ac0098bae409302b48543940ca,
         type: 3}
@@ -4436,15 +4353,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: paper
       objectReference: {fileID: 0}
+    - target: {fileID: 1864142974953677148, guid: 8b02f42090638424c8158de2f6ab0496,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864142974953677148, guid: 8b02f42090638424c8158de2f6ab0496,
+        type: 3}
+      propertyPath: m_TagString
+      value: Poems
+      objectReference: {fileID: 0}
     - target: {fileID: 4148285796300492024, guid: 8b02f42090638424c8158de2f6ab0496,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 201.3
+      value: 201.12
       objectReference: {fileID: 0}
     - target: {fileID: 4148285796300492024, guid: 8b02f42090638424c8158de2f6ab0496,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 101.3
+      value: 99.95
       objectReference: {fileID: 0}
     - target: {fileID: 4148285796300492024, guid: 8b02f42090638424c8158de2f6ab0496,
         type: 3}
