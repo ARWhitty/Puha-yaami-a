@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public Sound[] sounds;
+    public Sound[] sfx;
+    public Sound[] themes;
 
     public static AudioManager instance;
 
@@ -21,7 +22,17 @@ public class AudioManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-        foreach(Sound s in sounds)
+        foreach(Sound s in sfx)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+
+            s.source.volume = s.volume;
+            s.source.pitch = s.pitch;
+            s.source.loop = s.loop;
+        }
+
+        foreach(Sound s in themes)
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
@@ -32,14 +43,20 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void OnLevelWasLoaded(int level)
     {
-        Play("Theme");
+        StopMusic();
+        PlayMusic(level);
     }
 
-    public void Play(string name)
+    private void Start()
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
+        PlayMusic(0);
+    }
+
+    public void PlaySFX(string name)
+    {
+        Sound s = Array.Find(sfx, sound => sound.name == name);
         if (s == null)
         {
             Debug.LogWarning("Sound with name " + name + "was not found");
@@ -48,9 +65,26 @@ public class AudioManager : MonoBehaviour
         s.source.Play();
     }
 
+    private void PlayMusic(int lvlIdx)
+    {
+        themes[lvlIdx].source.Play();
+    }
+
+    private void StopMusic()
+    {
+        foreach(Sound s in themes)
+        {
+            s.source.Stop();
+        }
+    }
+
     public void AdjustMasterVolume(float newVolume)
     {
-        foreach(Sound s in sounds)
+        foreach(Sound s in sfx)
+        {
+            s.source.volume = newVolume;
+        }
+        foreach(Sound s in themes)
         {
             s.source.volume = newVolume;
         }

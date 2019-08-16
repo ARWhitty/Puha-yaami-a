@@ -5,17 +5,16 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     #region Tailored Fields
-    [Header("Tailored Fields")]
-    [Tooltip("The amount the player moves each frame side to side")]
-    [SerializeField] private float moveAmount;
-    [Tooltip("The amount of force the player jumps with")]
-    [SerializeField] private float jumpForce;
-    [Tooltip("The amount of force applied when the player dashes")]
-    [SerializeField] private float dashSpeed;
-    [Tooltip("The force of gravity affecting the player. Higher = more pull")]
-    [SerializeField] private float gravAmt;
-    [Tooltip("The length of a player's dash, in seconds")]
-    [SerializeField] private float startDashTime;
+    private float moveAmount = 0.25f;
+    private float jumpForce = 40f;
+    private float dashSpeed = 80;
+    private float gravAmt = 11.5f;
+    private float startDashTime = 0.3f;
+    private float jumpTimer = 0.2f;
+    private float dashCooldown = 3f;
+    private float additiveJumpAmount = 0.5f;
+    private float parallaxSpeed = 24f;
+
     [Tooltip("Speed the player climbs a ladder")]
     [SerializeField] private float ladderClimbSpeed;
     [Tooltip("The delay, in seconds, before the player can begin to clide once they've jumped")]
@@ -28,28 +27,18 @@ public class Player : MonoBehaviour
     [SerializeField] private float glideGravModifier;
     [Tooltip("The curve for how fast a player returns to normal gravity while gliding. Values should range between 0.01 and 1, the alrger the number the faster the fall as glide continues")]
     [SerializeField] private float glideCurveModifier;
-    [Tooltip("The cooldown before a player may dash again, in seconds")]
-    [SerializeField] private float dashCooldown;
-    [Tooltip("How long, in seconds, a player may hold the jump button to jump higher")]
-    [SerializeField] private float jumpTimer;
-    [Tooltip("The extra force added when holding the jump key, values between 0.8-1.2 seem to work best")]
-    [SerializeField] private float additiveJumpAmount;
     [Tooltip("List of Any Triggers created in the Animation Window")]
     [SerializeField] private List<string> animTriggers;
     [Tooltip("List of Any bools created in the Animation Window")]
     [SerializeField] private List<string> animbools;
-/*    [Tooltip("here for tailoring when to start the land animation")]
-    [SerializeField] private float landAnimOffset;*/
     [Tooltip("here for tailoring when to start the Glide End animation")]
     [SerializeField] private float glideEndAnimOffset;
-    [Tooltip("The speed at which the background parallax moves")]
-    [SerializeField] private float parallaxSpeed;
 
     [Tooltip("Give me the Paralax object in the scene :)")]
     public FreeParallax backgroundParallax;
 
     public Camera camera;
-    public AudioManager audioMgr;
+    private AudioManager audioMgr;
 
     #endregion
 
@@ -142,6 +131,8 @@ public class Player : MonoBehaviour
         jumpTimerCount = jumpTimer;
 
         ResetAllAnimTriggers("");
+
+        audioMgr = FindObjectOfType<AudioManager>();
     }
 
     private void FixedUpdate()
@@ -386,20 +377,20 @@ public class Player : MonoBehaviour
                 {
                     ResetAllAnimTriggers("JumpStart");
                     playerAnim.SetTrigger("JumpStart");
-                    audioMgr.Play("Jump");
+                    audioMgr.PlaySFX("Jump");
                 }
                 else
                 {
                     ResetAllAnimTriggers("DoubleJumpStart");
                     playerAnim.SetTrigger("DoubleJumpStart");
-                    audioMgr.Play("DoubleJump");
+                    audioMgr.PlaySFX("DoubleJump");
                 }
             }
             else
             {
                 ResetAllAnimTriggers("JumpStart");
                 playerAnim.SetTrigger("JumpStart");
-                audioMgr.Play("Jump");
+                audioMgr.PlaySFX("Jump");
             }
 
 

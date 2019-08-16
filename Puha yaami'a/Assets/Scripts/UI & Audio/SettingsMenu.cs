@@ -10,7 +10,7 @@ public class SettingsMenu : MonoBehaviour
 
     [SerializeField] private Dropdown resolutionDropdown;
 
-    public AudioManager audioMgr;
+    private AudioManager audioMgr;
 
     Resolution[] possibleResolutions;
 
@@ -38,6 +38,8 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.AddOptions(resNames);
         resolutionDropdown.value = currentResIdx;
         resolutionDropdown.RefreshShownValue();
+
+        audioMgr = FindObjectOfType<AudioManager>();
     }
 
     public void SetVolume(float volume)
