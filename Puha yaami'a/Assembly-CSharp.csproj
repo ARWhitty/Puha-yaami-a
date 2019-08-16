@@ -109,6 +109,7 @@
     <Compile Include="Assets\Scripts\Game Systems\Climbable.cs" />
     <Compile Include="Assets\Scripts\Game Systems\DialogueDisplay.cs" />
     <Compile Include="Assets\Scripts\Game Systems\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Game Systems\Journal Entry.cs" />
     <Compile Include="Assets\Scripts\Game Systems\JournalItem.cs" />
     <Compile Include="Assets\Scripts\Game Systems\JournalPlantEntry.cs" />
     <Compile Include="Assets\Scripts\Game Systems\JournalPoemEntry.cs" />

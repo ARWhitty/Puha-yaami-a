@@ -4,40 +4,40 @@ using UnityEngine;
 
 public class JournalItem : MonoBehaviour
 {
-    public JournalPlantEntry plantData;
-    public JournalPoemEntry poemData;
+    public JournalEntry data;
 
     private void Start()
     {
-        if(plantData == null)
+        if(data == null)
         {
-
+            Debug.LogError("PLEASE PROVIDE A JOURNAL ENTRY");
         }
-        else if(poemData == null)
+        if(data.GetType() == typeof(JournalPlantEntry))
         {
-            SetupPlantObject();
+            SetupPlantObject(data);
         }
         else
         {
-            Debug.LogError("Please provide either a plant or a poem!");
+            SetupPoemObject(data);
         }
     }
 
-    private void SetupPoemObject()
+    private void SetupPoemObject(JournalEntry toCast)
     {
-
+        JournalPoemEntry entry = (JournalPoemEntry)toCast;
     }
 
-    private void SetupPlantObject()
+    private void SetupPlantObject(JournalEntry toCast)
     {
-        this.GetComponent<SpriteRenderer>().sprite = plantData.unlockedImage;
+        JournalPlantEntry entry = (JournalPlantEntry)toCast;
+        this.GetComponent<SpriteRenderer>().sprite = entry.unlockedImage;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
         {
-            plantData.unlocked = true;
+            data.unlocked = true;
         }
     }
 }

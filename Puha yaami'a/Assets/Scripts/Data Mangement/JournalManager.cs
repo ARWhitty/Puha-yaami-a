@@ -24,12 +24,12 @@ public class JournalManager : MonoBehaviour
 
     private void OnEnable()
     {
-        UpdatePageUI();
+        UpdatePlantPageUI();
     }
 
     void Start()
     {
-        UpdatePageUI();
+        UpdatePlantPageUI();
     }
 
     public void NextPage()
@@ -37,7 +37,7 @@ public class JournalManager : MonoBehaviour
         if(currPage < pages.Count - 1)
         {
             currPage += 1;
-            UpdatePageUI();
+            UpdatePlantPageUI();
         }
     }
 
@@ -46,11 +46,11 @@ public class JournalManager : MonoBehaviour
         if (currPage > 0)
         {
             currPage -= 1;
-            UpdatePageUI();
+            UpdatePlantPageUI();
         }
     }
 
-    private void UpdatePageUI()
+    private void UpdatePlantPageUI()
     {
         JournalPlantEntry top = pages[currPage].top;
         JournalPlantEntry mid = pages[currPage].mid;
@@ -66,7 +66,7 @@ public class JournalManager : MonoBehaviour
         {
             image_top.sprite = top.unlockedImage;
             name_top.text = top.name;
-            desc_top.text = top.description;
+            desc_top.text = top.text;
         }
 
         if (!mid.unlocked)
@@ -79,7 +79,7 @@ public class JournalManager : MonoBehaviour
         {
             image_mid.sprite = mid.unlockedImage;
             name_mid.text = mid.name;
-            desc_mid.text = mid.description;
+            desc_mid.text = mid.text;
         }
 
         if (!bottom.unlocked)
@@ -92,7 +92,7 @@ public class JournalManager : MonoBehaviour
         {
             image_bot.sprite = bottom.unlockedImage;
             name_bot.text = bottom.name;
-            desc_bot.text = bottom.description;
+            desc_bot.text = bottom.text;
         }
     }
 

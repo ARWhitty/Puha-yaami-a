@@ -10,6 +10,8 @@ public class SettingsMenu : MonoBehaviour
 
     [SerializeField] private Dropdown resolutionDropdown;
 
+    public AudioManager audioMgr;
+
     Resolution[] possibleResolutions;
 
     private void Start()
@@ -40,7 +42,7 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetVolume(float volume)
     {
-        throw new System.NotImplementedException("No Audio Yet");
+        audioMgr.AdjustMasterVolume(volume);
     }
 
     public void SetQuality(int qualityIdx)
