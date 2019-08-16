@@ -195,7 +195,7 @@ PrefabInstance:
     - target: {fileID: 4549886841259883391, guid: bc07f6223806921439f40603db3ef635,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 101.8
+      value: 102.23
       objectReference: {fileID: 0}
     - target: {fileID: 4549886841259883391, guid: bc07f6223806921439f40603db3ef635,
         type: 3}
@@ -773,7 +773,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 1
   m_SortingOrder: 0
 --- !u!68 &372250761
 EdgeCollider2D:
@@ -2252,7 +2252,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 1
   m_SortingOrder: 0
 --- !u!68 &1140126313
 EdgeCollider2D:
@@ -3218,7 +3218,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 1
   m_SortingOrder: 0
 --- !u!1001 &1501594269
 PrefabInstance:
@@ -3232,6 +3232,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8695345214475198979, guid: a93923f37b298d4449b5c497f5d1d3cb,
+        type: 3}
+      propertyPath: playerObj
+      value: 
+      objectReference: {fileID: 796036060}
+    - target: {fileID: 8695345214475198979, guid: a93923f37b298d4449b5c497f5d1d3cb,
+        type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 219318471}
+    - target: {fileID: 8695345214475198979, guid: a93923f37b298d4449b5c497f5d1d3cb,
+        type: 3}
+      propertyPath: parallaxBk
+      value: 
+      objectReference: {fileID: 928259948}
     - target: {fileID: 8695345214475198978, guid: a93923f37b298d4449b5c497f5d1d3cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3287,21 +3302,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8695345214475198979, guid: a93923f37b298d4449b5c497f5d1d3cb,
-        type: 3}
-      propertyPath: playerObj
-      value: 
-      objectReference: {fileID: 796036060}
-    - target: {fileID: 8695345214475198979, guid: a93923f37b298d4449b5c497f5d1d3cb,
-        type: 3}
-      propertyPath: scoreText
-      value: 
-      objectReference: {fileID: 219318471}
-    - target: {fileID: 8695345214475198979, guid: a93923f37b298d4449b5c497f5d1d3cb,
-        type: 3}
-      propertyPath: parallaxBk
-      value: 
-      objectReference: {fileID: 928259948}
     - target: {fileID: 143760810, guid: a93923f37b298d4449b5c497f5d1d3cb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 925
@@ -3312,7 +3312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 143760812, guid: a93923f37b298d4449b5c497f5d1d3cb, type: 3}
       propertyPath: nextLevelName
-      value: Playground
+      value: Redrocks 2 Sandbox
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a93923f37b298d4449b5c497f5d1d3cb, type: 3}
@@ -3460,7 +3460,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 1
   m_SortingOrder: 0
 --- !u!1001 &1567211006
 PrefabInstance:
@@ -3851,7 +3851,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 1
   m_SortingOrder: 0
 --- !u!68 &1749198039
 EdgeCollider2D:
@@ -4134,7 +4134,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 1
   m_SortingOrder: 0
 --- !u!68 &1870885900
 EdgeCollider2D:

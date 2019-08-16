@@ -195,7 +195,7 @@ PrefabInstance:
     - target: {fileID: 4549886841259883391, guid: bc07f6223806921439f40603db3ef635,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 101.8
+      value: 103.5
       objectReference: {fileID: 0}
     - target: {fileID: 4549886841259883391, guid: bc07f6223806921439f40603db3ef635,
         type: 3}
@@ -250,7 +250,7 @@ PrefabInstance:
     - target: {fileID: 4549886841259883384, guid: bc07f6223806921439f40603db3ef635,
         type: 3}
       propertyPath: dblJumpUnlocked
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc07f6223806921439f40603db3ef635, type: 3}
@@ -3336,7 +3336,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 143760812, guid: a93923f37b298d4449b5c497f5d1d3cb, type: 3}
       propertyPath: nextLevelName
-      value: Playground
+      value: Redrocks 2 Sandbox
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a93923f37b298d4449b5c497f5d1d3cb, type: 3}
@@ -3376,36 +3376,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1724854432}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1600704823
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1600704824}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1600704824
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1600704823}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.748962, y: 106.8976, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1625942294
 GameObject:
   m_ObjectHideFlags: 0
