@@ -34,7 +34,7 @@ TagManager:
   - Fail
   - Poem
   - Encyclopedia
-  - 
+  - Pit
   - 
   - 
   - 
@@ -59,14 +59,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Pit
+    uniqueID: 3177983273
+    locked: 0
+  - name: Main Level
+    uniqueID: 3860388427
+    locked: 0
   - name: Special Platforms
     uniqueID: 2205648995
     locked: 0
   - name: Avoid_Objects
     uniqueID: 387747821
-    locked: 0
-  - name: Main Level
-    uniqueID: 3860388427
     locked: 0
   - name: Fail
     uniqueID: 4169725749
@@ -74,11 +77,11 @@ TagManager:
   - name: Poems
     uniqueID: 2500586061
     locked: 0
-  - name: Player
-    uniqueID: 1886506763
-    locked: 0
   - name: Encyclopedia
     uniqueID: 2279035185
+    locked: 0
+  - name: Player
+    uniqueID: 1886506763
     locked: 0
   - name: UI
     uniqueID: 3074112229
