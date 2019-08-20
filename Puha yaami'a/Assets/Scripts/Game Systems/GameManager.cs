@@ -37,7 +37,8 @@ public class GameManager : MonoBehaviour
         lastCheckpoint = playerStartPos;
         //checkpoints.Add(playerStartPos);
 
-        LoadData();
+        //UNCOMMENT ME TO TURN ON SAVE/LOAD
+        //LoadData();
     }
 
     private void LoadData()

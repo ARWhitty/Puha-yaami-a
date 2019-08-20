@@ -7,10 +7,16 @@ public class AudioManager : MonoBehaviour
     public Sound[] sfx;
     public Sound[] themes;
 
+    [SerializeField]
     public static AudioManager instance;
 
     // Start is called before the first frame update
     void Awake()
+    {
+        NewLevelSetup();
+    }
+
+    private void NewLevelSetup()
     {
         if (instance == null)
             instance = this;
@@ -22,7 +28,7 @@ public class AudioManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-        foreach(Sound s in sfx)
+        foreach (Sound s in sfx)
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
@@ -32,7 +38,7 @@ public class AudioManager : MonoBehaviour
             s.source.loop = s.loop;
         }
 
-        foreach(Sound s in themes)
+        foreach (Sound s in themes)
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
@@ -67,7 +73,14 @@ public class AudioManager : MonoBehaviour
 
     private void PlayMusic(int lvlIdx)
     {
-        themes[lvlIdx].source.Play();
+        if (lvlIdx > themes.Length - 1)
+        {
+            themes[0].source.Play();
+        }
+        else
+        {
+            themes[lvlIdx].source.Play();
+        }
     }
 
     private void StopMusic()

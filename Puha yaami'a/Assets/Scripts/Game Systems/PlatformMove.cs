@@ -109,11 +109,14 @@ public class PlatformMove : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         //TODO: chck if it's a player specifically in case we have overlapping platforms
-        col.transform.parent = transform;
+        col.transform.SetParent(this.transform);
     }
 
     void OnCollisionExit2D(Collision2D col)
     {
-        col.transform.parent = null;
+        //translate back to worldspace from loclaspace
+        Vector3 leavePos = col.transform.position;
+        col.transform.SetParent(null);
+        col.transform.position = leavePos;
     }
 }
