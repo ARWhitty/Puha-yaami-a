@@ -683,6 +683,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &152389060 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 618701571579608871, guid: f89abfd167c7c87418a5d0ee0e93f7c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 618701571579539883}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &163148926
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2131,18 +2143,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1213424928}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1123359972 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 219318471, guid: f89abfd167c7c87418a5d0ee0e93f7c2,
-    type: 3}
-  m_PrefabInstance: {fileID: 618701571579539883}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1140126307
 GameObject:
   m_ObjectHideFlags: 1
@@ -3460,7 +3460,7 @@ PrefabInstance:
         type: 3}
       propertyPath: scoreText
       value: 
-      objectReference: {fileID: 1123359972}
+      objectReference: {fileID: 152389060}
     - target: {fileID: 8695345214475198979, guid: a93923f37b298d4449b5c497f5d1d3cb,
         type: 3}
       propertyPath: parallaxBk

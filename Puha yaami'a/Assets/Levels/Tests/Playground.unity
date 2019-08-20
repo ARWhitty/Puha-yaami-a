@@ -237,26 +237,36 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 618701572979722321, guid: f89abfd167c7c87418a5d0ee0e93f7c2,
+    - target: {fileID: 618701573090519900, guid: f89abfd167c7c87418a5d0ee0e93f7c2,
         type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 796036063}
-    - target: {fileID: 618701572979722321, guid: f89abfd167c7c87418a5d0ee0e93f7c2,
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 618701571685628929, guid: f89abfd167c7c87418a5d0ee0e93f7c2,
         type: 3}
-      propertyPath: gm
-      value: 
-      objectReference: {fileID: 400283411}
-    - target: {fileID: 618701572979722323, guid: f89abfd167c7c87418a5d0ee0e93f7c2,
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 618701571685628929, guid: f89abfd167c7c87418a5d0ee0e93f7c2,
         type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 1723063993}
-    - target: {fileID: 618701572979722320, guid: f89abfd167c7c87418a5d0ee0e93f7c2,
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 618701571685628929, guid: f89abfd167c7c87418a5d0ee0e93f7c2,
         type: 3}
-      propertyPath: audioMgr
-      value: 
-      objectReference: {fileID: 2063317364}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 618701571643229751, guid: f89abfd167c7c87418a5d0ee0e93f7c2,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 618701571643229751, guid: f89abfd167c7c87418a5d0ee0e93f7c2,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f89abfd167c7c87418a5d0ee0e93f7c2, type: 3}
 --- !u!1001 &14960821
@@ -1023,7 +1033,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!68 &386064073
 EdgeCollider2D:
@@ -1125,18 +1135,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 387921618}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &400283411 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8695345214475198979, guid: a93923f37b298d4449b5c497f5d1d3cb,
-    type: 3}
-  m_PrefabInstance: {fileID: 1501594269}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8faa1a37043d3404db5dc1a52798c797, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &417173758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1652,7 +1650,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!1 &636735495
 GameObject:
@@ -1867,18 +1865,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 14960821}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &796036063 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4549886841259883384, guid: bc07f6223806921439f40603db3ef635,
-    type: 3}
-  m_PrefabInstance: {fileID: 14960821}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 796036060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 385bdd8d77ce55141bde0c03e70aa3e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &796527873
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2236,7 +2222,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!68 &994624462
 EdgeCollider2D:
@@ -2907,12 +2893,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f76637cb93f85da42aca12f7b2e7c6ac, type: 3}
---- !u!20 &1723063993 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 4549886841602128109, guid: bc07f6223806921439f40603db3ef635,
-    type: 3}
-  m_PrefabInstance: {fileID: 14960821}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1777682755 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7683590472702322282, guid: 5975d1555628df544b21e2c905bbc19f,
@@ -3323,7 +3303,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!68 &1871485978
 EdgeCollider2D:
@@ -3446,7 +3426,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!68 &2015439895
 EdgeCollider2D:
@@ -3817,7 +3797,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!68 &2104378503
 EdgeCollider2D:
