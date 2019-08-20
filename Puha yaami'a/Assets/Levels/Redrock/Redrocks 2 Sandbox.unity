@@ -1242,7 +1242,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!68 &352143205
 EdgeCollider2D:
@@ -1448,7 +1448,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!68 &355645280
 EdgeCollider2D:
@@ -1997,7 +1997,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!4 &430402713 stripped
 Transform:
@@ -2472,7 +2472,7 @@ PrefabInstance:
         type: 3}
       propertyPath: scoreText
       value: 
-      objectReference: {fileID: 1921458513}
+      objectReference: {fileID: 0}
     - target: {fileID: 8695345214475198978, guid: a93923f37b298d4449b5c497f5d1d3cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3520,7 +3520,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!4 &709922769 stripped
 Transform:
@@ -4491,7 +4491,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!68 &810979395
 EdgeCollider2D:
@@ -4885,7 +4885,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!1 &847624160
 GameObject:
@@ -5217,7 +5217,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!1001 &893045318
 PrefabInstance:
@@ -5415,7 +5415,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!4 &940562412 stripped
 Transform:
@@ -6205,7 +6205,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!1 &1117451691
 GameObject:
@@ -6557,7 +6557,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!1001 &1122048410
 PrefabInstance:
@@ -6820,7 +6820,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!68 &1131831621
 EdgeCollider2D:
@@ -7557,7 +7557,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!68 &1292488973
 EdgeCollider2D:
@@ -7797,7 +7797,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!68 &1303052193
 EdgeCollider2D:
@@ -8388,7 +8388,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!1001 &1376270948
 PrefabInstance:
@@ -8670,7 +8670,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!68 &1467572572
 EdgeCollider2D:
@@ -9060,7 +9060,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!1001 &1519203980
 PrefabInstance:
@@ -9425,7 +9425,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!68 &1550009860
 EdgeCollider2D:
@@ -9586,7 +9586,7 @@ PrefabInstance:
     - target: {fileID: 4549886841259883384, guid: bc07f6223806921439f40603db3ef635,
         type: 3}
       propertyPath: dblJumpUnlocked
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4549886841259883384, guid: bc07f6223806921439f40603db3ef635,
         type: 3}
@@ -9909,7 +9909,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2089318301
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 0
 --- !u!1 &1778610765
 GameObject:
@@ -10221,7 +10221,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2089318301
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 0
 --- !u!1 &1863578520
 GameObject:
@@ -10511,7 +10511,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!68 &1863578534
 EdgeCollider2D:
@@ -10888,7 +10888,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!4 &1918212148 stripped
 Transform:
@@ -11030,18 +11030,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f89abfd167c7c87418a5d0ee0e93f7c2, type: 3}
---- !u!114 &1921458513 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 219318471, guid: f89abfd167c7c87418a5d0ee0e93f7c2,
-    type: 3}
-  m_PrefabInstance: {fileID: 1921458512}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1925851409
 GameObject:
   m_ObjectHideFlags: 1
@@ -11606,7 +11594,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -434578869
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!68 &2061750044
 EdgeCollider2D:
