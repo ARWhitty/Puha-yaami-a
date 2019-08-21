@@ -5,34 +5,52 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     #region Tailored Fields
+    [Header("Basic Movement fields")]
+    [SerializeField]
     private float moveAmount = 0.25f;
+    [SerializeField]
     private float jumpForce = 40f;
-    private float dashSpeed = 80;
-    private float gravAmt = 11.5f;
-    private float startDashTime = 0.3f;
+    [SerializeField]
     private float jumpTimer = 0.2f;
-    private float dashCooldown = 3f;
+    [SerializeField]
     private float additiveJumpAmount = 0.5f;
-    private float parallaxSpeed = 24f;
+    [SerializeField]
+    private float gravAmt = 11.5f;
 
-    [Tooltip("Speed the player climbs a ladder")]
-    [SerializeField] private float ladderClimbSpeed;
+    [Header("Dash")]
+    [SerializeField]
+    private float startDashTime = 0.3f;
+    [SerializeField]
+    private float dashCooldown = 3f;
+    [SerializeField]
+    private float dashSpeed = 80;
+
+    [Header("Glide")]
     [Tooltip("The delay, in seconds, before the player can begin to clide once they've jumped")]
-    [SerializeField] private float glideDelayTimer;
+    [SerializeField] private float glideDelayTimer = 0.5f;
     [Tooltip("Multiplier for how much extra a player moves horizontally when gliding side to side. Numbers should range from 1.01 and up")]
-    [SerializeField] private float glideMoveModifier;
+    [SerializeField] private float glideMoveModifier = 1f;
+    [Tooltip("here for tailoring when to start the Glide End animation")]
+    [SerializeField] private float glideEndAnimOffset = 3f;
     [Tooltip("Makes wind stronger or weaker on the player. Values may range from 0.01 and up")]
-    [SerializeField] private float windGlideModifier;
+    [SerializeField] private float windGlideModifier = 1f;
     [Tooltip("Reduces the gravity on the player while gliding. Values should range between 0.01 and 1 (no modification)")]
-    [SerializeField] private float glideGravModifier;
+    [SerializeField] private float glideGravModifier = 0.1f;
     [Tooltip("The curve for how fast a player returns to normal gravity while gliding. Values should range between 0.01 and 1, the alrger the number the faster the fall as glide continues")]
-    [SerializeField] private float glideCurveModifier;
+    [SerializeField] private float glideCurveModifier = 0.02f;
+
+    [Header("Don't touch unless you're Garrett :)")]
     [Tooltip("List of Any Triggers created in the Animation Window")]
     [SerializeField] private List<string> animTriggers;
     [Tooltip("List of Any bools created in the Animation Window")]
     [SerializeField] private List<string> animbools;
-    [Tooltip("here for tailoring when to start the Glide End animation")]
-    [SerializeField] private float glideEndAnimOffset;
+
+    [Header("Misc")]
+    [SerializeField]
+    private float parallaxSpeed = 24f;
+    [Tooltip("Speed the player climbs a ladder")]
+    [SerializeField] private float ladderClimbSpeed = 0.4f;
+
 
     [Tooltip("Give me the Paralax object in the scene :)")]
     public FreeParallax backgroundParallax;
@@ -55,7 +73,7 @@ public class Player : MonoBehaviour
     private int num_jumps;
     private int prev_dir = 1;
 
-    [SerializeField]private bool isDashing, isGliding, isClimbing, inWind, startDashCd, canDash, onLadder, isJumping;
+    private bool isDashing, isGliding, isClimbing, inWind, startDashCd, canDash, onLadder, isJumping;
     private bool canGlide = false;
     private bool startGlideTimer = false;
 
