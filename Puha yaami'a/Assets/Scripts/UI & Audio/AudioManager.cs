@@ -52,13 +52,13 @@ public class AudioManager : MonoBehaviour
     private void OnLevelWasLoaded(int level)
     {
         StopMusic();
-        PlayMusic(level);
+        PlayMusic(level - 1);
     }
 
-    private void Start()
+/*    private void Start()
     {
         PlayMusic(0);
-    }
+    }*/
 
     public void PlaySFX(string name)
     {
