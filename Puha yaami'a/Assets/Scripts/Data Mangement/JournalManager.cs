@@ -29,7 +29,25 @@ public class JournalManager : MonoBehaviour
 
     void Start()
     {
+        //TODO: turn me back on when save system is ready
+        //LoadData();
         UpdatePlantPageUI();
+    }
+
+    private void LoadData()
+    {
+        JournalData jData = SaveSystem.LoadJournal();
+        //populate unlocks front to back
+        int pageCount = 0;
+        foreach(JournalPage page in pages)
+        {
+            //top is first bool, then mid, then bot, multiply by 3 to move to corresponding chunk of array
+            page.top.unlocked = jData.unlockedData[pageCount * 3];
+            page.mid.unlocked = jData.unlockedData[(pageCount * 3) + 1];
+            page.bottom.unlocked = jData.unlockedData[(pageCount * 3) + 2];
+
+            pageCount++;
+        }
     }
 
     public void NextPage()

@@ -32,6 +32,17 @@ public static class SaveSystem
         stream.Close();
     }
 
+    //TODO: WIP
+    private static void SaveJournal(JournalManager jm, BinaryFormatter fmt)
+    {
+        string path = Path.Combine(Application.persistentDataPath, "journal.dat");
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        JournalData jData = new JournalData(jm);
+        fmt.Serialize(stream, jData);
+        stream.Close();
+    }
+
 
     //NOTE: can make this one parent method calling these 2 methods that returns a list of objects with the correct data in the future if we add more stuff to save
     public static PlayerData LoadPlayer()
@@ -63,6 +74,27 @@ public static class SaveSystem
             FileStream stream = new FileStream(path, FileMode.Open);
 
             GameManagerData data = (GameManagerData)formatter.Deserialize(stream);
+            stream.Close();
+
+            return data;
+        }
+        else
+        {
+            Debug.LogError("Save File Not found in " + path);
+            return null;
+        }
+    }
+
+    //TODO: WIP, needs testing
+    public static JournalData LoadJournal()
+    {
+        string path = Path.Combine(Application.persistentDataPath, "journal.dat");
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            JournalData data = (JournalData)formatter.Deserialize(stream);
             stream.Close();
 
             return data;

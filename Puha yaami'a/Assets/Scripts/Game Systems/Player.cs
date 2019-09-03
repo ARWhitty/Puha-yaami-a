@@ -144,7 +144,7 @@ public class Player : MonoBehaviour
         BoxCollider2D playerCol = this.GetComponent<BoxCollider2D>();
         collHeight = (float)playerCol.bounds.size.y / 2;
         //note: can add a float offset after dividing by 2 here for more leeway on jumps
-        widthOffset = new Vector3(playerCol.bounds.size.x/2, 0, 0);
+        widthOffset = new Vector3(playerCol.bounds.size.x/2 + 0.3f, 0, 0);
 
         jumpTimerCount = jumpTimer;
 
