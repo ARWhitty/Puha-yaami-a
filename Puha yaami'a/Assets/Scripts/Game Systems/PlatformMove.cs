@@ -21,6 +21,11 @@ public class PlatformMove : MonoBehaviour
         initialPos = transform.position;
         currentPos = initialPos;
         moveVec = new Vector3(moveSpeed, 0f, 0f);
+
+        if(this.transform.parent != null && this.transform.parent.transform.position != Vector3.zero)
+        {
+            Debug.LogError("PLEASE RESET ORGANIZER GAMEOBJECT TRANSFORM TO 0");
+        }
     }
 
     // Update is called once per frame
