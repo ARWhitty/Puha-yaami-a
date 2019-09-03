@@ -113,6 +113,14 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(camera == null)
+        {
+            camera = FindObjectOfType<Camera>();
+        }
+        if(backgroundParallax == null)
+        {
+            backgroundParallax = FindObjectOfType<FreeParallax>();
+        }
         moveVector = new Vector3(moveAmount, 0f);
         climbVector = new Vector3(0f, ladderClimbSpeed);
         //TODO: calculate based on sprite size
