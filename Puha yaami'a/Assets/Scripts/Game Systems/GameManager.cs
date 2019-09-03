@@ -31,6 +31,10 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (playerObj == null)
+        {
+            playerObj = FindObjectOfType<Player>().gameObject;
+        }
         player = playerObj.GetComponent<Player>();
         UpdateScoreText();
         playerStartPos = player.transform.position;
@@ -170,6 +174,11 @@ public class GameManager : MonoBehaviour
 
     void UpdateScoreText()
     {
+        if(scoreText == null)
+        {
+            Debug.LogWarning("please assign the score text field");
+            return;
+        }
         scoreText.text = "Score: " + score;
     }
 
