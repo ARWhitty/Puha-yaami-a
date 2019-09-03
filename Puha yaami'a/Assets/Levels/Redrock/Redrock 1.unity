@@ -250,7 +250,12 @@ PrefabInstance:
     - target: {fileID: 4549886841259883384, guid: bc07f6223806921439f40603db3ef635,
         type: 3}
       propertyPath: dblJumpUnlocked
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549886841259883384, guid: bc07f6223806921439f40603db3ef635,
+        type: 3}
+      propertyPath: glideUnlocked
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc07f6223806921439f40603db3ef635, type: 3}
@@ -1056,13 +1061,13 @@ MonoBehaviour:
   m_physicMaterial2D: {fileID: 0}
   m_cellSize: {x: 0.32, y: 0.32}
   m_mapBounds:
-    m_Center: {x: 39.039997, y: 3.999999, z: 0}
-    m_Extent: {x: 62.399998, y: 14.879999, z: 0}
+    m_Center: {x: 39.039997, y: 19.039999, z: 0}
+    m_Extent: {x: 62.399998, y: 29.919998, z: 0}
   m_tileset: {fileID: 11400000, guid: b680709c5618562439fb09edccac8a46, type: 2}
   m_minGridX: -73
   m_minGridY: -34
   m_maxGridX: 316
-  m_maxGridY: 58
+  m_maxGridY: 152
   m_parentTilemapGroup: {fileID: 0}
   m_parallaxFactor: {x: 1, y: 1}
   m_chunkRendererProperties:
@@ -4381,6 +4386,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LevelUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 618701572979722334, guid: f89abfd167c7c87418a5d0ee0e93f7c2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 618701572979722322, guid: f89abfd167c7c87418a5d0ee0e93f7c2,
         type: 3}
