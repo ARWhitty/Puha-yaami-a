@@ -5,51 +5,58 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     #region Tailored Fields
-    [Header("Tailored Fields")]
-    [Tooltip("The amount the player moves each frame side to side")]
-    [SerializeField] private float moveAmount;
-    [Tooltip("The amount of force the player jumps with")]
-    [SerializeField] private float jumpForce;
-    [Tooltip("The amount of force applied when the player dashes")]
-    [SerializeField] private float dashSpeed;
-    [Tooltip("The force of gravity affecting the player. Higher = more pull")]
-    [SerializeField] private float gravAmt;
-    [Tooltip("The length of a player's dash, in seconds")]
-    [SerializeField] private float startDashTime;
-    [Tooltip("Speed the player climbs a ladder")]
-    [SerializeField] private float ladderClimbSpeed;
+    [Header("Basic Movement fields")]
+    [SerializeField]
+    private float moveAmount = 0.25f;
+    [SerializeField]
+    private float jumpForce = 40f;
+    [SerializeField]
+    private float jumpTimer = 0.2f;
+    [SerializeField]
+    private float additiveJumpAmount = 0.5f;
+    [SerializeField]
+    private float gravAmt = 11.5f;
+
+    [Header("Dash")]
+    [SerializeField]
+    private float startDashTime = 0.3f;
+    [SerializeField]
+    private float dashCooldown = 3f;
+    [SerializeField]
+    private float dashSpeed = 80;
+
+    [Header("Glide")]
     [Tooltip("The delay, in seconds, before the player can begin to clide once they've jumped")]
-    [SerializeField] private float glideDelayTimer;
+    [SerializeField] private float glideDelayTimer = 0.5f;
     [Tooltip("Multiplier for how much extra a player moves horizontally when gliding side to side. Numbers should range from 1.01 and up")]
-    [SerializeField] private float glideMoveModifier;
+    [SerializeField] private float glideMoveModifier = 1f;
+    [Tooltip("here for tailoring when to start the Glide End animation")]
+    [SerializeField] private float glideEndAnimOffset = 3f;
     [Tooltip("Makes wind stronger or weaker on the player. Values may range from 0.01 and up")]
-    [SerializeField] private float windGlideModifier;
+    [SerializeField] private float windGlideModifier = 1f;
     [Tooltip("Reduces the gravity on the player while gliding. Values should range between 0.01 and 1 (no modification)")]
-    [SerializeField] private float glideGravModifier;
+    [SerializeField] private float glideGravModifier = 0.1f;
     [Tooltip("The curve for how fast a player returns to normal gravity while gliding. Values should range between 0.01 and 1, the alrger the number the faster the fall as glide continues")]
-    [SerializeField] private float glideCurveModifier;
-    [Tooltip("The cooldown before a player may dash again, in seconds")]
-    [SerializeField] private float dashCooldown;
-    [Tooltip("How long, in seconds, a player may hold the jump button to jump higher")]
-    [SerializeField] private float jumpTimer;
-    [Tooltip("The extra force added when holding the jump key, values between 0.8-1.2 seem to work best")]
-    [SerializeField] private float additiveJumpAmount;
+    [SerializeField] private float glideCurveModifier = 0.02f;
+
+    [Header("Don't touch unless you're Garrett :)")]
     [Tooltip("List of Any Triggers created in the Animation Window")]
     [SerializeField] private List<string> animTriggers;
     [Tooltip("List of Any bools created in the Animation Window")]
     [SerializeField] private List<string> animbools;
-/*    [Tooltip("here for tailoring when to start the land animation")]
-    [SerializeField] private float landAnimOffset;*/
-    [Tooltip("here for tailoring when to start the Glide End animation")]
-    [SerializeField] private float glideEndAnimOffset;
-    [Tooltip("The speed at which the background parallax moves")]
-    [SerializeField] private float parallaxSpeed;
+
+    [Header("Misc")]
+    [SerializeField]
+    private float parallaxSpeed = 24f;
+    [Tooltip("Speed the player climbs a ladder")]
+    [SerializeField] private float ladderClimbSpeed = 0.4f;
+
 
     [Tooltip("Give me the Paralax object in the scene :)")]
     public FreeParallax backgroundParallax;
 
     public Camera camera;
-    public AudioManager audioMgr;
+    private AudioManager audioMgr;
 
     #endregion
 
@@ -66,7 +73,7 @@ public class Player : MonoBehaviour
     private int num_jumps;
     private int prev_dir = 1;
 
-    [SerializeField]private bool isDashing, isGliding, isClimbing, inWind, startDashCd, canDash, onLadder, isJumping;
+    private bool isDashing, isGliding, isClimbing, inWind, startDashCd, canDash, onLadder, isJumping;
     private bool canGlide = false;
     private bool startGlideTimer = false;
 
@@ -106,6 +113,14 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(camera == null)
+        {
+            camera = FindObjectOfType<Camera>();
+        }
+        if(backgroundParallax == null)
+        {
+            backgroundParallax = FindObjectOfType<FreeParallax>();
+        }
         moveVector = new Vector3(moveAmount, 0f);
         climbVector = new Vector3(0f, ladderClimbSpeed);
         //TODO: calculate based on sprite size
@@ -137,11 +152,13 @@ public class Player : MonoBehaviour
         BoxCollider2D playerCol = this.GetComponent<BoxCollider2D>();
         collHeight = (float)playerCol.bounds.size.y / 2;
         //note: can add a float offset after dividing by 2 here for more leeway on jumps
-        widthOffset = new Vector3(playerCol.bounds.size.x/2, 0, 0);
+        widthOffset = new Vector3(playerCol.bounds.size.x/2 + 0.3f, 0, 0);
 
         jumpTimerCount = jumpTimer;
 
         ResetAllAnimTriggers("");
+
+        audioMgr = FindObjectOfType<AudioManager>();
     }
 
     private void FixedUpdate()
@@ -386,20 +403,20 @@ public class Player : MonoBehaviour
                 {
                     ResetAllAnimTriggers("JumpStart");
                     playerAnim.SetTrigger("JumpStart");
-                    audioMgr.Play("Jump");
+                    audioMgr.PlaySFX("Jump");
                 }
                 else
                 {
                     ResetAllAnimTriggers("DoubleJumpStart");
                     playerAnim.SetTrigger("DoubleJumpStart");
-                    audioMgr.Play("DoubleJump");
+                    audioMgr.PlaySFX("DoubleJump");
                 }
             }
             else
             {
                 ResetAllAnimTriggers("JumpStart");
                 playerAnim.SetTrigger("JumpStart");
-                audioMgr.Play("Jump");
+                audioMgr.PlaySFX("Jump");
             }
 
 

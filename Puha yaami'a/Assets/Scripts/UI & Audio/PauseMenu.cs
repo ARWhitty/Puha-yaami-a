@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
     public static bool gamePaused = false;
     [SerializeField] private GameObject pauseMenuUI;
     [SerializeField] private GameObject settingsMenuUI;
+    [SerializeField] private GameObject journalMenuUI;
 
     public Player player;
     public GameManager gm;
@@ -38,13 +39,18 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
+        settingsMenuUI.SetActive(false);
+        journalMenuUI.SetActive(false);
         Time.timeScale = 1f;
         gamePaused = false;
     }
 
     public void ReturnToMap()
     {
-        throw new System.NotImplementedException("Not yet implemented");
+        //throw new System.NotImplementedException("Not yet implemented");
+        Debug.LogWarning("WARNING: this will be hooked up to map, currently here to test journal functionality");
+        pauseMenuUI.SetActive(false);
+        journalMenuUI.SetActive(true);
     }
 
     public void LoadSettingsMenu()
