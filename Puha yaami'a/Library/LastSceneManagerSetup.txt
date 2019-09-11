@@ -1,5 +1,9 @@
 sceneSetups:
+<<<<<<< Updated upstream
 - path: Assets/Levels/Redrock/RR2_Adjusted.unity
+=======
+- path: Assets/Levels/Main Menu.unity
+>>>>>>> Stashed changes
   isLoaded: 1
   isActive: 1
   isSubScene: 0
