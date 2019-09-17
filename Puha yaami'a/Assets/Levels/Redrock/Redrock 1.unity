@@ -250,12 +250,12 @@ PrefabInstance:
     - target: {fileID: 4549886841259883384, guid: bc07f6223806921439f40603db3ef635,
         type: 3}
       propertyPath: dblJumpUnlocked
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4549886841259883384, guid: bc07f6223806921439f40603db3ef635,
         type: 3}
       propertyPath: glideUnlocked
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc07f6223806921439f40603db3ef635, type: 3}
@@ -4619,16 +4619,16 @@ PrefabInstance:
       propertyPath: gm
       value: 
       objectReference: {fileID: 1501594270}
-    - target: {fileID: 618701572979722323, guid: f89abfd167c7c87418a5d0ee0e93f7c2,
-        type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 85046026}
     - target: {fileID: 618701572979722320, guid: f89abfd167c7c87418a5d0ee0e93f7c2,
         type: 3}
       propertyPath: audioMgr
       value: 
       objectReference: {fileID: 488131099}
+    - target: {fileID: 618701572979722323, guid: f89abfd167c7c87418a5d0ee0e93f7c2,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 85046026}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f89abfd167c7c87418a5d0ee0e93f7c2, type: 3}
 --- !u!1001 &2751872540199026364
