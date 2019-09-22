@@ -77,7 +77,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1886506763
-  m_SortingLayer: 5
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 14371e3e8b45e014f9485b262332d18c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -125,18 +125,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveAmount: 0.25
   jumpForce: 40
-  dashSpeed: 80
+  jumpTimer: 0.2
+  additiveJumpAmount: 0.5
   gravAmt: 11.5
   startDashTime: 0.3
-  ladderClimbSpeed: 0.4
+  dashCooldown: 3
+  dashSpeed: 80
   glideDelayTimer: 0.5
   glideMoveModifier: 1
+  glideEndAnimOffset: 3
   windGlideModifier: 1
   glideGravModifier: 0.1
   glideCurveModifier: 0.02
-  dashCooldown: 3
-  jumpTimer: 0.2
-  additiveJumpAmount: 0.5
   animTriggers:
   - Run
   - Idle
@@ -147,20 +147,10 @@ MonoBehaviour:
   - Climb
   - Fall
   animbools: []
-  landAnimOffset: 7
-  glideEndAnimOffset: 3
   parallaxSpeed: 24
+  ladderClimbSpeed: 0.4
   backgroundParallax: {fileID: 0}
   camera: {fileID: 4549886841602128109}
-  audioMgr: {fileID: 0}
-  isDashing: 0
-  isGliding: 0
-  isClimbing: 0
-  inWind: 0
-  startDashCd: 0
-  canDash: 0
-  onLadder: 0
-  isJumping: 0
   dblJumpUnlocked: 1
   dashUnlocked: 0
   glideUnlocked: 0
@@ -235,7 +225,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4549886841602128110}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.48850727, y: 1.94471, z: -50}
+  m_LocalPosition: {x: 0, y: 2, z: -50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4549886841259883391}

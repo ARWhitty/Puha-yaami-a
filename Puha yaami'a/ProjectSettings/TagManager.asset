@@ -19,6 +19,7 @@ TagManager:
   - UI_Element
   - Poems
   - Encyclopedia
+  - Fail_Obj
   layers:
   - Default
   - TransparentFX

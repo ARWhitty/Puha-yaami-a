@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float startDashTime = 0.3f;
     [SerializeField]
-    private float dashCooldown = 3f;
+    public float dashCooldown = 3f;
     [SerializeField]
     private float dashSpeed = 80;
 
@@ -73,7 +73,8 @@ public class Player : MonoBehaviour
     private int num_jumps;
     private int prev_dir = 1;
 
-    private bool isDashing, isGliding, isClimbing, inWind, startDashCd, canDash, onLadder, isJumping;
+    private bool isDashing, isGliding, isClimbing, inWind, canDash, onLadder, isJumping;
+    public bool startDashCd;
     private bool canGlide = false;
     private bool startGlideTimer = false;
 
@@ -538,14 +539,12 @@ public class Player : MonoBehaviour
     {
         float heightOffset = 0.1f;
         RaycastHit2D hitCenter = Physics2D.Raycast(transform.position, Vector2.down, collHeight + heightOffset, groundedFilter);
-        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position - widthOffset, Vector2.down, collHeight + heightOffset, groundedFilter);
-        RaycastHit2D hitRight = Physics2D.Raycast(transform.position + widthOffset, Vector2.down, collHeight + heightOffset, groundedFilter);
+        RaycastHit2D hitBehind = Physics2D.Raycast(transform.position + widthOffset * -currDirection, Vector2.down, collHeight + heightOffset, groundedFilter);
 
         //DEBUG stuff for my own sanity. Please do not delete until everything is done
-        Debug.DrawRay(transform.position + widthOffset, Vector2.down * collHeight, Color.red);
+        Debug.DrawRay(transform.position + widthOffset * -currDirection, Vector2.down * collHeight, Color.red);
         Debug.DrawRay(transform.position, Vector2.down * collHeight, Color.red);
-        Debug.DrawRay(transform.position - widthOffset, Vector2.down * collHeight, Color.red);
-        if (hitCenter.collider != null|| hitLeft.collider != null || hitRight.collider != null)
+        if (hitCenter.collider != null|| hitBehind.collider != null)
         {
             return true;
         }
@@ -608,7 +607,7 @@ public class Player : MonoBehaviour
         {
             OnCollide(2);
         }
-        if (col.gameObject.CompareTag("Fail_Platform"))
+        if (col.gameObject.CompareTag("Fail_Obj"))
         {
             OnCollide(3);
         }
@@ -654,6 +653,10 @@ public class Player : MonoBehaviour
         if (col.gameObject.CompareTag("Checkpoint"))
         {
             OnTrigger("Checkpoint", col);
+        }
+        if(col.gameObject.CompareTag("Fail_Platform"))
+        {
+            OnTrigger("Fail_Pit", col);
         }
     }
 

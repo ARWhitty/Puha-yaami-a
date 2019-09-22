@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public GameObject playerObj;
+    private GameObject mainCamera;
     private Player player;
     [SerializeField] private Vector3 lastCheckpoint;
     [SerializeField]private Vector3 playerStartPos;
@@ -14,6 +15,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private float bouncyModifier = 1.5f;
     [SerializeField] private float stickyModifier = 0.5f;
+
+    public delegate void OnFailEvents();
+    public static event OnFailEvents StandardLevelFail;
     //[SerializeField] private List<Vector3> checkpoints;
 
     void OnEnable()
@@ -39,6 +43,7 @@ public class GameManager : MonoBehaviour
         UpdateScoreText();
         playerStartPos = player.transform.position;
         lastCheckpoint = playerStartPos;
+        mainCamera = playerObj.GetComponentInChildren<Camera>().gameObject;
         //checkpoints.Add(playerStartPos);
 
         //UNCOMMENT ME TO TURN ON SAVE/LOAD
@@ -114,7 +119,7 @@ public class GameManager : MonoBehaviour
             case 2:
                 player.SetJumpForce(player.GetDefaultJumpForce() * stickyModifier);
                 break;
-            //fail
+            //fail object
             case 3:
                 OnFail();
                 break;
@@ -125,16 +130,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void HandleTriggerCollision(string type, Collider2D checkpointCollider)
+    void HandleTriggerCollision(string type, Collider2D collider)
     {
         switch(type)
         {
             case "Checkpoint":
                 /*                if(!checkpoints.Contains(checkpointCollider.transform.position))
                                 {*/
-                if (lastCheckpoint != checkpointCollider.transform.position)
+                if (lastCheckpoint != collider.transform.position)
                 {
-                    lastCheckpoint = checkpointCollider.transform.position;
+                    lastCheckpoint = collider.transform.position;
                 }
                     //checkpoints.Add(checkpointCollider.transform.position);
                 //}
@@ -148,7 +153,17 @@ public class GameManager : MonoBehaviour
             case "Glide_Unlock":
                 player.UnlockAbility(2);
                 break;
+            case "Fail_Pit":
+                StartCoroutine(PitCameraLock());
+                break;
         }
+    }
+
+    IEnumerator PitCameraLock()
+    {
+        mainCamera.transform.parent = null;
+        yield return new WaitForSeconds(2f);
+        OnFail();
     }
 
     void OnFail()
@@ -157,13 +172,15 @@ public class GameManager : MonoBehaviour
         {
             playerObj.transform.position = lastCheckpoint;
             player.ResetCooldowns();
+            mainCamera.transform.SetParent(playerObj.transform);
+            mainCamera.transform.localPosition = new Vector3(0, 2, -50);
         }
-
         else
         {
             Debug.LogError("NO CHECKPOINTS FOUND");
         }
-
+        //fire fail event
+        StandardLevelFail();
     }
 
     void ScoreLoss()

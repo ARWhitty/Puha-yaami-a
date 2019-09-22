@@ -15,6 +15,16 @@ public class PlatformMove : MonoBehaviour
     [SerializeField] private float moveSpeed;
     private Vector3 moveVec;
 
+    private void OnEnable()
+    {
+        GameManager.StandardLevelFail += ResetToStartLocation;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.StandardLevelFail -= ResetToStartLocation;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -123,5 +133,10 @@ public class PlatformMove : MonoBehaviour
         Vector3 leavePos = col.transform.position;
         col.transform.SetParent(null);
         col.transform.position = leavePos;
+    }
+
+    void ResetToStartLocation()
+    {
+        this.transform.position = initialPos;
     }
 }
