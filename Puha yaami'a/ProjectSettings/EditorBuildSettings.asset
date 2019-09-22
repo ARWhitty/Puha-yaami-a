@@ -17,6 +17,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Levels/Redrock/Redrock 1.unity
     guid: ceaa23e02b50cb6468ead0a04abc8568
+<<<<<<< HEAD
+=======
+  - enabled: 0
+    path: Assets/Levels/Redrock/Redrocks 2 Sandbox.unity
+    guid: fa922392e910f604487b341d4ecd821c
+>>>>>>> master
   - enabled: 1
     path: Assets/Levels/Redrock/Redrock 3.unity
     guid: c95098d6802c79249b5bff52df42e22b
