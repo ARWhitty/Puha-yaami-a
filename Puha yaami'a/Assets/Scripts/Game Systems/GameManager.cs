@@ -180,7 +180,7 @@ public class GameManager : MonoBehaviour
             Debug.LogError("NO CHECKPOINTS FOUND");
         }
         //fire fail event
-        StandardLevelFail();
+        StandardLevelFail?.Invoke();
     }
 
     void ScoreLoss()

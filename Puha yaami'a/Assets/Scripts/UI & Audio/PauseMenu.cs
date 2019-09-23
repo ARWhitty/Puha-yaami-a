@@ -62,10 +62,9 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMainMenu()
     {
-        SaveSystem.SaveAll(player, gm);
+     //   SaveSystem.SaveAll(player, gm);
         Time.timeScale = 1f;
-        Debug.LogError("Main Menu scene not created yet, nothing to load");
-        //SceneManager.LoadScene("MainMenu");
+        //SceneManager.LoadScene("Main Menu");
     }
 
     public void QuitGame()

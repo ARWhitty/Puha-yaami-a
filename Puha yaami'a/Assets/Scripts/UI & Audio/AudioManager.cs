@@ -77,9 +77,20 @@ public class AudioManager : MonoBehaviour
         {
             themes[0].source.Play();
         }
+        //TODO: change back to lvlIdx
         else
         {
-            themes[lvlIdx].source.Play();
+            if(lvlIdx > 0)
+            {
+                themes[lvlIdx].source.Play();
+            }
+            else
+            {
+                if (themes != null && themes[0].source != null)
+                    themes[0].source.Play();
+                else
+                    return;
+            }
         }
     }
 
@@ -87,7 +98,8 @@ public class AudioManager : MonoBehaviour
     {
         foreach(Sound s in themes)
         {
-            s.source.Stop();
+            if(s.source != null)
+                s.source.Stop();
         }
     }
 

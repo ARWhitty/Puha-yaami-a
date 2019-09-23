@@ -41,4 +41,13 @@ public class DashTimer : MonoBehaviour
             timerBar.fillAmount = 1;
         }
     }
+
+    private void FixedUpdate()
+    {
+        if (player.GetDashUnlocked())
+        {
+            timerBar.enabled = true;
+            timerText.enabled = true;
+        }
+    }
 }
