@@ -289,7 +289,7 @@ public class Player : MonoBehaviour
                     num_jumps = 1;
                 }
                 //if we aren't gliding set that we should loop the air animation
-                if (!isGliding)
+                if (!isGliding && playerRB.velocity.y != 0)
                 {
                     playerAnim.SetBool("airLoop", true);
                 }
@@ -539,10 +539,20 @@ public class Player : MonoBehaviour
     {
         float heightOffset = 0.1f;
         RaycastHit2D hitCenter = Physics2D.Raycast(transform.position, Vector2.down, collHeight + heightOffset, groundedFilter);
-        RaycastHit2D hitBehind = Physics2D.Raycast(transform.position + widthOffset * -currDirection, Vector2.down, collHeight + heightOffset, groundedFilter);
+        RaycastHit2D hitBehind;
+        if (currDirection != 0)
+        {
+            hitBehind = Physics2D.Raycast(transform.position + widthOffset * -currDirection, Vector2.down, collHeight + heightOffset, groundedFilter);
+            Debug.DrawRay(transform.position + widthOffset * -currDirection, Vector2.down * collHeight, Color.red);
+        }
+        else
+        {
+            hitBehind = Physics2D.Raycast(transform.position + widthOffset * -prev_dir, Vector2.down, collHeight + heightOffset, groundedFilter);
+            Debug.DrawRay(transform.position + widthOffset * -prev_dir, Vector2.down * collHeight, Color.red);
+        }
 
         //DEBUG stuff for my own sanity. Please do not delete until everything is done
-        Debug.DrawRay(transform.position + widthOffset * -currDirection, Vector2.down * collHeight, Color.red);
+        
         Debug.DrawRay(transform.position, Vector2.down * collHeight, Color.red);
         if (hitCenter.collider != null|| hitBehind.collider != null)
         {

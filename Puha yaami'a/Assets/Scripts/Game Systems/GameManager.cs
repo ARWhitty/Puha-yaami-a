@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerObj;
     private GameObject mainCamera;
     private Player player;
+    public float deathDelay = 1.5f;
     [SerializeField] private Vector3 lastCheckpoint;
     [SerializeField]private Vector3 playerStartPos;
     [SerializeField] private int score = 0;
@@ -162,7 +163,7 @@ public class GameManager : MonoBehaviour
     IEnumerator PitCameraLock()
     {
         mainCamera.transform.parent = null;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(deathDelay);
         OnFail();
     }
 
