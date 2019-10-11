@@ -1,9 +1,5 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Levels/Forest/Forest 1.unity
-=======
-- path: Assets/Levels/Forest/Forest 2.unity
->>>>>>> master
+- path: Assets/Levels/Template1.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
