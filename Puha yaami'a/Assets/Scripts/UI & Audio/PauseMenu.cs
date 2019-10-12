@@ -8,10 +8,17 @@ public class PauseMenu : MonoBehaviour
     public static bool gamePaused = false;
     [SerializeField] private GameObject pauseMenuUI;
     [SerializeField] private GameObject settingsMenuUI;
-    [SerializeField] private GameObject journalMenuUI;
+    [SerializeField] private GameObject albumMenuUI;
+    [SerializeField] private GameObject poemsMenuUI;
 
     public Player player;
     public GameManager gm;
+    private GameObject currentUI;
+
+    private void Start()
+    {
+        currentUI = pauseMenuUI;
+    }
 
     // Update is called once per frame
     void Update()
@@ -31,6 +38,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Pause()
     {
+        currentUI = pauseMenuUI;
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         gamePaused = true;
@@ -40,7 +48,7 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         settingsMenuUI.SetActive(false);
-        journalMenuUI.SetActive(false);
+        albumMenuUI.SetActive(false);
         Time.timeScale = 1f;
         gamePaused = false;
     }
@@ -50,14 +58,15 @@ public class PauseMenu : MonoBehaviour
         //throw new System.NotImplementedException("Not yet implemented");
         Debug.LogWarning("WARNING: this will be hooked up to map, currently here to test journal functionality");
         pauseMenuUI.SetActive(false);
-        journalMenuUI.SetActive(true);
+        //albumMenuUI.SetActive(true);
     }
 
     public void LoadSettingsMenu()
     {
         //throw new System.NotImplementedException("Not yet implemented");
-        pauseMenuUI.SetActive(false);
+        currentUI.SetActive(false);
         settingsMenuUI.SetActive(true);
+        currentUI = settingsMenuUI;
     }
 
     public void LoadMainMenu()
@@ -74,5 +83,20 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("save complete");
         //TODO: add save call/event here
         Application.Quit();
+    }
+
+    public void LoadAlbumMenu()
+    {
+        currentUI.SetActive(false);
+        albumMenuUI.SetActive(true);
+        currentUI = albumMenuUI;
+    }
+
+    public void LoadPoemsMenu()
+    {
+        print("poems");
+        currentUI.SetActive(false);
+        poemsMenuUI.SetActive(true);
+        currentUI = poemsMenuUI;
     }
 }
