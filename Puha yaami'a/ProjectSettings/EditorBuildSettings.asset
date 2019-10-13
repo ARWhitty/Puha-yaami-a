@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Levels/Redrock/Redrock 1.unity
     guid: ceaa23e02b50cb6468ead0a04abc8568
   - enabled: 1
-    path: Assets/Levels/Redrock/RR2_Adjusted.unity
+    path: Assets/Levels/Redrock/Redrock 2.unity
     guid: 6ead106971a71944ea15f370299d7efe
   - enabled: 1
     path: Assets/Levels/Redrock/Redrock 3.unity
