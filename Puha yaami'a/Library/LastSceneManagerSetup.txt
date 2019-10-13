@@ -1,17 +1,5 @@
 sceneSetups:
-<<<<<<< master
-<<<<<<< master
-<<<<<<< master
-- path: Assets/Levels/Forest/Forest 1.unity
-=======
-- path: Assets/Levels/Forest/Forest 2.unity
->>>>>>> RR2 Edits
-=======
-- path: Assets/Levels/Template1.unity
->>>>>>> Finished forest 3/rocks test
-=======
-- path: Assets/Levels/Forest/Forest 3.unity
->>>>>>> Merge some conflicts
+- path: Assets/Levels/Redrock/Redrock 1.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
