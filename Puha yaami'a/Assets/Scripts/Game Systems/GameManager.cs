@@ -171,6 +171,7 @@ public class GameManager : MonoBehaviour
     {
         if (lastCheckpoint != null)
         {
+            playerObj.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             playerObj.transform.position = lastCheckpoint;
             player.ResetCooldowns();
             mainCamera.transform.SetParent(playerObj.transform);
