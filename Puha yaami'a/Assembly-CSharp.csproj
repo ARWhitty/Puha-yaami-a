@@ -102,9 +102,6 @@
     <Compile Include="Assets\FreeParallax\Scripts\FreeParallax.cs" />
     <Compile Include="Assets\FreeParallax\Scripts\FreeParallaxDemo.cs" />
     <Compile Include="Assets\Scripts\Data Mangement\GameManagerData.cs" />
-    <Compile Include="Assets\Scripts\Data Mangement\JournalData.cs" />
-    <Compile Include="Assets\Scripts\Data Mangement\JournalManager.cs" />
-    <Compile Include="Assets\Scripts\Data Mangement\JournalPage.cs" />
     <Compile Include="Assets\Scripts\Data Mangement\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Data Mangement\SaveSystem.cs" />
     <Compile Include="Assets\Scripts\Game Systems\DialogueDisplay.cs" />
@@ -112,7 +109,10 @@
     <Compile Include="Assets\Scripts\Game Systems\LevelManager.cs" />
     <Compile Include="Assets\Scripts\Game Systems\Player.cs" />
     <Compile Include="Assets\Scripts\Journal\Journal Entry.cs" />
+    <Compile Include="Assets\Scripts\Journal\JournalAlbumManager.cs" />
+    <Compile Include="Assets\Scripts\Journal\JournalData.cs" />
     <Compile Include="Assets\Scripts\Journal\JournalItem.cs" />
+    <Compile Include="Assets\Scripts\Journal\JournalPage.cs" />
     <Compile Include="Assets\Scripts\Journal\JournalPlantEntry.cs" />
     <Compile Include="Assets\Scripts\Journal\JournalPoemEntry.cs" />
     <Compile Include="Assets\Scripts\Object Behaviors\Climbable.cs" />
