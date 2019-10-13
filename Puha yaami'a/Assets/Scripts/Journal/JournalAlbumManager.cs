@@ -7,9 +7,13 @@ public class JournalAlbumManager : MonoBehaviour
 {
     public List<JournalPage> pages;
     public int currPage = 0;
+    public List<Image> imgSlots;
+    public List<Text> nameSlots;
+    public List<Text> descSlots;
 
-    private JournalUIEntry[] allEntries;
+    private JournalUIEntry[] allEntries = new JournalUIEntry[0];
 
+    public Sprite lockedSprite;
     private string undiscovered = "???";
 
     struct JournalUIEntry
@@ -17,17 +21,21 @@ public class JournalAlbumManager : MonoBehaviour
         public string name;
         public string description;
         public Sprite image;
+        public bool unlocked;
 
-        public JournalUIEntry(string _name, string _desc, Sprite _img)
+        public JournalUIEntry(string _name, string _desc, Sprite _img, bool _unlocked)
         {
             name = _name;
             description = _desc;
             image = _img;
+            unlocked = _unlocked;
         }
     }
 
     private void OnEnable()
     {
+        if (allEntries.Length == 0)
+            FillUIArray();
         UpdatePlantPageUI();
     }
 
@@ -36,18 +44,18 @@ public class JournalAlbumManager : MonoBehaviour
         //TODO: turn me back on when save system is ready
         //LoadData();
         UpdatePlantPageUI();
-        FillUIArray();
     }
 
     private void FillUIArray()
     {
+        //NOTE: may need to fix the foreach loop a bit if entries per page is not 3
         allEntries = new JournalUIEntry[pages.Count * 3];
         int entryIdx = 0;
         foreach(JournalPage page in pages)
         {
-            allEntries[entryIdx] = new JournalUIEntry(page.top.name, page.top.text, page.top.lockedImage);
-            allEntries[entryIdx + 1] = new JournalUIEntry(page.mid.name, page.mid.text, page.mid.lockedImage);
-            allEntries[entryIdx + 2] = new JournalUIEntry(page.bottom.name, page.bottom.text, page.bottom.lockedImage);
+            allEntries[entryIdx] = new JournalUIEntry(page.top.title, page.top.text, page.top.unlockedImage, page.top.unlocked);
+            allEntries[entryIdx + 1] = new JournalUIEntry(page.mid.title, page.mid.text, page.mid.unlockedImage, page.mid.unlocked);
+            allEntries[entryIdx + 2] = new JournalUIEntry(page.bottom.title, page.bottom.text, page.bottom.unlockedImage, page.bottom.unlocked);
 
             entryIdx += 3;
         }
@@ -89,49 +97,23 @@ public class JournalAlbumManager : MonoBehaviour
 
     private void UpdatePlantPageUI()
     {
-        
-        //JournalPlantEntry top = pages[currPage].top;
-        //JournalPlantEntry mid = pages[currPage].mid;
-        //JournalPlantEntry bottom = pages[currPage].bottom;
+        for(int i = 0; i < 3; i++)
+        {
+            JournalUIEntry curr = allEntries[currPage + i];
+            if(curr.unlocked)
+            {
+                imgSlots[i].sprite = curr.image;
+                nameSlots[i].text = curr.name;
+                descSlots[i].text = curr.description;
+            }
+            else
+            {
+                imgSlots[i].sprite = lockedSprite;
+                nameSlots[i].text = undiscovered;
+                descSlots[i].text = "";
+            }
+        }
 
-        //if (!top.unlocked)
-        //{
-        //    image_top.sprite = top.lockedImage;
-        //    name_top.text = undiscovered;
-        //    desc_top.text = undiscovered;
-        //}
-        //else
-        //{
-        //    image_top.sprite = top.unlockedImage;
-        //    name_top.text = top.name;
-        //    desc_top.text = top.text;
-        //}
-
-        //if (!mid.unlocked)
-        //{
-        //    image_mid.sprite = mid.lockedImage;
-        //    name_mid.text = undiscovered;
-        //    desc_mid.text = undiscovered;
-        //}
-        //else
-        //{
-        //    image_mid.sprite = mid.unlockedImage;
-        //    name_mid.text = mid.name;
-        //    desc_mid.text = mid.text;
-        //}
-
-        //if (!bottom.unlocked)
-        //{
-        //    image_bot.sprite = bottom.lockedImage;
-        //    name_bot.text = undiscovered;
-        //    desc_bot.text = undiscovered;
-        //}
-        //else
-        //{
-        //    image_bot.sprite = bottom.unlockedImage;
-        //    name_bot.text = bottom.name;
-        //    desc_bot.text = bottom.text;
-        //}
     }
 
 
