@@ -49,6 +49,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         settingsMenuUI.SetActive(false);
         albumMenuUI.SetActive(false);
+        poemsMenuUI.SetActive(false);
         Time.timeScale = 1f;
         gamePaused = false;
     }
@@ -69,7 +70,7 @@ public class PauseMenu : MonoBehaviour
         currentUI = settingsMenuUI;
     }
 
-    public void LoadMainMenu()
+    public void ReturnToMainMenu()
     {
      //   SaveSystem.SaveAll(player, gm);
         Time.timeScale = 1f;
@@ -83,6 +84,13 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("save complete");
         //TODO: add save call/event here
         Application.Quit();
+    }
+
+    public void LoadPauseMenu()
+    {
+        currentUI.SetActive(false);
+        pauseMenuUI.SetActive(true);
+        currentUI = pauseMenuUI;
     }
 
     public void LoadAlbumMenu()

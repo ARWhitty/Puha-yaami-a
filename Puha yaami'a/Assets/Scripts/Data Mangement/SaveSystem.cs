@@ -32,13 +32,13 @@ public static class SaveSystem
         stream.Close();
     }
 
-    //TODO: WIP
-    private static void SaveJournal(JournalManager jm, BinaryFormatter fmt)
+    //TODO: WIP, add JournalPooemManager
+    private static void SaveJournal(JournalAlbumManager albumMgr, BinaryFormatter fmt)
     {
         string path = Path.Combine(Application.persistentDataPath, "journal.dat");
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        JournalData jData = new JournalData(jm);
+        JournalData jData = new JournalData(albumMgr);
         fmt.Serialize(stream, jData);
         stream.Close();
     }

@@ -9,7 +9,7 @@ public class CtrlNavigation : MonoBehaviour
 
     private void OnEnable()
     {
-        if (defaultSelection.CompareTag("UI_Element"))
-            defaultSelection.GetComponent<Selectable>().Select();
+        //if (defaultSelection.CompareTag("UI_Element"))
+        //    defaultSelection.GetComponent<Selectable>().Select();
     }
 }
