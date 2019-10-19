@@ -658,7 +658,9 @@ public class Player : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Score_Loss"))
         {
-            OnCollide(4);
+            if(col.gameObject.GetComponent<Lockout>().lockedOut == false)
+                OnCollide(4);
+            col.gameObject.GetComponent<Lockout>().lockedOut = true;
         }
         if (col.gameObject.CompareTag("Checkpoint"))
         {

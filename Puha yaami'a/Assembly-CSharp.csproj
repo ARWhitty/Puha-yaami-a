@@ -101,6 +101,7 @@
     <Compile Include="Assets\CreativeSpore\SuperTilemapEditor\Scripts\Utils\TilemapVertexPaintUtils.cs" />
     <Compile Include="Assets\FreeParallax\Scripts\FreeParallax.cs" />
     <Compile Include="Assets\FreeParallax\Scripts\FreeParallaxDemo.cs" />
+    <Compile Include="Assets\Lockout.cs" />
     <Compile Include="Assets\Scripts\Data Mangement\GameManagerData.cs" />
     <Compile Include="Assets\Scripts\Data Mangement\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Data Mangement\SaveSystem.cs" />

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1182909672214299986}
   - component: {fileID: 1182909672214299987}
   - component: {fileID: 1182909672214299984}
+  - component: {fileID: -4366008227627486915}
   m_Layer: 9
   m_Name: Avoid_Bunny
   m_TagString: Score_Loss
@@ -107,3 +108,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.7950745, y: 2.4782548}
   m_EdgeRadius: 0
+--- !u!114 &-4366008227627486915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1182909672214299985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81a7e4797d99d2d45b9f30e0e3bdc190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
