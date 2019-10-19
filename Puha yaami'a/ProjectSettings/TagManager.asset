@@ -37,7 +37,7 @@ TagManager:
   - Encyclopedia
   - Pit
   - 
-  - 
+  - Foreground
   - 
   - 
   - 
@@ -83,6 +83,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1886506763
+    locked: 0
+  - name: Foreground
+    uniqueID: 383874141
     locked: 0
   - name: UI
     uniqueID: 3074112229
