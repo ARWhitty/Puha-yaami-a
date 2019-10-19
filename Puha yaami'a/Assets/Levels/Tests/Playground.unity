@@ -3884,5 +3884,15 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1667633072308583140, guid: a7d2a31d11260e24a9d3b8f38f90949e,
+        type: 3}
+      propertyPath: startDelay
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1667633072308583140, guid: a7d2a31d11260e24a9d3b8f38f90949e,
+        type: 3}
+      propertyPath: singleRockSpawner
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7d2a31d11260e24a9d3b8f38f90949e, type: 3}

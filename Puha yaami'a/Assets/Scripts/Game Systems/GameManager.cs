@@ -6,13 +6,14 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public GameObject playerObj;
+    public Animator[] ravenAnimators;
     private GameObject mainCamera;
     private Player player;
     public float deathDelay = 1.5f;
     [SerializeField] private Vector3 lastCheckpoint;
     [SerializeField]private Vector3 playerStartPos;
-    [SerializeField] private int score = 0;
-    public Text scoreText;
+    [SerializeField] private int plantsSteppedOn = 0;
+    //public Text scoreText;
 
     [SerializeField] private float bouncyModifier = 1.5f;
     [SerializeField] private float stickyModifier = 0.5f;
@@ -36,12 +37,14 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject levelUI = GameObject.FindObjectOfType<PauseMenu>().gameObject;
+        ravenAnimators = levelUI.GetComponentsInChildren<Animator>();
         if (playerObj == null)
         {
             playerObj = FindObjectOfType<Player>().gameObject;
         }
         player = playerObj.GetComponent<Player>();
-        UpdateScoreText();
+        //UpdateScoreText();
         playerStartPos = player.transform.position;
         lastCheckpoint = playerStartPos;
         mainCamera = playerObj.GetComponentInChildren<Camera>().gameObject;
@@ -80,8 +83,8 @@ public class GameManager : MonoBehaviour
         GameManagerData gmData = SaveSystem.LoadGM();
 
         //Update score
-        score = gmData.score;
-        UpdateScoreText();
+        //score = gmData.score;
+        //UpdateScoreText();
 
         //Load last checkpoint and update
         Vector3 loadedLastCheckpoint;
@@ -187,23 +190,22 @@ public class GameManager : MonoBehaviour
 
     void ScoreLoss()
     {
-        score -= 500;
-        UpdateScoreText();
+        print("bad boi");
+        plantsSteppedOn += 1;
+        UpdateRavens();
     }
 
-    void UpdateScoreText()
+    void UpdateRavens()
     {
-        if(scoreText == null)
+        if(plantsSteppedOn <= 3)
         {
-            Debug.LogWarning("please assign the score text field");
-            return;
+            ravenAnimators[plantsSteppedOn - 1].SetTrigger("Takeoff");
         }
-        scoreText.text = "Score: " + score;
     }
 
     public int GetScore()
     {
-        return score;
+        return plantsSteppedOn;
     }
 
 /*    public List<Vector3> GetCheckpoints()

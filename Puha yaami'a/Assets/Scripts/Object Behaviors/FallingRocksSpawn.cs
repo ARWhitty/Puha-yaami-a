@@ -11,23 +11,41 @@ public class FallingRocksSpawn : MonoBehaviour
     private int spawnerWidth;
     [Tooltip("how long in seconds between rocks falling at each sub spawn location. Internally staggered between all locations")]
     public float timeBetweenSpawns = 3f;
+    [Tooltip("The delay in seconds before rocks begin to be spawned")]
+    public float startDelay = 0f;
+    [Tooltip("Tick if this spawner should only make 1 rock at a time")]
+    public bool singleRockSpawner = false;
     private List<RockSpawnLoc> spawnLocations;
     // Start is called before the first frame update
     void Start()
     {
         spawnLocations = new List<RockSpawnLoc>();
         spawnerWidth = Mathf.RoundToInt(this.GetComponent<SpriteRenderer>().size.x);
-        for(int i = 0; i < spawnerWidth; i += rockSpacing)
+        if(singleRockSpawner)
         {
-            float timerOffset = Random.Range(0, timeBetweenSpawns);
-            RockSpawnLoc newSpawn = new RockSpawnLoc(new Vector2(i, 0), timeBetweenSpawns, timerOffset);
-            spawnLocations.Add(newSpawn);
+            spawnLocations.Add(new RockSpawnLoc(new Vector2(spawnerWidth / 2, 0), timeBetweenSpawns, timeBetweenSpawns));
+        }
+        else
+        {
+            for (int i = 0; i < spawnerWidth; i += rockSpacing)
+            {
+                float timerOffset = Random.Range(0, timeBetweenSpawns);
+                RockSpawnLoc newSpawn = new RockSpawnLoc(new Vector2(i, 0), timeBetweenSpawns, timerOffset);
+                spawnLocations.Add(newSpawn);
+            }
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        //if there's a delay to spawn, keep kicking out of update until delay is gone
+        if(startDelay > 0)
+        {
+            startDelay -= Time.deltaTime;
+            return;
+        }
+
         //loop through them all and decrease timers, then reassign once things have been changed
         for(int i = 0; i < spawnLocations.Count; i++)
         {

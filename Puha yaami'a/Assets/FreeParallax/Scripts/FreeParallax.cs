@@ -244,10 +244,18 @@ public class FreeParallaxElement
                 Renderer r = obj.GetComponent<Renderer>();
                 if (r == null)
                 {
-                    Debug.LogError("Null renderer found at element index " + index.ToString() + ", each game object in the parallax must have a renderer");
+                    //Renderer[] childRenderers = obj.GetComponentsInChildren<Renderer>();
+                    //if (childRenderers != null)
+                    //{
+                    //    GameObjectRenderers.AddRange(childRenderers);
+                    //}
+                    //Debug.LogError("Null renderer found at element index " + index.ToString() + ", each game object in the parallax must have a renderer");
                     return;
                 }
-                GameObjectRenderers.Add(r);
+                else
+                {
+                    GameObjectRenderers.Add(r);
+                }
             }
         }
     }
