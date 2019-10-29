@@ -80,6 +80,9 @@ TagManager:
   - name: Encyclopedia
     uniqueID: 2279035185
     locked: 0
+  - name: Decoration
+    uniqueID: 3462735081
+    locked: 0
   - name: Player
     uniqueID: 1886506763
     locked: 0
