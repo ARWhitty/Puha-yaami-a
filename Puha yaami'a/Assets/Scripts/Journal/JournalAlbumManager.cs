@@ -10,32 +10,12 @@ public class JournalAlbumManager : MonoBehaviour
     public List<Image> imgSlots;
     public List<Text> nameSlots;
     public List<Text> descSlots;
-
-    private JournalUIEntry[] allEntries = new JournalUIEntry[0];
-
-    public Sprite lockedSprite;
+    public List<GameObject> backgrounds;
+    public Text pageNum;
     private string undiscovered = "???";
-
-    struct JournalUIEntry
-    {
-        public string name;
-        public string description;
-        public Sprite image;
-        public bool unlocked;
-
-        public JournalUIEntry(string _name, string _desc, Sprite _img, bool _unlocked)
-        {
-            name = _name;
-            description = _desc;
-            image = _img;
-            unlocked = _unlocked;
-        }
-    }
 
     private void OnEnable()
     {
-        if (allEntries.Length == 0)
-            FillUIArray();
         UpdatePlantPageUI();
     }
 
@@ -44,21 +24,7 @@ public class JournalAlbumManager : MonoBehaviour
         //TODO: turn me back on when save system is ready
         //LoadData();
         UpdatePlantPageUI();
-    }
-
-    private void FillUIArray()
-    {
-        //NOTE: may need to fix the foreach loop a bit if entries per page is not 3
-        allEntries = new JournalUIEntry[pages.Count * 3];
-        int entryIdx = 0;
-        foreach(JournalPage page in pages)
-        {
-            allEntries[entryIdx] = new JournalUIEntry(page.top.title, page.top.text, page.top.unlockedImage, page.top.unlocked);
-            allEntries[entryIdx + 1] = new JournalUIEntry(page.mid.title, page.mid.text, page.mid.unlockedImage, page.mid.unlocked);
-            allEntries[entryIdx + 2] = new JournalUIEntry(page.bottom.title, page.bottom.text, page.bottom.unlockedImage, page.bottom.unlocked);
-
-            entryIdx += 3;
-        }
+        pageNum.text = "1";
     }
 
     private void LoadData()
@@ -97,23 +63,75 @@ public class JournalAlbumManager : MonoBehaviour
 
     private void UpdatePlantPageUI()
     {
-        for(int i = 0; i < 3; i++)
+        SetAllSlotsActive();
+
+        JournalPlantEntry cTop = pages[currPage].top;
+        JournalPlantEntry cMid = pages[currPage].mid;
+        JournalPlantEntry cBot = pages[currPage].bottom;
+
+        if(cTop != null)
         {
-            JournalUIEntry curr = allEntries[currPage + i];
-            if(curr.unlocked)
-            {
-                imgSlots[i].sprite = curr.image;
-                nameSlots[i].text = curr.name;
-                descSlots[i].text = curr.description;
-            }
-            else
-            {
-                imgSlots[i].sprite = lockedSprite;
-                nameSlots[i].text = undiscovered;
-                descSlots[i].text = "";
-            }
+            imgSlots[0].sprite = cTop.unlocked ? cTop.unlockedImage : cTop.lockedImage;
+            nameSlots[0].text = cTop.unlocked ? cTop.name : undiscovered;
+            descSlots[0].text = cTop.unlocked ? cTop.text : undiscovered;
+        }
+        else
+        {
+            imgSlots[0].gameObject.SetActive(false);
+            descSlots[0].gameObject.SetActive(false);
+            nameSlots[0].gameObject.SetActive(false);
+            backgrounds[0].SetActive(false);
         }
 
+        if(cMid != null)
+        {
+            imgSlots[1].sprite = cMid.unlocked ? cMid.unlockedImage : cMid.lockedImage;
+            nameSlots[1].text = cMid.unlocked ? cMid.name : undiscovered;
+            descSlots[1].text = cMid.unlocked ? cMid.text : undiscovered;
+        }
+        else
+        {
+            imgSlots[1].gameObject.SetActive(false);
+            descSlots[1].gameObject.SetActive(false);
+            nameSlots[1].gameObject.SetActive(false);
+            backgrounds[1].SetActive(false);
+        }
+
+        if (cBot != null)
+        {
+            imgSlots[2].sprite = cBot.unlocked ? cBot.unlockedImage : cBot.lockedImage;
+            nameSlots[2].text = cBot.unlocked ? cBot.name : undiscovered;
+            descSlots[2].text = cBot.unlocked ? cBot.text : undiscovered;
+        }
+        else
+        {
+            imgSlots[2].gameObject.SetActive(false);
+            descSlots[2].gameObject.SetActive(false);
+            nameSlots[2].gameObject.SetActive(false);
+            backgrounds[2].SetActive(false);
+        }
+
+        pageNum.text = (currPage+1).ToString();
+    }
+
+    private void SetAllSlotsActive()
+    {
+        foreach(Image img in imgSlots)
+        {
+            img.gameObject.SetActive(true);
+        }
+        foreach (GameObject go in backgrounds)
+        {
+            go.SetActive(true);
+        }
+        foreach (Text txt in descSlots)
+        {
+            txt.gameObject.SetActive(true);
+        }
+        foreach (Text name in nameSlots)
+        {
+            name.gameObject.SetActive(true);
+        }
     }
 
 

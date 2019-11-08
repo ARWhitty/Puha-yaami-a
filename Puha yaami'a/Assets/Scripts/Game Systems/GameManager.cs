@@ -190,7 +190,6 @@ public class GameManager : MonoBehaviour
 
     void ScoreLoss()
     {
-        print("bad boi");
         plantsSteppedOn += 1;
         UpdateRavens();
     }

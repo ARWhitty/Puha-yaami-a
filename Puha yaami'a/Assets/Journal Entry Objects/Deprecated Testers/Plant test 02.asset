@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8b4fd7cf225816419acf308a4ddeab9, type: 3}
+  m_Name: Plant test 02
+  m_EditorClassIdentifier: 
+  title: flower
+  text: 
+  unlocked: 0
+  lockedImage: {fileID: 21300000, guid: 065b30088532e4241932088216f8dc20, type: 3}
+  unlockedImage: {fileID: 21300000, guid: d2a60b6eeeb68b44cb1ed44d79710273, type: 3}

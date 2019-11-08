@@ -8,6 +8,8 @@ public class Lockout : MonoBehaviour
     private float timerInternal;
     public bool lockedOut;
     private SpriteRenderer renderer;
+    private bool particlesEmitted;
+    public GameObject pSys;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,11 @@ public class Lockout : MonoBehaviour
     {
         if(lockedOut)
         {
+            if (!particlesEmitted)
+            {
+                Instantiate(pSys, transform.position, Quaternion.identity);
+                particlesEmitted = true;
+            }
             if(timerInternal > 0)
             {
                 timerInternal -= Time.deltaTime;
@@ -38,6 +45,7 @@ public class Lockout : MonoBehaviour
         }
         else
         {
+            particlesEmitted = false;
             Color temp = renderer.color;
             if (temp.a != 1f)
             {
