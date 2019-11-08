@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8b4fd7cf225816419acf308a4ddeab9, type: 3}
+  m_Name: Shrub
+  m_EditorClassIdentifier: 
+  title: Shrub
+  text: YOU MUST BRING US A SHRUBBERY
+  unlocked: 0
+  lockedImage: {fileID: 21300000, guid: d0426a6628e19fc488df8f33a6884fd6, type: 3}
+  unlockedImage: {fileID: 21300000, guid: 6a2aa1f2062ace44b82d037887fb58c0, type: 3}

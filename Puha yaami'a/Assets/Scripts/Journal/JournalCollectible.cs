@@ -1,10 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
-public class JournalItem : MonoBehaviour
+public class JournalCollectible : MonoBehaviour
 {
     public JournalEntry data;
+    public GameObject particles;
+
+    private void OnValidate()
+    {
+        if(data != null)
+        {
+            if (data.GetType() == typeof(JournalPlantEntry))
+            {
+                SetupPlantObject(data);
+            }
+            else
+            {
+                SetupPoemObject(data);
+            }
+        }
+    }
+
+    //TODO: REMEMBER TO REMOVE ME!!!!!!!!!!!!!!!!
+    private void OnApplicationQuit()
+    {
+        data.unlocked = false;
+    }
 
     private void Start()
     {
@@ -37,7 +60,16 @@ public class JournalItem : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-            data.unlocked = true;
+            if(!data.unlocked)
+                Unlock();
         }
+    }
+
+    private void Unlock()
+    {
+        Instantiate(particles, transform.position, Quaternion.identity);
+        data.unlocked = true;
+        //dim the image for the collectible a touch
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.7f);
     }
 }

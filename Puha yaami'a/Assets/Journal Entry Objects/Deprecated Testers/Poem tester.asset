@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b0059a5f88f35d4c9dc86008c14013d, type: 3}
+  m_Name: Poem tester
+  m_EditorClassIdentifier: 
+  title: Example poem
+  text: 'This
+
+    is
+
+    an
+
+    example
+
+    type
+
+    all you
+
+    want'
+  unlocked: 0
+  image: {fileID: 0}

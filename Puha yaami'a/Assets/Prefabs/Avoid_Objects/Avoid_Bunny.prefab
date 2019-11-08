@@ -120,3 +120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a7e4797d99d2d45b9f30e0e3bdc190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lockoutTime: 2
+  lockedOut: 0
+  pSys: {fileID: 582736811203946135, guid: f4d894a1f24c2e54e9a8ccb02d7f3528, type: 3}
