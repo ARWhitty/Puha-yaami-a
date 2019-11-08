@@ -23,7 +23,7 @@ public class JournalCollectible : MonoBehaviour
         }
     }
 
-    //TODO: REMEMBER TO REMOVE ME!!!!!!!!!!!!!!!!
+    //TODO: REMEMBER TO REMOVE ME BEFORE TURNING SAVE SYSTEM BACK ON!!!!!!!!!!!!!!!!
     private void OnApplicationQuit()
     {
         data.unlocked = false;

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sego Lily
   m_EditorClassIdentifier: 
   title: Sego Lily
-  text: Looks pretty standard to me
+  text: Like the Potter
   unlocked: 0
   lockedImage: {fileID: 21300000, guid: d0426a6628e19fc488df8f33a6884fd6, type: 3}
   unlockedImage: {fileID: 21300000, guid: 6698d023862d15c48950923cdd5bb95a, type: 3}

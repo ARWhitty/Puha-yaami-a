@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Desert Sage
   m_EditorClassIdentifier: 
   title: Desert Sage
-  text: more like 3lips
+  text: Sage in the Rage Cage
   unlocked: 0
   lockedImage: {fileID: 21300000, guid: d0426a6628e19fc488df8f33a6884fd6, type: 3}
   unlockedImage: {fileID: 21300000, guid: ace200363b5dbec499b13f08e5570c13, type: 3}

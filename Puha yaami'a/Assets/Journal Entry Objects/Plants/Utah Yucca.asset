@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Utah Yucca
   m_EditorClassIdentifier: 
   title: Utah Yucca
-  text: Tall boi
+  text: When you eat it you say Yucca too
   unlocked: 0
   lockedImage: {fileID: 21300000, guid: d0426a6628e19fc488df8f33a6884fd6, type: 3}
   unlockedImage: {fileID: 21300000, guid: dc4c0fc662a20144a965aa5f048bbf20, type: 3}
