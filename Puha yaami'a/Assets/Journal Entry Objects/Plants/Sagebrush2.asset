@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8b4fd7cf225816419acf308a4ddeab9, type: 3}
-  m_Name: Orange Flowers
+  m_Name: Sagebrush2
   m_EditorClassIdentifier: 
-  title: Orange Flowers
-  text: This one is pretty
+  title: Sagebrush2
+  text: YOU MUST BRING US A SHRUBBERY
   unlocked: 0
   lockedImage: {fileID: 21300000, guid: d0426a6628e19fc488df8f33a6884fd6, type: 3}
-  unlockedImage: {fileID: 21300000, guid: 773f3b2938ff8f7468d40a1675daf476, type: 3}
+  unlockedImage: {fileID: 21300000, guid: 6a2aa1f2062ace44b82d037887fb58c0, type: 3}

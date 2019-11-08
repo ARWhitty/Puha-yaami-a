@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8b4fd7cf225816419acf308a4ddeab9, type: 3}
-  m_Name: Lilac
+  m_Name: Sagebrush1
   m_EditorClassIdentifier: 
-  title: Lilac
-  text: I think, can't tell
+  title: Sagebrush1
+  text: Jet fuel steel beams etc
   unlocked: 0
   lockedImage: {fileID: 21300000, guid: d0426a6628e19fc488df8f33a6884fd6, type: 3}
-  unlockedImage: {fileID: 21300000, guid: 31f0e00fa4e197c47ac8afc5ce9ecdce, type: 3}
+  unlockedImage: {fileID: 21300000, guid: f51f5568d54da5e4488791b9a5bcc4c9, type: 3}

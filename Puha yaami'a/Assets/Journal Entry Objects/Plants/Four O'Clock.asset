@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8b4fd7cf225816419acf308a4ddeab9, type: 3}
-  m_Name: Red Tube Flowers
+  m_Name: Four O'Clock
   m_EditorClassIdentifier: 
-  title: Red Tube Flowers
-  text: Tubular doodular
+  title: Four O'Clock
+  text: Probably poisonous
   unlocked: 0
   lockedImage: {fileID: 21300000, guid: d0426a6628e19fc488df8f33a6884fd6, type: 3}
-  unlockedImage: {fileID: 21300000, guid: 9ff9077747951484895f72f8ddf158bc, type: 3}
+  unlockedImage: {fileID: 21300000, guid: f653d5e01df391149b1212a270336c34, type: 3}
