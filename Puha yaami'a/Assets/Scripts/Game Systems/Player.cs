@@ -72,6 +72,7 @@ public class Player : MonoBehaviour
     #region Internal Fields
     private int num_jumps;
     private int prev_dir = 1;
+    public bool isDead;
 
     private bool isDashing, isGliding, isClimbing, inWind, canDash, onLadder, isJumping;
     public bool startDashCd;
@@ -139,6 +140,7 @@ public class Player : MonoBehaviour
         isClimbing = false;
         startDashCd = false;
         isJumping = false;
+        isDead = false;
 
         dashTime = startDashTime;
         dashCd = dashCooldown;
@@ -353,7 +355,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// Moves the player in the given direction via vector translation
     /// </summary>
-    /// <param name="dir">Direction to move (1 is right, -1 is left, 0 is no movpement)</param>
+    /// <param name="dir">Direction to move (1 is right, -1 is left, 0 is no movement)</param>
     private void Move(int dir)
     { 
         if(dir != 0 && isGroundedInternal)
@@ -377,6 +379,11 @@ public class Player : MonoBehaviour
         }
 
         float cameraOffset = camera.transform.position.x - lastFrameCameraPos.x;
+        if(!isDead)
+        {
+            Vector3 newLocalPos = new Vector3(prev_dir * 15f, camera.transform.localPosition.y, camera.transform.localPosition.z);
+            camera.transform.localPosition = Vector3.Lerp(camera.transform.localPosition, newLocalPos, 0.05f);
+        }
 
         if(cameraOffset >= moveAmount || cameraOffset <= -moveAmount)
         {
@@ -736,6 +743,7 @@ public class Player : MonoBehaviour
         isClimbing = false;
         isDashing = false;
         isGliding = false;
+        startDashCd = false;
     }
 
     /// <summary>

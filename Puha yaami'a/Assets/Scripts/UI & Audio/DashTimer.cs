@@ -27,24 +27,32 @@ public class DashTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(timeRemaining > 0)
+        if(player.startDashCd == false)
         {
-            if(player.startDashCd)
-            {
-                timeRemaining -= Time.deltaTime;
-                timerBar.fillAmount = timeRemaining / maxTime;
-            }
+            timerBar.fillAmount = 1;
         }
         else
         {
-            timeRemaining = maxTime;
-            timerBar.fillAmount = 1;
+            timerBar.fillAmount = 0;
         }
+        //if(timeRemaining > 0)
+        //{
+        //    if(player.startDashCd)
+        //    {
+        //        timeRemaining -= Time.deltaTime;
+        //        timerBar.fillAmount = timeRemaining / maxTime;
+        //    }
+        //}
+        //else
+        //{
+        //    timeRemaining = maxTime;
+        //    timerBar.fillAmount = 1;
+        //}
     }
 
     private void FixedUpdate()
     {
-        if (player.GetDashUnlocked())
+        if (player.GetDashUnlocked() && timerBar.enabled == false)
         {
             timerBar.enabled = true;
             timerText.enabled = true;

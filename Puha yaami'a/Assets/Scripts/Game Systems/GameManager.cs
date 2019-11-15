@@ -165,6 +165,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator PitCameraLock()
     {
+        player.isDead = true;
         mainCamera.transform.parent = null;
         yield return new WaitForSeconds(deathDelay);
         OnFail();
@@ -178,7 +179,8 @@ public class GameManager : MonoBehaviour
             playerObj.transform.position = lastCheckpoint;
             player.ResetCooldowns();
             mainCamera.transform.SetParent(playerObj.transform);
-            mainCamera.transform.localPosition = new Vector3(0, 2, -50);
+            mainCamera.transform.localPosition = new Vector3(0, 10, -50);
+            player.isDead = false;
         }
         else
         {
