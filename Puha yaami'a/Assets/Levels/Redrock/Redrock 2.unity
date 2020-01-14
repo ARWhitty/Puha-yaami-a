@@ -6480,15 +6480,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 85046026}
-    - target: {fileID: 405255423607401136, guid: f89abfd167c7c87418a5d0ee0e93f7c2,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 6.7001953
-      objectReference: {fileID: 0}
-    - target: {fileID: 1003914657, guid: f89abfd167c7c87418a5d0ee0e93f7c2, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 618701572979722320, guid: f89abfd167c7c87418a5d0ee0e93f7c2,
         type: 3}
       propertyPath: audioMgr
@@ -6496,10 +6487,27 @@ PrefabInstance:
       objectReference: {fileID: 488131099}
     - target: {fileID: 1963676834, guid: f89abfd167c7c87418a5d0ee0e93f7c2, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.0008544922
+      value: -0.0009765625
       objectReference: {fileID: 0}
     - target: {fileID: 1963676834, guid: f89abfd167c7c87418a5d0ee0e93f7c2, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1003914657, guid: f89abfd167c7c87418a5d0ee0e93f7c2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 405255423607401136, guid: f89abfd167c7c87418a5d0ee0e93f7c2,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 6.7001953
+      objectReference: {fileID: 0}
+    - target: {fileID: 1633018704, guid: f89abfd167c7c87418a5d0ee0e93f7c2, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1633018704, guid: f89abfd167c7c87418a5d0ee0e93f7c2, type: 3}
+      propertyPath: m_FillAmount
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
