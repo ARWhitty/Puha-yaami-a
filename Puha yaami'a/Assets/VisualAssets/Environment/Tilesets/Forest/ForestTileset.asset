@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0d98f5be51926f46bc797504da5ad22, type: 3}
   m_Name: ForestTileset
   m_EditorClassIdentifier: 
-  AtlasTexture: {fileID: 2800000, guid: da61d0f585dfd414490f3ea81d830399, type: 3}
+  AtlasTexture: {fileID: 2800000, guid: e02cfa4f02610ca4c8f1af77fb238460, type: 3}
   TilePxSize: {x: 512, y: 512}
   SliceOffset: {x: 0, y: 0}
   SlicePadding: {x: 0, y: 0}
