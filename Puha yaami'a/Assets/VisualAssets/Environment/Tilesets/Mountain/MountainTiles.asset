@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0d98f5be51926f46bc797504da5ad22, type: 3}
   m_Name: MountainTiles
   m_EditorClassIdentifier: 
-  AtlasTexture: {fileID: 2800000, guid: f1b2a38cfe49cf64888a6189e2f3f01f, type: 3}
+  AtlasTexture: {fileID: 2800000, guid: 1453109530a9655408df79d19e6cbaa7, type: 3}
   TilePxSize: {x: 512, y: 512}
   SliceOffset: {x: 0, y: 0}
   SlicePadding: {x: 0, y: 0}
@@ -1547,7 +1547,7 @@ MonoBehaviour:
       showTileWithPrefab: 0
       showPrefabPreviewInTilePalette: 0
     autilingGroup: 0
-  m_pixelsPerUnit: 512
+  m_pixelsPerUnit: 100
   m_brushGroupNames:
   - Default
   - 
