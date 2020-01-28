@@ -151,6 +151,7 @@ MonoBehaviour:
   ladderClimbSpeed: 0.4
   backgroundParallax: {fileID: 0}
   camera: {fileID: 4549886841602128109}
+  isDead: 0
   startDashCd: 0
   dblJumpUnlocked: 0
   dashUnlocked: 0
@@ -168,7 +169,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.024748921, y: 0.45}
+  m_Offset: {x: 0.024748802, y: 0.631135}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -179,7 +180,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4, y: 10}
+  m_Size: {x: 4, y: 9.63773}
   m_EdgeRadius: 0
 --- !u!95 &4080493828233435583
 Animator:
