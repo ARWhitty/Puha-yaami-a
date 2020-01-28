@@ -67,21 +67,56 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1182909672214299986, guid: 2479c9910f7e20a419e184e98e37118d,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1182909672214299986, guid: 2479c9910f7e20a419e184e98e37118d,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 1182909672214299987, guid: 2479c9910f7e20a419e184e98e37118d,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d2a60b6eeeb68b44cb1ed44d79710273,
+      objectReference: {fileID: 21300000, guid: 8ac02178871b40644bc8369d81334c56,
         type: 3}
+    - target: {fileID: 1182909672214299987, guid: 2479c9910f7e20a419e184e98e37118d,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 10.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 1182909672214299987, guid: 2479c9910f7e20a419e184e98e37118d,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 5.36
+      objectReference: {fileID: 0}
     - target: {fileID: 1182909672214299984, guid: 2479c9910f7e20a419e184e98e37118d,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 5.13
+      value: 10.51
       objectReference: {fileID: 0}
     - target: {fileID: 1182909672214299984, guid: 2479c9910f7e20a419e184e98e37118d,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 2.72
+      value: 5.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 1182909672214299984, guid: 2479c9910f7e20a419e184e98e37118d,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 10.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 1182909672214299984, guid: 2479c9910f7e20a419e184e98e37118d,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 5.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 1182909672214299984, guid: 2479c9910f7e20a419e184e98e37118d,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2479c9910f7e20a419e184e98e37118d, type: 3}

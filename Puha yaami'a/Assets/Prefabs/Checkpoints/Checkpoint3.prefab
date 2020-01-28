@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 3776193226974133502, guid: 08b6d53f6e90f0d4aa81a477e3ba05ac,
         type: 3}
       propertyPath: m_Name
-      value: Checkpoint2
+      value: Checkpoint3
       objectReference: {fileID: 0}
     - target: {fileID: 3776193226974133491, guid: 08b6d53f6e90f0d4aa81a477e3ba05ac,
         type: 3}
@@ -81,7 +81,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: ffaa7f513b57f704698fdf1b888824bf,
+      objectReference: {fileID: 21300000, guid: dee4833c1a3dc6147bb452bfa8a95c4c,
         type: 3}
     - target: {fileID: 3776193226974133500, guid: 08b6d53f6e90f0d4aa81a477e3ba05ac,
         type: 3}
@@ -96,12 +96,12 @@ PrefabInstance:
     - target: {fileID: 3776193226974133501, guid: 08b6d53f6e90f0d4aa81a477e3ba05ac,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 6.57
+      value: 6.27
       objectReference: {fileID: 0}
     - target: {fileID: 3776193226974133501, guid: 08b6d53f6e90f0d4aa81a477e3ba05ac,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 8.52
+      value: 8.38
       objectReference: {fileID: 0}
     - target: {fileID: 3776193226974133501, guid: 08b6d53f6e90f0d4aa81a477e3ba05ac,
         type: 3}
