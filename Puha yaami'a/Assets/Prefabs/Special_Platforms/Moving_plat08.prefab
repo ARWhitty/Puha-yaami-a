@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3224368475932714341
+--- !u!1001 &1957917994290412226
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 3412519769099664308, guid: cb9b71314a1e00e49a198a0b9c77f40a,
         type: 3}
       propertyPath: m_Name
-      value: Moving_plat_thin03
+      value: Moving_plat08
       objectReference: {fileID: 0}
     - target: {fileID: 3412519769099664305, guid: cb9b71314a1e00e49a198a0b9c77f40a,
         type: 3}
@@ -71,7 +71,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: aca8ee1e91f7f3e4f8cd12a0afe38871,
+      objectReference: {fileID: 21300000, guid: 24c71ce0b88a2114ead3369f14574272,
         type: 3}
     - target: {fileID: 3412519769099664311, guid: cb9b71314a1e00e49a198a0b9c77f40a,
         type: 3}
@@ -81,22 +81,12 @@ PrefabInstance:
     - target: {fileID: 3412519769099664311, guid: cb9b71314a1e00e49a198a0b9c77f40a,
         type: 3}
       propertyPath: m_Offset.x
-      value: 0.03770876
+      value: -0.037666798
       objectReference: {fileID: 0}
     - target: {fileID: 3412519769099664311, guid: cb9b71314a1e00e49a198a0b9c77f40a,
         type: 3}
       propertyPath: m_Size.x
-      value: 15.276795
-      objectReference: {fileID: 0}
-    - target: {fileID: 3412519769099664311, guid: cb9b71314a1e00e49a198a0b9c77f40a,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: 1.2534157
-      objectReference: {fileID: 0}
-    - target: {fileID: 3412519769099664311, guid: cb9b71314a1e00e49a198a0b9c77f40a,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 2.5876682
+      value: 15.126044
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb9b71314a1e00e49a198a0b9c77f40a, type: 3}
