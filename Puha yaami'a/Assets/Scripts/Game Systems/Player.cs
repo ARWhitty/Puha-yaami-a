@@ -382,7 +382,7 @@ public class Player : MonoBehaviour
         if(!isDead)
         {
             Vector3 newLocalPos = new Vector3(prev_dir * 15f, camera.transform.localPosition.y, camera.transform.localPosition.z);
-            camera.transform.localPosition = Vector3.Lerp(camera.transform.localPosition, newLocalPos, 0.05f);
+            camera.transform.localPosition = Vector3.Lerp(camera.transform.localPosition, newLocalPos, 0.02f);
         }
 
         if(cameraOffset >= moveAmount || cameraOffset <= -moveAmount)
