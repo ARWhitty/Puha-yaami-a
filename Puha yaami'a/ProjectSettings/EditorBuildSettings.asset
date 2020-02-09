@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Levels/Main Menu.unity
+    path: Assets/Levels/Start End/Main Menu.unity
     guid: 6cbf95bb7bfaa8b4e9e4b732c92abb67
   - enabled: 1
     path: Assets/Levels/Redrock/Redrock 1.unity
