@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8b4fd7cf225816419acf308a4ddeab9, type: 3}
-  m_Name: Sagebrush3
+  m_Name: Sagebrush Lg
   m_EditorClassIdentifier: 
-  title: Sagebrush3
-  text: It looks aggressive...
+  title: Sagebrush1
+  text: Jet fuel steel beams etc
   unlocked: 0
-  lockedImage: {fileID: 21300000, guid: d0426a6628e19fc488df8f33a6884fd6, type: 3}
-  unlockedImage: {fileID: 21300000, guid: 1fd4ea2bdd16ff5408d7e5189ef32fe6, type: 3}
+  lockedImage: {fileID: 21300000, guid: 3ed3a3005a167774c9510dabfd0e1322, type: 3}
+  unlockedImage: {fileID: 21300000, guid: 4674958b6e609924bba3f984502fbd0f, type: 3}

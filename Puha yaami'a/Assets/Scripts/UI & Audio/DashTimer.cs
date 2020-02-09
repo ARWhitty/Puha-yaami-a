@@ -6,22 +6,19 @@ using UnityEngine.UI;
 public class DashTimer : MonoBehaviour
 {
     public Player player;
-    public Text timerText;
-    public Image timerBar;
+    public Image timerImg;
     private float maxTime;
     private float timeRemaining;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindObjectOfType<Player>().GetComponent<Player>();
-        timerBar = GetComponent<Image>();
+        timerImg = GetComponent<Image>();
         if (player.GetDashUnlocked())
         {
-            timerBar.enabled = true;
-            timerText.enabled = true;
+            timerImg.enabled = true;
         }
         maxTime = player.dashCooldown;
-        timeRemaining = maxTime;
     }
 
     // Update is called once per frame
@@ -29,33 +26,21 @@ public class DashTimer : MonoBehaviour
     {
         if(player.startDashCd == false)
         {
-            timerBar.fillAmount = 1;
+            timerImg.fillAmount = 1;
         }
         else
         {
-            timerBar.fillAmount = 0;
+            float timeRemaining = maxTime - player.GetDashCD();
+            float ratio = timeRemaining / maxTime;
+            timerImg.fillAmount = ratio;
         }
-        //if(timeRemaining > 0)
-        //{
-        //    if(player.startDashCd)
-        //    {
-        //        timeRemaining -= Time.deltaTime;
-        //        timerBar.fillAmount = timeRemaining / maxTime;
-        //    }
-        //}
-        //else
-        //{
-        //    timeRemaining = maxTime;
-        //    timerBar.fillAmount = 1;
-        //}
     }
 
     private void FixedUpdate()
     {
-        if (player.GetDashUnlocked() && timerBar.enabled == false)
+        if (timerImg.enabled == false && player.GetDashUnlocked())
         {
-            timerBar.enabled = true;
-            timerText.enabled = true;
+            timerImg.enabled = true;
         }
     }
 }

@@ -798,5 +798,10 @@ public class Player : MonoBehaviour
     {
         return dashUnlocked;
     }
+
+    public float GetDashCD()
+    {
+        return dashCd;
+    }
     #endregion
 }

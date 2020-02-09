@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3f07f79040cee84d8666cbb41a42128, type: 3}
+  m_Name: Page_01
+  m_EditorClassIdentifier: 
+  top:
+    poemTitle: Test01
+    chunks:
+    - {fileID: 11400000, guid: 92cfd93c2270ac0449a1db8b916e7987, type: 2}
+    - {fileID: 11400000, guid: f72497229eada324fbe0e71cad8d0213, type: 2}
+    - {fileID: 11400000, guid: cf1239c418f3a2f4e9287713448f1b15, type: 2}
+  mid:
+    poemTitle: Test02
+    chunks: []
+  bot:
+    poemTitle: Test03
+    chunks: []

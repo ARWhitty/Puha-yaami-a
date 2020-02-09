@@ -15,5 +15,5 @@ MonoBehaviour:
   title: Desert Sage
   text: Sage in the Rage Cage
   unlocked: 0
-  lockedImage: {fileID: 21300000, guid: d0426a6628e19fc488df8f33a6884fd6, type: 3}
-  unlockedImage: {fileID: 21300000, guid: ace200363b5dbec499b13f08e5570c13, type: 3}
+  lockedImage: {fileID: 21300000, guid: 5bb04ea4e0a847c42b885c3f1c388d99, type: 3}
+  unlockedImage: {fileID: 21300000, guid: 52c440cb63e559b49b45929cb746ce57, type: 3}

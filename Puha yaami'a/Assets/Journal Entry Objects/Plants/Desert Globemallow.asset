@@ -15,5 +15,5 @@ MonoBehaviour:
   title: Desert Globemallow
   text: This one is pretty. All I have to say.
   unlocked: 0
-  lockedImage: {fileID: 21300000, guid: d0426a6628e19fc488df8f33a6884fd6, type: 3}
-  unlockedImage: {fileID: 21300000, guid: 773f3b2938ff8f7468d40a1675daf476, type: 3}
+  lockedImage: {fileID: 21300000, guid: c12e008839630544ca4566304acb3910, type: 3}
+  unlockedImage: {fileID: 21300000, guid: 4285c2e5a2e08f24db01a286d55a6231, type: 3}

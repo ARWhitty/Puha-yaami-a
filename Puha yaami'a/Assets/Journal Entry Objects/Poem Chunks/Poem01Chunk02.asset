@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8b4fd7cf225816419acf308a4ddeab9, type: 3}
-  m_Name: Sego Lily
+  m_Script: {fileID: 11500000, guid: 3b0059a5f88f35d4c9dc86008c14013d, type: 3}
+  m_Name: Poem01Chunk02
   m_EditorClassIdentifier: 
-  title: Sego Lily
-  text: Like the Potter
+  title: TesterPoem1
+  text: Etiam euismod ipsum sit amet vestibulum porta.
   unlocked: 0
-  lockedImage: {fileID: 21300000, guid: 63c13a6327df767448d91c45887d659e, type: 3}
-  unlockedImage: {fileID: 21300000, guid: be32ddfcba1306544ba926de90f49caf, type: 3}
+  image: {fileID: 21300000, guid: fb9756933bdf74e48a7a9352eed47148, type: 3}

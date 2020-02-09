@@ -48,6 +48,7 @@ public class JournalCollectible : MonoBehaviour
     private void SetupPoemObject(JournalEntry toCast)
     {
         JournalPoemEntry entry = (JournalPoemEntry)toCast;
+        this.GetComponent<SpriteRenderer>().sprite = entry.image;
     }
 
     private void SetupPlantObject(JournalEntry toCast)

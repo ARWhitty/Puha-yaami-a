@@ -15,5 +15,5 @@ MonoBehaviour:
   title: Firecracker Penstemon
   text: Tubular doodular
   unlocked: 0
-  lockedImage: {fileID: 21300000, guid: d0426a6628e19fc488df8f33a6884fd6, type: 3}
-  unlockedImage: {fileID: 21300000, guid: 9ff9077747951484895f72f8ddf158bc, type: 3}
+  lockedImage: {fileID: 21300000, guid: bc210c1b57161be4fbcadb796199d222, type: 3}
+  unlockedImage: {fileID: 21300000, guid: ecc27445845447c42a30a6257d8aa8be, type: 3}
