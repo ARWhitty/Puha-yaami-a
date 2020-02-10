@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84c1de61e39cb5d488fe0684e723aceb, type: 3}
+  m_Name: Bark
+  m_EditorClassIdentifier: 
+  Tileset: {fileID: 11400000, guid: 7c141ac121d38e7408aa3889ac3920e3, type: 2}
+  Params:
+    m_paramList: []
+  m_group: 0
+  m_autotilingMode: 1
+  m_showInPalette: 1
+  TileIds: 0b0000000b0000000b000000140000000b0000000b000000000000000a0000000b000000160000000b00000015000000020000000c000000010000000b000000
+  InteriorCornerTileIds: 0e0000000f0000000400000005000000
