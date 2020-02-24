@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 3412519769099664308, guid: cb9b71314a1e00e49a198a0b9c77f40a,
         type: 3}
       propertyPath: m_Name
-      value: Moving_platform02
+      value: Moving_plat02
       objectReference: {fileID: 0}
     - target: {fileID: 3412519769099664305, guid: cb9b71314a1e00e49a198a0b9c77f40a,
         type: 3}
@@ -66,6 +66,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3412519769099664304, guid: cb9b71314a1e00e49a198a0b9c77f40a,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 3412519769099664310, guid: cb9b71314a1e00e49a198a0b9c77f40a,
         type: 3}
