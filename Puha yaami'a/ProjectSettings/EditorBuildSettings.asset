@@ -17,13 +17,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Levels/Redrock/Redrock 3.unity
     guid: c95098d6802c79249b5bff52df42e22b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Levels/Forest/Forest 1.unity
     guid: e5d2a9f0c415b194ab2560573b9ce394
-  - enabled: 1
+  - enabled: 0
     path: Assets/Levels/Forest/Forest 2.unity
     guid: ee21a8fe85e508745bf41a89e30ba9c8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Levels/Forest/Forest 3.unity
     guid: 7bbbd0ac5d958054281c2a6d459c0509
   m_configObjects: {}
